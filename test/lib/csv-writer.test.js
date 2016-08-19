@@ -9,13 +9,13 @@ describe('CsvWriter', () => {
         };
         const fieldStringifier = {stringify: string => string};
         const header = [
-            {id: 'FIELD_A', name: 'TITLE_A'},
-            {id: 'FIELD_B', name: 'TITLE_B'}
+            {id: 'FIELD_A', title: 'TITLE_A'},
+            {id: 'FIELD_B', title: 'TITLE_B'}
         ];
         const writer = new CsvWriter({
             fs,
             fieldStringifier,
-            filePath: 'FILE_PATH',
+            path: 'FILE_PATH',
             header
         });
 
@@ -34,13 +34,13 @@ describe('CsvWriter', () => {
         };
         const fieldStringifier = {stringify: string => string};
         const header = [
-            {id: 'FIELD_A', name: 'TITLE_A'},
-            {id: 'FIELD_B', name: 'TITLE_B'}
+            {id: 'FIELD_A', title: 'TITLE_A'},
+            {id: 'FIELD_B', title: 'TITLE_B'}
         ];
         const writer = new CsvWriter({
             fs,
             fieldStringifier,
-            filePath: 'FILE_PATH',
+            path: 'FILE_PATH',
             header
         });
 
@@ -71,13 +71,13 @@ describe('CsvWriter', () => {
         };
         const fieldStringifier = {stringify: value => String(value)};
         const header = [
-            {id: 'FIELD_A', name: 3},
-            {id: 'FIELD_B', name: 'TITLE_B'}
+            {id: 'FIELD_A', title: 3},
+            {id: 'FIELD_B', title: 'TITLE_B'}
         ];
         const writer = new CsvWriter({
             fs,
             fieldStringifier,
-            filePath: 'FILE_PATH',
+            path: 'FILE_PATH',
             header
         });
 
@@ -96,13 +96,13 @@ describe('CsvWriter', () => {
         };
         const fieldStringifier = {stringify: value => String(value)};
         const header = [
-            {id: 'FIELD_A', name: 'TITLE_A'},
-            {id: 'FIELD_B', name: 'TITLE_B'}
+            {id: 'FIELD_A', title: 'TITLE_A'},
+            {id: 'FIELD_B', title: 'TITLE_B'}
         ];
         const writer = new CsvWriter({
             fs,
             fieldStringifier,
-            filePath: 'FILE_PATH',
+            path: 'FILE_PATH',
             header
         });
 
@@ -131,7 +131,7 @@ describe('CsvWriter', () => {
         const writer = new CsvWriter({
             fs,
             fieldStringifier,
-            filePath: 'FILE_PATH',
+            path: 'FILE_PATH',
             header
         });
 
