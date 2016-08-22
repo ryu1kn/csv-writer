@@ -44,11 +44,11 @@ describe('CsvWriter', () => {
             header
         });
 
-        const row = {
+        const record = {
             FIELD_A: 'VALUE_A1',
             FIELD_B: 'VALUE_B1'
         };
-        return writer.write(row).then(() => {
+        return writer.writeRecord(record).then(() => {
             expect(fs.writeFile.args[0].slice(0, 3)).to.eql([
                 'FILE_PATH',
                 'TITLE_A,TITLE_B\nVALUE_A1,VALUE_B1\n',
@@ -73,11 +73,11 @@ describe('CsvWriter', () => {
             header
         });
 
-        const row1 = {FIELD_A: 'VALUE_A1', FIELD_B: 'VALUE_B1'};
-        const row2 = {FIELD_A: 'VALUE_A2', FIELD_B: 'VALUE_B2'};
+        const record1 = {FIELD_A: 'VALUE_A1', FIELD_B: 'VALUE_B1'};
+        const record2 = {FIELD_A: 'VALUE_A2', FIELD_B: 'VALUE_B2'};
         return Promise.resolve()
-            .then(() => writer.write(row1))
-            .then(() => writer.write(row2))
+            .then(() => writer.writeRecord(record1))
+            .then(() => writer.writeRecord(record2))
             .then(() => {
                 expect(fs.writeFile.args[1].slice(0, 3)).to.eql([
                     'FILE_PATH',
@@ -103,11 +103,11 @@ describe('CsvWriter', () => {
             header
         });
 
-        const row = {
+        const record = {
             FIELD_A: 'VALUE_A1',
             FIELD_B: 'VALUE_B1'
         };
-        return writer.write(row).then(() => {
+        return writer.writeRecord(record).then(() => {
             expect(fs.writeFile.args[0].slice(0, 3)).to.eql([
                 'FILE_PATH',
                 'VALUE_A1,VALUE_B1\n',
@@ -132,13 +132,10 @@ describe('CsvWriter', () => {
             header
         });
 
-        const records = [{
-            FIELD_A: 'VALUE_A1',
-            FIELD_B: 'VALUE_B1'
-        }, {
-            FIELD_A: 'VALUE_A2',
-            FIELD_B: 'VALUE_B2'
-        }];
+        const records = [
+            {FIELD_A: 'VALUE_A1', FIELD_B: 'VALUE_B1'},
+            {FIELD_A: 'VALUE_A2', FIELD_B: 'VALUE_B2'}
+        ];
         return writer.writeRecords(records).then(() => {
             expect(fs.writeFile.args[0].slice(0, 3)).to.eql([
                 'FILE_PATH',

@@ -19,7 +19,7 @@ var data = [
 ];
 
 data.reduce(function (promise, person) {
-    return writer.write(person);
+    return writer.writeRecord(person);
 }, Promise.resolve());
 
 // This will produce a file path/to/file.csv with following contents:
@@ -66,7 +66,7 @@ var data = [
 ];
 
 data.reduce(function (promise, record) {
-    return writer.write(record);
+    return writer.writeRecord(record);
 }, Promise.resolve());
 
 // This will produce a file path/to/file.csv with following contents:
