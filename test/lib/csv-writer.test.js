@@ -44,11 +44,8 @@ describe('CsvWriter', () => {
             header
         });
 
-        const record = {
-            FIELD_A: 'VALUE_A1',
-            FIELD_B: 'VALUE_B1'
-        };
-        return writer.writeRecord(record).then(() => {
+        const records = [{FIELD_A: 'VALUE_A1', FIELD_B: 'VALUE_B1'}];
+        return writer.writeRecords(records).then(() => {
             expect(fs.writeFile.args[0].slice(0, 3)).to.eql([
                 'FILE_PATH',
                 'TITLE_A,TITLE_B\nVALUE_A1,VALUE_B1\n',
@@ -73,11 +70,11 @@ describe('CsvWriter', () => {
             header
         });
 
-        const record1 = {FIELD_A: 'VALUE_A1', FIELD_B: 'VALUE_B1'};
-        const record2 = {FIELD_A: 'VALUE_A2', FIELD_B: 'VALUE_B2'};
+        const records1 = [{FIELD_A: 'VALUE_A1', FIELD_B: 'VALUE_B1'}];
+        const records2 = [{FIELD_A: 'VALUE_A2', FIELD_B: 'VALUE_B2'}];
         return Promise.resolve()
-            .then(() => writer.writeRecord(record1))
-            .then(() => writer.writeRecord(record2))
+            .then(() => writer.writeRecords(records1))
+            .then(() => writer.writeRecords(records2))
             .then(() => {
                 expect(fs.writeFile.args[1].slice(0, 3)).to.eql([
                     'FILE_PATH',
@@ -103,11 +100,8 @@ describe('CsvWriter', () => {
             header
         });
 
-        const record = {
-            FIELD_A: 'VALUE_A1',
-            FIELD_B: 'VALUE_B1'
-        };
-        return writer.writeRecord(record).then(() => {
+        const records = [{FIELD_A: 'VALUE_A1', FIELD_B: 'VALUE_B1'}];
+        return writer.writeRecords(records).then(() => {
             expect(fs.writeFile.args[0].slice(0, 3)).to.eql([
                 'FILE_PATH',
                 'VALUE_A1,VALUE_B1\n',
