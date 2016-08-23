@@ -1,0 +1,10 @@
+env:
+  mocha: true
+globals:
+  expect: true
+  sinon: true
+  throwError: true
+rules:
+  max-len: off
+  no-unused-expressions: off
+  padded-blocks: off

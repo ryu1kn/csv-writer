@@ -43,7 +43,7 @@ describe('FieldStringifier', () => {
         const obj = {
             name: 'OBJECT_NAME',
             toString: function () { return `Name: ${this.name}`; }
-        }
+        };
         expect(stringifier.stringify(obj)).to.eql('Name: OBJECT_NAME');
     });
 
@@ -52,7 +52,7 @@ describe('FieldStringifier', () => {
         const obj = {
             name: 'OBJECT,NAME',
             toString: function () { return `Name: ${this.name}`; }
-        }
+        };
         expect(stringifier.stringify(obj)).to.eql('"Name: OBJECT,NAME"');
     });
 
@@ -61,7 +61,7 @@ describe('FieldStringifier', () => {
         const obj = {
             name: 'OBJECT_NAME"',
             toString: function () { return `Name: ${this.name}`; }
-        }
+        };
         expect(stringifier.stringify(obj)).to.eql('"Name: OBJECT_NAME"""');
     });
 });

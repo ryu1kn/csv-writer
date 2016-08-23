@@ -1,0 +1,62 @@
+root: true
+extends: xo
+installedESLint: true
+env:
+  node: true
+  es6: true
+parserOptions:
+  ecmaVersion: 6
+  sourceType: module
+rules:
+  brace-style:
+  - error
+  - 1tbs
+  - allowSingleLine: true
+  camelcase:
+  - error
+  - properties: never
+  curly:
+  - error
+  - multi-line
+  - consistent
+  indent:
+  - error
+  - 4
+  - SwitchCase: 0
+  # eslint doesn't have jscs's maximumLineLength allExcept:regex
+  # see. https://github.com/eslint/eslint/issues/5805
+  max-len:
+  - error
+  - code: 110
+    ignoreTrailingComments: true
+    ignoreUrls: true
+  no-bitwise: error
+  no-caller: error
+  no-implicit-coercion:
+  - error
+  - allow: ["!!"]
+  no-negated-condition: off
+  no-use-before-define:
+  - error
+  - functions: false
+    classes: false
+  no-unused-vars:
+  - error
+  - argsIgnorePattern: "^_"
+  object-property-newline:
+  - error
+  - allowMultiplePropertiesPerLine: true
+  # eslint doesn't have jscs's disallowMultipleVarDecl {allExcept: "undefined"}
+  # see. https://github.com/eslint/eslint/issues/1619
+  one-var-declaration-per-line: error
+  quotes:
+  - error
+  - single
+  - avoid-escape
+  quote-props:
+  - error
+  - as-needed
+  space-before-function-paren:
+  - error
+  - anonymous: always
+    named: never
