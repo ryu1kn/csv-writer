@@ -1,7 +1,35 @@
 
 # CSV Writer
 
+## API
+
+### new CsvWriter(params)
+
+* params `<Object>`:
+
+    ```js
+    {
+        path: 'path/to/write-file',
+        header: [
+            {
+                id: 'FIELD_ID',
+                title: 'FIELD_TITLE'
+            },
+            ...
+        ]
+    }
+    ```
+
+
+### CsvWriter#writeRecords(records)
+
+* params
+  * records `<Array<Object|Array>>`:
+* returns `<Promise>`
+
 ## Usage
+
+### Pass records as objects
 
 ```js
 var CsvWriter = require('csv-writer');
@@ -27,7 +55,7 @@ writer.writeRecords(data);     // returns a promise
 //   Michael,English
 ```
 
-### Write array
+### Pass records as arrays
 
 ```js
 var CsvWriter = require('csv-writer');
