@@ -93,4 +93,27 @@ describe('CsvWriter', () => {
             ]);
         });
     });
+
+    it('throws an error if file write failed', () => {
+        const fs = {
+            writeFile: sinon.stub().callsArgWith(3, new Error('WRITE_FILE_ERROR'))
+        };
+        const fieldStringifier = {stringify: value => String(value)};
+        const header = ['FIELD_A', 'FIELD_B'];
+        const writer = new CsvWriter({
+            fs,
+            fieldStringifier,
+            path: 'FILE_PATH',
+            header
+        });
+
+        const records = [{FIELD_A: 'VALUE_A1', FIELD_B: 'VALUE_B1'}];
+        return writer.writeRecords(records).then(
+            () => new Error('Should have been failed'),
+            e => {
+                expect(e).to.be.an.error;
+                expect(e.message).to.eql('WRITE_FILE_ERROR');
+            }
+        );
+    });
 });
