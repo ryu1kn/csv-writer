@@ -3,32 +3,7 @@ const CsvWriter = require('../../lib/csv-writer');
 
 describe('CsvWriter', () => {
 
-    it('writes a header row', () => {
-        const fs = {
-            writeFile: sinon.stub().callsArgWith(3, null)
-        };
-        const fieldStringifier = {stringify: string => string};
-        const header = [
-            {id: 'FIELD_A', title: 'TITLE_A'},
-            {id: 'FIELD_B', title: 'TITLE_B'}
-        ];
-        const writer = new CsvWriter({
-            fs,
-            fieldStringifier,
-            path: 'FILE_PATH',
-            header
-        });
-
-        return writer.writeHeader().then(() => {
-            expect(fs.writeFile.args[0].slice(0, 3)).to.eql([
-                'FILE_PATH',
-                'TITLE_A,TITLE_B\n',
-                {encoding: 'utf8'}
-            ]);
-        });
-    });
-
-    it('writes a header row before it writes the first data row', () => {
+    it('writes a header row when it writes the first data row', () => {
         const fs = {
             writeFile: sinon.stub().callsArgWith(3, null)
         };
@@ -49,7 +24,10 @@ describe('CsvWriter', () => {
             expect(fs.writeFile.args[0].slice(0, 3)).to.eql([
                 'FILE_PATH',
                 'TITLE_A,TITLE_B\nVALUE_A1,VALUE_B1\n',
-                {encoding: 'utf8'}
+                {
+                    encoding: 'utf8',
+                    flag: 'w'
+                }
             ]);
         });
     });
@@ -105,7 +83,10 @@ describe('CsvWriter', () => {
             expect(fs.writeFile.args[0].slice(0, 3)).to.eql([
                 'FILE_PATH',
                 'VALUE_A1,VALUE_B1\n',
-                {encoding: 'utf8'}
+                {
+                    encoding: 'utf8',
+                    flag: 'w'
+                }
             ]);
         });
     });
@@ -134,7 +115,10 @@ describe('CsvWriter', () => {
             expect(fs.writeFile.args[0].slice(0, 3)).to.eql([
                 'FILE_PATH',
                 'TITLE_A,TITLE_B\nVALUE_A1,VALUE_B1\nVALUE_A2,VALUE_B2\n',
-                {encoding: 'utf8'}
+                {
+                    encoding: 'utf8',
+                    flag: 'w'
+                }
             ]);
         });
     });
