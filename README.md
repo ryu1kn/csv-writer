@@ -18,26 +18,7 @@ var data = [
     {name: 'Michael', lang: 'English'}
 ];
 
-data.reduce(function (promise, person) {
-    return writer.writeRecord(person);
-}, Promise.resolve());
-
-// This will produce a file path/to/file.csv with following contents:
-//
-//   NAME,LANGUAGE
-//   Ryuichi,"Japanese, English"
-//   Michael,English
-```
-
-### Write multiple records at once
-
-```js
-var data = [
-    {name: 'Ryuichi', lang: 'Japanese, English'},
-    {name: 'Michael', lang: 'English'}
-];
-
-writer.writeRecords(data);     // return a promise
+writer.writeRecords(data);     // returns a promise
 
 // This will produce a file path/to/file.csv with following contents:
 //
@@ -60,18 +41,10 @@ var writer = new CsvWriter({
     ]
 });
 
-var data = [
+var data = [    // Here, `data` is an array of arrays
     ['Ryuichi', 'Japanese, English'],
     ['Michael', 'English']
 ];
 
-data.reduce(function (promise, record) {
-    return writer.writeRecord(record);
-}, Promise.resolve());
-
-// This will produce a file path/to/file.csv with following contents:
-//
-//   NAME,LANGUAGE
-//   Ryuichi,"Japanese, English"
-//   Michael,English
+writer.writeRecords(data);     // returns a promise
 ```
