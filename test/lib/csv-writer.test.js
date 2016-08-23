@@ -35,7 +35,7 @@ describe('CsvWriter', () => {
         });
     });
 
-    it('opens a write file with append mode from the second write call', () => {
+    it('opens a file with append mode and does not write a header again when requested to write CSV again', () => {
         const fs = {
             writeFile: sinon.stub().callsArgWith(3, null)
         };
