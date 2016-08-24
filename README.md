@@ -5,27 +5,39 @@
 
 ### new CsvWriter(params)
 
-* params `<Object>`:
+#### Parameters:
 
-    ```js
-    {
-        path: 'path/to/write-file',
-        header: [
-            {
-                id: 'FIELD_ID',
-                title: 'FIELD_TITLE'
-            },
-            ...
-        ]
-    }
-    ```
+* params `<Object>`
+  * path `<string>`
+
+      Path to a write file
+
+  * header `<Array<Object|string>>`
+
+      Array of object (id and title) or a string (id)
+
+#### Example:
+
+```js
+new CsvWriter({
+    path: 'path/to/write-file',
+    header: [
+        {id: 'FIELD_ID1', title: 'FIELD_TITLE1'},
+        {id: 'FIELD_ID2', title: 'FIELD_TITLE2'}
+    ]
+});
+```
 
 
 ### CsvWriter#writeRecords(records)
 
-* params
-  * records `<Array<Object|Array>>`:
-* returns `<Promise>`
+#### Parameters:
+
+* records `<Array<Object|Array>>`
+
+#### Returns:
+
+* `<Promise>`
 
 ## Usage
 
