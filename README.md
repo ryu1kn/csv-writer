@@ -12,6 +12,8 @@
 
       Path to a write file
 
+  * encoding `<string>` (optional)
+
   * header `<Array<Object|string>>`
 
       Array of object (id and title) or a string (id)
@@ -39,9 +41,9 @@ new CsvWriter({
 
 * `<Promise>`
 
-## Usage
+#### Example:
 
-### Pass records as objects
+##### Pass records as objects
 
 ```js
 var CsvWriter = require('csv-writer');
@@ -67,7 +69,7 @@ writer.writeRecords(data);     // returns a promise
 //   Michael,English
 ```
 
-### Pass records as arrays
+##### Pass records as arrays
 
 ```js
 var CsvWriter = require('csv-writer');

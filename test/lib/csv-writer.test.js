@@ -88,6 +88,37 @@ describe('CsvWriter', () => {
         });
     });
 
+    it('writes to a file with the specified encoding', () => {
+        const fs = {writeFile: sinon.stub().callsArgWith(3, null)};
+        const fieldStringifier = {stringify: string => string};
+        const header = [
+            {id: 'FIELD_A', title: 'TITLE_A'},
+            {id: 'FIELD_B', title: 'TITLE_B'}
+        ];
+        const writer = new CsvWriter({
+            fs,
+            encoding: 'ENCODING',
+            fieldStringifier,
+            path: 'FILE_PATH',
+            header
+        });
+
+        const records = [
+            {FIELD_A: 'VALUE_A1', FIELD_B: 'VALUE_B1'},
+            {FIELD_A: 'VALUE_A2', FIELD_B: 'VALUE_B2'}
+        ];
+        return writer.writeRecords(records).then(() => {
+            expect(fs.writeFile.args[0].slice(0, 3)).to.eql([
+                'FILE_PATH',
+                'TITLE_A,TITLE_B\nVALUE_A1,VALUE_B1\nVALUE_A2,VALUE_B2\n',
+                {
+                    encoding: 'ENCODING',
+                    flag: 'w'
+                }
+            ]);
+        });
+    });
+
     it('throws an error if file write failed', () => {
         const fs = {writeFile: sinon.stub().callsArgWith(3, new Error('WRITE_FILE_ERROR'))};
         const fieldStringifier = {stringify: value => String(value)};
