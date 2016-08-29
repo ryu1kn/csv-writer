@@ -1,2 +1,2 @@
 
-module.exports = require('./lib/default-csv-writer');
+module.exports = require('./lib/default-object-record-writer');

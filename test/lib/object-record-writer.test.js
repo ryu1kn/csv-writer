@@ -1,7 +1,7 @@
 
-const CsvWriter = require('../../lib/csv-writer');
+const ObjectRecordWriter = require('../../lib/object-record-writer');
 
-describe('CsvWriter', () => {
+describe('ObjectRecordWriter', () => {
 
     it('writes a header row when it writes the first data row', () => {
         const fs = {writeFile: sinon.stub().callsArgWith(3, null)};
@@ -10,7 +10,7 @@ describe('CsvWriter', () => {
             {id: 'FIELD_A', title: 'TITLE_A'},
             {id: 'FIELD_B', title: 'TITLE_B'}
         ];
-        const writer = new CsvWriter({
+        const writer = new ObjectRecordWriter({
             fs,
             fieldStringifier,
             path: 'FILE_PATH',
@@ -40,7 +40,7 @@ describe('CsvWriter', () => {
             {id: 'FIELD_A', title: 'TITLE_A'},
             {id: 'FIELD_B', title: 'TITLE_B'}
         ];
-        const writer = new CsvWriter({
+        const writer = new ObjectRecordWriter({
             fs,
             fieldStringifier,
             path: 'FILE_PATH',
@@ -68,7 +68,7 @@ describe('CsvWriter', () => {
         const fs = {writeFile: sinon.stub().callsArgWith(3, null)};
         const fieldStringifier = {stringify: value => String(value)};
         const header = ['FIELD_A', 'FIELD_B'];
-        const writer = new CsvWriter({
+        const writer = new ObjectRecordWriter({
             fs,
             fieldStringifier,
             path: 'FILE_PATH',
@@ -95,7 +95,7 @@ describe('CsvWriter', () => {
             {id: 'FIELD_A', title: 'TITLE_A'},
             {id: 'FIELD_B', title: 'TITLE_B'}
         ];
-        const writer = new CsvWriter({
+        const writer = new ObjectRecordWriter({
             fs,
             encoding: 'ENCODING',
             fieldStringifier,
@@ -123,7 +123,7 @@ describe('CsvWriter', () => {
         const fs = {writeFile: sinon.stub().callsArgWith(3, new Error('WRITE_FILE_ERROR'))};
         const fieldStringifier = {stringify: value => String(value)};
         const header = ['FIELD_A', 'FIELD_B'];
-        const writer = new CsvWriter({
+        const writer = new ObjectRecordWriter({
             fs,
             fieldStringifier,
             path: 'FILE_PATH',
@@ -143,7 +143,7 @@ describe('CsvWriter', () => {
     it('writes a record given as an array', () => {
         const fs = {writeFile: sinon.stub().callsArgWith(3, null)};
         const fieldStringifier = {stringify: string => string};
-        const writer = new CsvWriter({
+        const writer = new ObjectRecordWriter({
             fs,
             fieldStringifier,
             path: 'FILE_PATH'
