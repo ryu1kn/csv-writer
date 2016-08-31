@@ -139,29 +139,4 @@ describe('ObjectRecordWriter', () => {
             }
         );
     });
-
-    it('writes a record given as an array', () => {
-        const fs = {writeFile: sinon.stub().callsArgWith(3, null)};
-        const fieldStringifier = {stringify: string => string};
-        const writer = new ObjectRecordWriter({
-            fs,
-            fieldStringifier,
-            path: 'FILE_PATH'
-        });
-
-        const records = [
-            ['ROW1_FIELD1', 'ROW1_FIELD2'],
-            ['ROW2_FIELD1', 'ROW2_FIELD2']
-        ];
-        return writer.writeRecords(records).then(() => {
-            expect(fs.writeFile.args[0].slice(0, 3)).to.eql([
-                'FILE_PATH',
-                'ROW1_FIELD1,ROW1_FIELD2\nROW2_FIELD1,ROW2_FIELD2\n',
-                {
-                    encoding: 'utf8',
-                    flag: 'w'
-                }
-            ]);
-        });
-    });
 });
