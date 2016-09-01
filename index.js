@@ -1,2 +1,4 @@
 
-module.exports = require('./lib/default-object-record-writer');
+const CsvWriterFactory = require('./lib/csv-writer-factory');
+
+module.exports = new CsvWriterFactory();
