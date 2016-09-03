@@ -3,7 +3,7 @@
 
 ## API
 
-### new CsvWriter(params)
+### createObjectRecordWriter
 
 #### Parameters:
 
@@ -18,20 +18,12 @@
 
       Array of object (id and title) or a string (id)
 
-#### Example:
+#### Returns:
 
-```js
-new CsvWriter({
-    path: 'path/to/write-file',
-    header: [
-        {id: 'FIELD_ID1', title: 'FIELD_TITLE1'},
-        {id: 'FIELD_ID2', title: 'FIELD_TITLE2'}
-    ]
-});
-```
+* `<ObjectRecordWriter>`
 
 
-### CsvWriter#writeRecords(records)
+### ObjectRecordWriter#writeRecords(records)
 
 #### Parameters:
 
@@ -43,12 +35,10 @@ new CsvWriter({
 
 #### Example:
 
-##### Pass records as objects
-
 ```js
-var CsvWriter = require('csv-writer');
-var writer = new CsvWriter({
-    path: 'path/to/file.csv',
+var createCsvWriter = require('.csv-writer').createObjectRecordWriter;
+var writer = createCsvWriter({
+    path: 'path/to/write-file.csv',
     header: [
         {id: 'name', title: 'NAME'},
         {id: 'lang', title: 'LANGUAGE'},
@@ -69,12 +59,39 @@ writer.writeRecords(data);     // returns a promise
 //   Michael,English
 ```
 
-##### Pass records as arrays
+
+### createArrayRecordWriter
+
+#### Parameters:
+
+* params `<Object>`
+  * path `<string>`
+
+      Path to a write file
+
+  * encoding `<string>` (optional)
+
+#### Returns:
+
+* `<ArrayRecordWriter>`
+
+### ArrayRecordWriter#writeRecords(records)
+
+#### Parameters:
+
+* records `<Array<Object|Array>>`
+
+#### Returns:
+
+* `<Promise>`
+
+
+#### Example:
 
 ```js
-var CsvWriter = require('csv-writer');
-var writer = new CsvWriter({
-    path: 'path/to/file.csv'
+const createCsvWriter = require('csv-writer').createArrayRecordWriter;
+const writer = createCsvWriter({
+    path: 'path/to/write-file.csv'
 });
 
 var data = [    // Here, `data` is an array of arrays
@@ -85,7 +102,7 @@ var data = [    // Here, `data` is an array of arrays
 
 writer.writeRecords(data);     // returns a promise
 
-// This will produce a file path/to/file.csv with following contents:
+// This will produce a file path/to/write-file.csv with following contents:
 //
 //   NAME,LANGUAGE
 //   Ryuichi,"Japanese, English"
