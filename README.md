@@ -12,11 +12,11 @@
 
       Path to a write file
 
-  * encoding `<string>` (optional)
-
   * header `<Array<Object|string>>`
 
-      Array of object (id and title) or a string (id)
+      Array of object (`id` and `title` properties) or a string (`id`)
+
+  * encoding `<string>` (optional)
 
 #### Returns:
 
@@ -27,7 +27,7 @@
 
 #### Parameters:
 
-* records `<Array<Object|Array>>`
+* records `<Array<Object>>`
 
 #### Returns:
 
@@ -79,7 +79,7 @@ writer.writeRecords(data);     // returns a promise
 
 #### Parameters:
 
-* records `<Array<Object|Array>>`
+* records `<Array<Array>>`
 
 #### Returns:
 
