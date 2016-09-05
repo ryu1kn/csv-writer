@@ -1,5 +1,5 @@
 
-const CsvWriter = require('../../lib/abstract-csv-writer');
+const CsvWriter = require('../../lib/csv-writer');
 
 describe('CsvWriter', () => {
 
