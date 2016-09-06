@@ -1,5 +1,5 @@
 
-const ArrayCsvConverter = require('../../lib/array-csv-converter');
+const ArrayCsvConverter = require('../../lib/csv-converters/array');
 
 describe('ArrayCsvConverter', () => {
 
