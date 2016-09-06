@@ -150,6 +150,20 @@ console.log(csvStringifier.stringifyRecords(records));
 * `<CsvWriter>`
 
 
+### CsvWriter#writeRecords(records)
+
+#### Parameters:
+
+* records `<Array<Object|Array>>`
+
+    Depending on which function was used to create a `csvWriter` (i.e. `createObjectCsvWriter` or `createArrayCsvWriter`),
+    records will be either an array of objects or arrays
+
+#### Returns:
+
+* `<Promise>`
+
+
 ### createObjectCsvStringifier
 
 #### Parameters:
