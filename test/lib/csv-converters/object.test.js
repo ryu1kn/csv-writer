@@ -1,5 +1,5 @@
 
-const ObjectCsvConverter = require('../../lib/csv-converters/object');
+const ObjectCsvConverter = require('../../../lib/csv-converters/object');
 
 describe('ObjectCsvConverter', () => {
 
