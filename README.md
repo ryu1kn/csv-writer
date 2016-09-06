@@ -36,7 +36,7 @@ csvWriter.writeRecords(records)       // returns a promise
 //   Mary,English
 ```
 
-You can keep writing records to the same file by using `writeRecords` (but need to wait for the fulfillment
+You can keep writing records into the same file by calling `writeRecords` multiple times (but need to wait for the fulfillment
 of the `promise` of the previous `writeRecords` call)
 
 ```js
@@ -46,7 +46,7 @@ Promise.resolve()
     ...
 ```
 
-If you don't want to write a header raw, don't give `title` for header elements and just give field id as a string.
+If you don't want to write a header line, don't give `title` to header elements and just give field ids as a string.
 
 ```js
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
@@ -56,7 +56,7 @@ const csvWriter = createCsvWriter({
 });
 ```
 
-If each record is defined as an array, you `createArrayCsvWriter` to get an `csvWriter`.
+If each record is defined as an array, use `createArrayCsvWriter` to get an `csvWriter`.
 
 ```js
 const createCsvWriter = require('csv-writer').createArrayCsvWriter;
@@ -121,7 +121,7 @@ console.log(csvConverter.convertRecords(records));
 
   * header `<Array<{id, title}|string>>`
 
-      Array of object (`id` and `title` properties) or a string (`id`)
+      Array of objects (`id` and `title` properties) or strings (field ids)
 
   * encoding `<string>` (optional)
 
@@ -157,7 +157,7 @@ console.log(csvConverter.convertRecords(records));
 * params `<Object>`
   * header `<Array<{id, title}|string>>`
 
-      Array of object (`id` and `title` properties) or a string (`id`)
+      Array of objects (`id` and `title` properties) or strings (field ids)
 
 #### Returns:
 
