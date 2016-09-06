@@ -13,7 +13,7 @@
     "url": "git+https://github.com/ryu1kn/csv-writer.git"
   },
   "keywords": [
-    "csv"
+    "csv", "writer", "stringify"
   ],
   "author": "Ryuichi Inagaki",
   "license": "MIT",
