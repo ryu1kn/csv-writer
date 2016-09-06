@@ -110,9 +110,9 @@ console.log(csvStringifier.stringifyRecords(records));
 
 ## API
 
-### createObjectCsvWriter
+### createObjectCsvWriter(params)
 
-#### Parameters:
+##### Parameters:
 
 * params `<Object>`
   * path `<string>`
@@ -125,14 +125,14 @@ console.log(csvStringifier.stringifyRecords(records));
 
   * encoding `<string>` (optional)
 
-#### Returns:
+##### Returns:
 
 * `<CsvWriter>`
 
 
-### createArrayCsvWriter
+### createArrayCsvWriter(params)
 
-#### Parameters:
+##### Parameters:
 
 * params `<Object>`
   * path `<string>`
@@ -145,79 +145,79 @@ console.log(csvStringifier.stringifyRecords(records));
 
   * encoding `<string>` (optional)
 
-#### Returns:
+##### Returns:
 
 * `<CsvWriter>`
 
 
 ### CsvWriter#writeRecords(records)
 
-#### Parameters:
+##### Parameters:
 
 * records `<Array<Object|Array>>`
 
     Depending on which function was used to create a `csvWriter` (i.e. `createObjectCsvWriter` or `createArrayCsvWriter`),
     records will be either an array of objects or arrays
 
-#### Returns:
+##### Returns:
 
 * `<Promise>`
 
 
-### createObjectCsvStringifier
+### createObjectCsvStringifier(params)
 
-#### Parameters:
+##### Parameters:
 
 * params `<Object>`
   * header `<Array<{id, title}|string>>`
 
       Array of objects (`id` and `title` properties) or strings (field ids)
 
-#### Returns:
+##### Returns:
 
 * `<ObjectCsvStringifier>`
 
 ### ObjectCsvStringifier#getHeaderString()
 
-#### Returns:
+##### Returns:
 
 * `<string>`
 
 ### ObjectCsvStringifier#stringifyRecords(records)
 
-#### Parameters:
+##### Parameters:
 
 * records `<Array<Object>>`
 
-#### Returns:
+##### Returns:
 
 * `<string>`
 
-### createArrayCsvStringifier
+### createArrayCsvStringifier(params)
 
-#### Parameters:
+##### Parameters:
 
 * params `<Object>`
   * header `<Array<string>>` (optional)
 
       Array of field titles
 
-#### Returns:
+##### Returns:
 
 * `<ArrayCsvStringifier>`
 
 ### ArrayCsvStringifier#getHeaderString()
 
-#### Returns:
+##### Returns:
 
 * `<string>`
 
 ### ArrayCsvStringifier#stringifyRecords(records)
 
-#### Parameters:
+##### Parameters:
 
 * records `<Array<Array<string>>>`
 
-#### Returns:
+##### Returns:
 
 * `<string>`
