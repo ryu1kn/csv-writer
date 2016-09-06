@@ -1,6 +1,8 @@
 
 # CSV Writer
 
+Convert objects/arrays into a CSV string or write them into a file.
+
 ## Prerequisite
 
 * Node version 4 or above
