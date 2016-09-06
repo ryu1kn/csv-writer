@@ -7,7 +7,7 @@ describe('CsvWriter', () => {
         const fs = {writeFile: sinon.stub().callsArgWith(3, null)};
         const csvConverter = {
             getHeaderString: () => 'HEADER_STRING',
-            convert: sinon.stub().returns('RECORDS_STRING')
+            convertRecords: sinon.stub().returns('RECORDS_STRING')
         };
         const writer = new CsvWriter({
             fs,
@@ -24,7 +24,7 @@ describe('CsvWriter', () => {
                     flag: 'w'
                 }
             ]);
-            expect(csvConverter.convert.args[0][0]).to.eql('RECORDS');
+            expect(csvConverter.convertRecords.args[0][0]).to.eql('RECORDS');
         });
     });
 
@@ -32,7 +32,7 @@ describe('CsvWriter', () => {
         const fs = {writeFile: sinon.stub().callsArgWith(3, null)};
         const csvConverter = {
             getHeaderString: () => null,
-            convert: sinon.stub().returns('RECORDS_STRING')
+            convertRecords: sinon.stub().returns('RECORDS_STRING')
         };
         const writer = new CsvWriter({
             fs,
@@ -56,7 +56,7 @@ describe('CsvWriter', () => {
         const fs = {writeFile: sinon.stub().callsArgWith(3, null)};
         const arrayCsvConverter = {
             getHeaderString: () => 'HEADER_STRING',
-            convert: () => 'CSV_STRING'
+            convertRecords: () => 'CSV_STRING'
         };
         const writer = new CsvWriter({
             fs,
@@ -83,7 +83,7 @@ describe('CsvWriter', () => {
         const fs = {writeFile: sinon.stub().callsArgWith(3, null)};
         const arrayCsvConverter = {
             getHeaderString: () => 'HEADER_STRING',
-            convert: () => 'RECORDS_STRING'
+            convertRecords: () => 'RECORDS_STRING'
         };
         const writer = new CsvWriter({
             fs,
@@ -108,7 +108,7 @@ describe('CsvWriter', () => {
         const fs = {writeFile: sinon.stub().callsArgWith(3, new Error('WRITE_FILE_ERROR'))};
         const arrayCsvConverter = {
             getHeaderString: () => 'HEADER_STRING',
-            convert: () => 'CSV_STRING'
+            convertRecords: () => 'CSV_STRING'
         };
         const writer = new CsvWriter({
             fs,

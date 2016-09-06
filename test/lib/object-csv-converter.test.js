@@ -19,7 +19,7 @@ describe('ObjectCsvConverter', () => {
                 {FIELD_A: 'VALUE_A1', FIELD_B: 'VALUE_B1'},
                 {FIELD_A: 'VALUE_A2', FIELD_B: 'VALUE_B2'}
             ];
-            expect(converter.convert(records)).to.eql(
+            expect(converter.convertRecords(records)).to.eql(
                 'VALUE_A1,VALUE_B1\nVALUE_A2,VALUE_B2\n'
             );
         });
@@ -35,7 +35,7 @@ describe('ObjectCsvConverter', () => {
                 {FIELD_A: 'VALUE_A1', FIELD_B: 'VALUE_B1'},
                 {FIELD_A: 'VALUE_A2', FIELD_B: 'VALUE_B2'}
             ];
-            expect(converter.convert(records)).to.eql(
+            expect(converter.convertRecords(records)).to.eql(
                 'VALUE_A1,VALUE_B1\nVALUE_A2,VALUE_B2\n'
             );
         });
@@ -54,7 +54,7 @@ describe('ObjectCsvConverter', () => {
                 {FIELD_A: 'VALUE_A1', FIELD_B: 'VALUE_B1'},
                 {FIELD_A: 'VALUE_A2', FIELD_B: 'VALUE_B2'}
             ];
-            expect(converter.convert(records)).to.eql(
+            expect(converter.convertRecords(records)).to.eql(
                 'VALUE_B1,VALUE_A1\nVALUE_B2,VALUE_A2\n'
             );
         });

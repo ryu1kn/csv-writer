@@ -15,7 +15,7 @@ describe('ArrayCsvConverter', () => {
                 ['FIELD_A1', 'FIELD_B1'],
                 ['FIELD_A2', 'FIELD_B2']
             ];
-            expect(converter.convert(records)).to.eql(
+            expect(converter.convertRecords(records)).to.eql(
                 'FIELD_A1,FIELD_B1\nFIELD_A2,FIELD_B2\n'
             );
         });

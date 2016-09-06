@@ -1,6 +1,10 @@
 
 # CSV Writer
 
+## Prerequisite
+
+* Node version 4 and above
+
 ## API
 
 ### createObjectRecordWriter
@@ -69,11 +73,16 @@ writer.writeRecords(data);     // returns a promise
 
       Path to a write file
 
+  * header `<Array<string>>`
+
+      Array of field titles
+
   * encoding `<string>` (optional)
 
 #### Returns:
 
 * `<ArrayRecordWriter>`
+
 
 ### ArrayRecordWriter#writeRecords(records)
 
@@ -85,7 +94,6 @@ writer.writeRecords(data);     // returns a promise
 
 * `<Promise>`
 
-
 #### Example:
 
 ```js
@@ -94,7 +102,7 @@ const writer = createCsvWriter({
     path: 'path/to/write-file.csv'
 });
 
-var data = [    // Here, `data` is an array of arrays
+var data = [
     ['NAME', 'LANGUAGE'],
     ['Ryuichi', 'Japanese, English'],
     ['Michael', 'English']
