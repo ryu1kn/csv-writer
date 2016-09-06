@@ -1,7 +1,7 @@
 {
   "name": "csv-writer",
   "version": "0.0.1",
-  "description": "",
+  "description": "Convert objects/arrays into a CSV string or write them into a CSV file",
   "main": "index.js",
   "scripts": {
     "test": "mocha test --recursive",
