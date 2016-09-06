@@ -83,12 +83,12 @@ csvWriter.writeRecords(data)       // returns a promise
 ```
 
 If you just want to get a CSV string but don't want to write into a file,
-you can use `createObjectCsvConverter` (or `createArrayCsvConverter`)
-to get an `csvConverter`.
+you can use `createObjectCsvStringifier` (or `createArrayCsvStringifier`)
+to get an `csvStringifier`.
 
 ```js
-const createCsvConverter = require('csv-writer').createObjectCsvConverter;
-const csvConverter = createCsvConverter({
+const createCsvStringifier = require('csv-writer').createObjectCsvStringifier;
+const csvStringifier = createCsvStringifier({
     header: [
         {id: 'name', title: 'NAME'},
         {id: 'lang', title: 'LANGUAGE'},
@@ -100,10 +100,10 @@ const records = [
     {name: 'Mary', lang: 'English'}
 ];
 
-console.log(csvConverter.getHeaderString());
+console.log(csvStringifier.getHeaderString());
 // => 'NAME,LANGUAGE\n'
 
-console.log(csvConverter.convertRecords(records));
+console.log(csvStringifier.stringifyRecords(records));
 // => 'Bob,"French, English"\nMary,English\n'
 ```
 
@@ -150,7 +150,7 @@ console.log(csvConverter.convertRecords(records));
 * `<CsvWriter>`
 
 
-### createObjectCsvConverter
+### createObjectCsvStringifier
 
 #### Parameters:
 
@@ -161,15 +161,15 @@ console.log(csvConverter.convertRecords(records));
 
 #### Returns:
 
-* `<ObjectCsvConverter>`
+* `<ObjectCsvStringifier>`
 
-### ObjectCsvConverter#getHeaderString()
+### ObjectCsvStringifier#getHeaderString()
 
 #### Returns:
 
 * `<string>`
 
-### ObjectCsvConverter#converterRecords(records)
+### ObjectCsvStringifier#stringifyRecords(records)
 
 #### Parameters:
 
@@ -179,7 +179,7 @@ console.log(csvConverter.convertRecords(records));
 
 * `<string>`
 
-### createArrayCsvConverter
+### createArrayCsvStringifier
 
 #### Parameters:
 
@@ -190,15 +190,15 @@ console.log(csvConverter.convertRecords(records));
 
 #### Returns:
 
-* `<ArrayCsvConverter>`
+* `<ArrayCsvStringifier>`
 
-### ArrayCsvConverter#getHeaderString()
+### ArrayCsvStringifier#getHeaderString()
 
 #### Returns:
 
 * `<string>`
 
-### ArrayCsvConverter#converterRecords(records)
+### ArrayCsvStringifier#stringifyRecords(records)
 
 #### Parameters:
 

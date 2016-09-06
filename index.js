@@ -1,17 +1,17 @@
 
-const CsvConverterFactory = require('./lib/csv-converter-factory');
+const CsvStringifierFactory = require('./lib/csv-stringifier-factory');
 const CsvWriterFactory = require('./lib/csv-writer-factory');
 
-const csvConverterFactory = new CsvConverterFactory();
-const csvWriterFactory = new CsvWriterFactory({csvConverterFactory});
+const csvStringifierFactory = new CsvStringifierFactory();
+const csvWriterFactory = new CsvWriterFactory({csvStringifierFactory});
 
 module.exports = {
 
-    createArrayCsvConverter: params =>
-        csvConverterFactory.createArrayCsvConverter(params),
+    createArrayCsvStringifier: params =>
+        csvStringifierFactory.createArrayCsvStringifier(params),
 
-    createObjectCsvConverter: params =>
-        csvConverterFactory.createObjectCsvConverter(params),
+    createObjectCsvStringifier: params =>
+        csvStringifierFactory.createObjectCsvStringifier(params),
 
     createArrayCsvWriter: params =>
         csvWriterFactory.createArrayCsvWriter(params),

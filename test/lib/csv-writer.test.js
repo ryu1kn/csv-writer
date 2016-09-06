@@ -5,13 +5,13 @@ describe('CsvWriter', () => {
 
     it('writes records to a new file', () => {
         const fs = {writeFile: sinon.stub().callsArgWith(3, null)};
-        const csvConverter = {
+        const csvStringifier = {
             getHeaderString: () => 'HEADER_STRING',
-            convertRecords: sinon.stub().returns('RECORDS_STRING')
+            stringifyRecords: sinon.stub().returns('RECORDS_STRING')
         };
         const writer = new CsvWriter({
             fs,
-            csvConverter,
+            csvStringifier,
             path: 'FILE_PATH'
         });
 
@@ -24,19 +24,19 @@ describe('CsvWriter', () => {
                     flag: 'w'
                 }
             ]);
-            expect(csvConverter.convertRecords.args[0][0]).to.eql('RECORDS');
+            expect(csvStringifier.stringifyRecords.args[0][0]).to.eql('RECORDS');
         });
     });
 
     it('does not write a header if it is not available', () => {
         const fs = {writeFile: sinon.stub().callsArgWith(3, null)};
-        const csvConverter = {
+        const csvStringifier = {
             getHeaderString: () => null,
-            convertRecords: sinon.stub().returns('RECORDS_STRING')
+            stringifyRecords: sinon.stub().returns('RECORDS_STRING')
         };
         const writer = new CsvWriter({
             fs,
-            csvConverter,
+            csvStringifier,
             path: 'FILE_PATH'
         });
 
@@ -54,13 +54,13 @@ describe('CsvWriter', () => {
 
     it('opens a file with append mode when requested to write CSV again', () => {
         const fs = {writeFile: sinon.stub().callsArgWith(3, null)};
-        const arrayCsvConverter = {
+        const arrayCsvStringifier = {
             getHeaderString: () => 'HEADER_STRING',
-            convertRecords: () => 'CSV_STRING'
+            stringifyRecords: () => 'CSV_STRING'
         };
         const writer = new CsvWriter({
             fs,
-            csvConverter: arrayCsvConverter,
+            csvStringifier: arrayCsvStringifier,
             path: 'FILE_PATH'
         });
 
@@ -81,14 +81,14 @@ describe('CsvWriter', () => {
 
     it('writes to a file with the specified encoding', () => {
         const fs = {writeFile: sinon.stub().callsArgWith(3, null)};
-        const arrayCsvConverter = {
+        const arrayCsvStringifier = {
             getHeaderString: () => 'HEADER_STRING',
-            convertRecords: () => 'RECORDS_STRING'
+            stringifyRecords: () => 'RECORDS_STRING'
         };
         const writer = new CsvWriter({
             fs,
             encoding: 'ENCODING',
-            csvConverter: arrayCsvConverter,
+            csvStringifier: arrayCsvStringifier,
             path: 'FILE_PATH'
         });
 
@@ -106,13 +106,13 @@ describe('CsvWriter', () => {
 
     it('throws an error if file write failed', () => {
         const fs = {writeFile: sinon.stub().callsArgWith(3, new Error('WRITE_FILE_ERROR'))};
-        const arrayCsvConverter = {
+        const arrayCsvStringifier = {
             getHeaderString: () => 'HEADER_STRING',
-            convertRecords: () => 'CSV_STRING'
+            stringifyRecords: () => 'CSV_STRING'
         };
         const writer = new CsvWriter({
             fs,
-            csvConverter: arrayCsvConverter,
+            csvStringifier: arrayCsvStringifier,
             path: 'FILE_PATH'
         });
 
