@@ -67,12 +67,12 @@ const csvWriter = createCsvWriter({
     path: 'path/to/file.csv'
 });
 
-var data = [
+var records = [
     ['Bob',  'French, English'],
     ['Mary', 'English']
 ];
 
-csvWriter.writeRecords(data)       // returns a promise
+csvWriter.writeRecords(records)       // returns a promise
     .then(() => {
         console.log('...Done');
     });
