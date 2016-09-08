@@ -14,7 +14,7 @@ The example below shows how you can write records defined as the array of object
 ```js
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 const csvWriter = createCsvWriter({
-    path: 'path/to/write-file.csv',
+    path: 'path/to/file.csv',
     header: [
         {id: 'name', title: 'NAME'},
         {id: 'lang', title: 'LANGUAGE'},
@@ -53,7 +53,7 @@ If you don't want to write a header line, don't give `title` to header elements 
 ```js
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 const csvWriter = createCsvWriter({
-    path: 'path/to/write-file.csv',
+    path: 'path/to/file.csv',
     header: ['name', 'lang']
 });
 ```
