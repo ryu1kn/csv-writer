@@ -13,6 +13,11 @@ describe('FieldStringifier', () => {
         expect(stringifier.stringify('VALUE,A')).to.eql('"VALUE,A"');
     });
 
+    it('wraps a field value with double quotes if the field contains newline', () => {
+        const stringifier = new FieldStringifier();
+        expect(stringifier.stringify('VALUE\nA')).to.eql('"VALUE\nA"');
+    });
+
     it('escapes double quotes if it is used on the edge of the field value', () => {
         const stringifier = new FieldStringifier();
         expect(stringifier.stringify('"VALUE')).to.eql('"""VALUE"');
