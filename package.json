@@ -13,7 +13,9 @@
     "url": "git+https://github.com/ryu1kn/csv-writer.git"
   },
   "keywords": [
-    "csv", "writer", "stringify"
+    "csv",
+    "writer",
+    "stringify"
   ],
   "author": "Ryuichi Inagaki",
   "license": "MIT",
@@ -23,6 +25,7 @@
   "homepage": "https://github.com/ryu1kn/csv-writer#readme",
   "devDependencies": {
     "chai": "^3.5.0",
+    "codeclimate-test-reporter": "^0.4.0",
     "eslint": "^3.3.1",
     "eslint-config-xo": "^0.15.3",
     "istanbul": "^0.4.5",
