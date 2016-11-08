@@ -8,6 +8,11 @@ describe('FieldStringifier', () => {
         expect(stringifier.stringify('VALUE')).to.eql('VALUE');
     });
 
+    it('preserves the whitespace characters', () => {
+        const stringifier = new FieldStringifier();
+        expect(stringifier.stringify(' VALUE\tA  ')).to.eql(' VALUE\tA  ');
+    });
+
     it('wraps a field value with double quotes if the field contains comma', () => {
         const stringifier = new FieldStringifier();
         expect(stringifier.stringify('VALUE,A')).to.eql('"VALUE,A"');
@@ -18,14 +23,14 @@ describe('FieldStringifier', () => {
         expect(stringifier.stringify('VALUE\nA')).to.eql('"VALUE\nA"');
     });
 
-    it('escapes double quotes if it is used on the edge of the field value', () => {
+    it('wraps a field value with double quotes and escape the double quotes if they are used in the field', () => {
         const stringifier = new FieldStringifier();
-        expect(stringifier.stringify('"VALUE')).to.eql('"""VALUE"');
+        expect(stringifier.stringify('VALUE"A')).to.eql('"VALUE""A"');
     });
 
-    it('does not double quote or escape double quotes if it is used not on the edge of the field value', () => {
+    it('escapes double quotes even if double quotes are only on the both edges of the field', () => {
         const stringifier = new FieldStringifier();
-        expect(stringifier.stringify('VALUE"A')).to.eql('VALUE"A');
+        expect(stringifier.stringify('"VALUE"')).to.eql('"""VALUE"""');
     });
 
     it('converts a number into a string', () => {
@@ -61,7 +66,7 @@ describe('FieldStringifier', () => {
         expect(stringifier.stringify(obj)).to.eql('"Name: OBJECT,NAME"');
     });
 
-    it('escapes double quotes in a toString-ed field value if the value has double quotes on the edge', () => {
+    it('escapes double quotes in a toString-ed field value if the value has double quotes', () => {
         const stringifier = new FieldStringifier();
         const obj = {
             name: 'OBJECT_NAME"',
