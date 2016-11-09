@@ -1,5 +1,5 @@
 
-### 0.0.3:
+### 0.0.3: 9 November 2016
 
 * Fixed the bug that fields were not always surrounded by double quotes
 * Fixed the bug that white space characters on the edge of fields were trimmed

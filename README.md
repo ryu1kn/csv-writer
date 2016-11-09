@@ -39,8 +39,8 @@ csvWriter.writeRecords(records)       // returns a promise
 //   Mary,English
 ```
 
-You can keep writing records into the same file by calling `writeRecords` multiple times (but need to wait for the fulfillment
-of the `promise` of the previous `writeRecords` call)
+You can keep writing records into the same file by calling `writeRecords` multiple times
+(but need to wait for the fulfillment of the `promise` of the previous `writeRecords` call).
 
 ```js
 Promise.resolve()
@@ -48,6 +48,10 @@ Promise.resolve()
     .then(() => csvWriter.writeRecords(records2))
     ...
 ```
+
+However, if you need to keep writing large data to a certain file, you would want to create
+node's transform stream and use `CsvStringifier`, which is explained later, inside it
+, and pipe the stream into a file write stream.
 
 If you don't want to write a header line, don't give `title` to header elements and just give field ids as a string.
 
