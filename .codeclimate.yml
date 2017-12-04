@@ -1,10 +1,28 @@
-engines: 
+version: "2"
+plugins:
   eslint:
     enabled: true
-    channel: "eslint-3"
+    channel: "eslint-4"
   fixme:
     enabled: true
-ratings:
-  paths:
-  - "**.js"
-exclude_paths: []
+checks:
+  argument-count:
+    enabled: true
+  complex-logic:
+    enabled: true
+  file-lines:
+    enabled: true
+  method-complexity:
+    enabled: true
+  method-count:
+    enabled: true
+  method-lines:
+    enabled: true
+  nested-control-flow:
+    enabled: true
+  return-statements:
+    enabled: true
+  similar-code:
+    enabled: false
+  identical-code:
+    enabled: true
