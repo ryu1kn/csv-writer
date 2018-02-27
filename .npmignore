@@ -1,0 +1,11 @@
+/.codeclimate.yml
+/.editorconfig
+/.eslintignore
+/.eslintrc.yaml
+/.gitignore
+/.idea
+/.travis.yml
+/.vscode
+/coverage
+/test/.eslintrc.yaml
+__*
