@@ -53,7 +53,7 @@ However, if you need to keep writing large data to a certain file, you would wan
 node's transform stream and use `CsvStringifier`, which is explained later, inside it
 , and pipe the stream into a file write stream.
 
-If you don't want to write a header line, don't give `title` to header elements and just give field ids as a string.
+If you don't want to write a header line, don't give `title` to header elements and just give field IDs as a string.
 
 ```js
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
@@ -72,7 +72,7 @@ const csvWriter = createCsvWriter({
     path: 'path/to/file.csv'
 });
 
-var records = [
+const records = [
     ['Bob',  'French, English'],
     ['Mary', 'English']
 ];
@@ -128,9 +128,19 @@ console.log(csvStringifier.stringifyRecords(records));
 
   * header `<Array<{id, title}|string>>`
 
-      Array of objects (`id` and `title` properties) or strings (field ids)
+      Array of objects (`id` and `title` properties) or strings (field IDs).
+      A header line will be written to the file only if given as an array of objects.
 
   * encoding `<string>` (optional)
+
+      Default: `utf8`.
+
+  * append `<boolean>` (optional)
+
+      Default: `false`. When `true`, it will append CSV records to the specified file.
+      If the file doesn't exist, it will create one.
+
+      **NOTE:** A header line will not be written to the file if `true` is given.
 
 ##### Returns:
 
@@ -151,6 +161,15 @@ console.log(csvStringifier.stringifyRecords(records));
       Array of field titles
 
   * encoding `<string>` (optional)
+
+      Default: `utf8`.
+
+  * append `<boolean>` (optional)
+
+      Default: `false`. When `true`, it will append CSV records to the specified file.
+      If the file doesn't exist, it will create one.
+
+      **NOTE:** A header line will not be written to the file if `true` is given.
 
 ##### Returns:
 
@@ -178,7 +197,7 @@ console.log(csvStringifier.stringifyRecords(records));
 * params `<Object>`
   * header `<Array<{id, title}|string>>`
 
-      Array of objects (`id` and `title` properties) or strings (field ids)
+      Array of objects (`id` and `title` properties) or strings (field IDs)
 
 ##### Returns:
 
