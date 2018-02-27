@@ -1,4 +1,8 @@
 
+### 1.0.0: XX February 2018
+
+* Support for adding CSV records to already existing files. Thanks to @jonmelcher. [PR #4](https://github.com/ryu1kn/csv-writer/pull/4)
+
 ### 0.0.3: 9 November 2016
 
 * Fixed the bug that fields were not always surrounded by double quotes
