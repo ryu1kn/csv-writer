@@ -79,6 +79,58 @@ describe('CsvWriter', () => {
             });
     });
 
+    it('opens a file in append mode on the first write if \'a\' is specified as the initial mode', () => {
+        const fs = {writeFile: sinon.stub().callsArgWith(3, null)};
+        const arrayCsvStringifier = {
+            getHeaderString: () => 'HEADER_STRING',
+            stringifyRecords: () => 'CSV_STRING'
+        };
+        const writer = new CsvWriter({
+            fs,
+            encoding: 'ENCODING',
+            csvStringifier: arrayCsvStringifier,
+            path: 'FILE_PATH',
+            append: true
+        });
+
+        return writer.writeRecords('RECORDS').then(() => {
+            expect(fs.writeFile.args[0].slice(0, 3)).to.eql([
+                'FILE_PATH',
+                'CSV_STRING',
+                {
+                    encoding: 'ENCODING',
+                    flag: 'a'
+                }
+            ]);
+        });
+    });
+
+    it('opens a file in write mode if \'w\' is specified as the initial mode', () => {
+        const fs = {writeFile: sinon.stub().callsArgWith(3, null)};
+        const arrayCsvStringifier = {
+            getHeaderString: () => 'HEADER_STRING',
+            stringifyRecords: () => 'RECORDS_STRING'
+        };
+        const writer = new CsvWriter({
+            fs,
+            encoding: 'ENCODING',
+            csvStringifier: arrayCsvStringifier,
+            path: 'FILE_PATH',
+            append: false
+        });
+
+        return writer.writeRecords('RECORDS').then(() => {
+            expect(fs.writeFile.args[0].slice(0, 3)).to.eql([
+                'FILE_PATH',
+                'HEADER_STRINGRECORDS_STRING',
+                {
+                    encoding: 'ENCODING',
+                    flag: 'w'
+                }
+            ]);
+        });
+    });
+
     it('writes to a file with the specified encoding', () => {
         const fs = {writeFile: sinon.stub().callsArgWith(3, null)};
         const arrayCsvStringifier = {
