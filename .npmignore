@@ -4,6 +4,8 @@
 /.eslintrc.yaml
 /.gitignore
 /.idea
+/.nycrc
+/.nyc_output
 /.travis.yml
 /.vscode
 /coverage
