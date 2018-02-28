@@ -1,5 +1,5 @@
 
-### 1.0.0: XX February 2018
+### 1.0.0: 28 February 2018
 
 * Support for adding CSV records to already existing files. Thanks to @jonmelcher. [PR #4](https://github.com/ryu1kn/csv-writer/pull/4)
 
