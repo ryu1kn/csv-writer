@@ -1,4 +1,5 @@
 
+const expect = require('chai').expect;
 const FieldStringifier = require('../../lib/field-stringifier');
 
 describe('FieldStringifier', () => {

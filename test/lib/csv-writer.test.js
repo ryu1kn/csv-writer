@@ -1,4 +1,6 @@
 
+const expect = require('chai').expect;
+const sinon = require('sinon');
 const CsvWriter = require('../../lib/csv-writer');
 
 describe('CsvWriter', () => {

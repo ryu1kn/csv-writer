@@ -1,4 +1,5 @@
 
+const expect = require('chai').expect;
 const ObjectCsvStringifier = require('../../../lib/csv-stringifiers/object');
 
 describe('ObjectCsvStringifier', () => {
