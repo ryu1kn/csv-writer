@@ -73,7 +73,7 @@ const csvWriter = createCsvWriter({
 });
 
 const records = [
-    ['Bob',  'French, English'],
+    ['Bob',  'French', 'English'],
     ['Mary', 'English']
 ];
 
