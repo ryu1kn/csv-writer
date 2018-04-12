@@ -1,4 +1,7 @@
-[![Build Status](https://travis-ci.org/ryu1kn/csv-writer.svg?branch=master)](https://travis-ci.org/ryu1kn/csv-writer) [![Code Climate](https://codeclimate.com/github/ryu1kn/csv-writer/badges/gpa.svg)](https://codeclimate.com/github/ryu1kn/csv-writer) [![Test Coverage](https://codeclimate.com/github/ryu1kn/csv-writer/badges/coverage.svg)](https://codeclimate.com/github/ryu1kn/csv-writer/coverage)
+[![Build Status](https://travis-ci.org/ryu1kn/csv-writer.svg?branch=master)](https://travis-ci.org/ryu1kn/csv-writer)
+[![Code Climate](https://codeclimate.com/github/ryu1kn/csv-writer/badges/gpa.svg)](https://codeclimate.com/github/ryu1kn/csv-writer)
+[![Test Coverage](https://codeclimate.com/github/ryu1kn/csv-writer/badges/coverage.svg)](https://codeclimate.com/github/ryu1kn/csv-writer/coverage)
+[![Coverage Status](https://coveralls.io/repos/github/ryu1kn/csv-writer/badge.svg?branch=master)](https://coveralls.io/github/ryu1kn/csv-writer?branch=master)
 
 # CSV Writer
 
