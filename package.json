@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha test --recursive",
-    "coverage": "nyc mocha test --recursive",
+    "coverage": "nyc npm test",
     "lint": "eslint ."
   },
   "repository": {
