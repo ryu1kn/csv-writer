@@ -131,6 +131,7 @@ console.log(csvStringifier.stringifyRecords(records));
   * header `<Array<{id, title}|string>>`
 
       Array of objects (`id` and `title` properties) or strings (field IDs).
+      objects `id` could be reference to a nested object property by specify the path to it seperated by `.` dots. 
       A header line will be written to the file only if given as an array of objects.
 
   * encoding `<string>` (optional)
