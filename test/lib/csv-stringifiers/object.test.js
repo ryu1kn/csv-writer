@@ -72,8 +72,24 @@ describe('ObjectCsvStringifier', () => {
                 ]
             });
             const records = [
-                {FIELD_A: {NESTED_A_A: 'NESTED_VALUE_A_A1', NESTED_A_B: {NESTED_A_B_A: 'NESTED_VALUE_A_B_A1'}}, FIELD_B: 'VALUE_B1'},
-                {FIELD_A: {NESTED_A_A: 'NESTED_VALUE_A_A2', NESTED_A_B: {NESTED_A_B_A: 'NESTED_VALUE_A_B_A2'}}, FIELD_B: 'VALUE_B2'}
+                {
+                    FIELD_A: {
+                        NESTED_A_A: 'NESTED_VALUE_A_A1',
+                        NESTED_A_B: {
+                            NESTED_A_B_A: 'NESTED_VALUE_A_B_A1'
+                        }
+                    },
+                    FIELD_B: 'VALUE_B1'
+                },
+                {
+                    FIELD_A: {
+                        NESTED_A_A: 'NESTED_VALUE_A_A2',
+                        NESTED_A_B: {
+                            NESTED_A_B_A: 'NESTED_VALUE_A_B_A2'
+                        }
+                    },
+                    FIELD_B: 'VALUE_B2'
+                }
             ];
             expect(stringifier.stringifyRecords(records)).to.eql(
                 'NESTED_VALUE_A_A1,NESTED_VALUE_A_B_A1,VALUE_B1\nNESTED_VALUE_A_A2,NESTED_VALUE_A_B_A2,VALUE_B2\n'
