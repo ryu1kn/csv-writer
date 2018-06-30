@@ -20,7 +20,7 @@ const csvWriter = createCsvWriter({
     path: 'path/to/file.csv',
     header: [
         {id: 'name', title: 'NAME'},
-        {id: 'lang', title: 'LANGUAGE'},
+        {id: 'lang', title: 'LANGUAGE'}
     ]
 });
 
@@ -100,7 +100,7 @@ const createCsvStringifier = require('csv-writer').createObjectCsvStringifier;
 const csvStringifier = createCsvStringifier({
     header: [
         {id: 'name', title: 'NAME'},
-        {id: 'lang', title: 'LANGUAGE'},
+        {id: 'lang', title: 'LANGUAGE'}
     ]
 });
 

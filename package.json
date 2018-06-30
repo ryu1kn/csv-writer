@@ -4,7 +4,8 @@
   "description": "Convert objects/arrays into a CSV string or write them into a CSV file",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test --recursive",
+    "test": "mocha test/bootstrap.js test/lib --recursive",
+    "test:it": "test/integration/test.sh",
     "coverage": "nyc npm test",
     "lint": "eslint ."
   },

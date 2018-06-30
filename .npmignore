@@ -10,4 +10,5 @@
 /.vscode
 /coverage
 /test/.eslintrc.yaml
+/test/integration
 __*

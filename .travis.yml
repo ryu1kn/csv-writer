@@ -11,6 +11,7 @@ install:
   - npm install
 script:
   - npm run lint
+  - npm run test:it
   - npm run coverage  # coverage also runs unit tests internally
 after_script:
   - cat coverage/lcov.info | node_modules/.bin/coveralls
