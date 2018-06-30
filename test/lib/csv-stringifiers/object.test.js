@@ -59,6 +59,42 @@ describe('ObjectCsvStringifier', () => {
                 'VALUE_B1,VALUE_A1\nVALUE_B2,VALUE_A2\n'
             );
         });
+
+        it('converts given records with nested field into CSV string', () => {
+            const stringifier = new ObjectCsvStringifier({
+                fieldStringifier: {
+                    stringify: str => str
+                },
+                header: [
+                    {id: 'FIELD_A.NESTED_A_A', title: 'TITLE_A_A'},
+                    {id: 'FIELD_A.NESTED_A_B.NESTED_A_B_A', title: 'TITLE_A_B_A'},
+                    {id: 'FIELD_B', title: 'TITLE_B'}
+                ]
+            });
+            const records = [
+                {
+                    FIELD_A: {
+                        NESTED_A_A: 'NESTED_VALUE_A_A1',
+                        NESTED_A_B: {
+                            NESTED_A_B_A: 'NESTED_VALUE_A_B_A1'
+                        }
+                    },
+                    FIELD_B: 'VALUE_B1'
+                },
+                {
+                    FIELD_A: {
+                        NESTED_A_A: 'NESTED_VALUE_A_A2',
+                        NESTED_A_B: {
+                            NESTED_A_B_A: 'NESTED_VALUE_A_B_A2'
+                        }
+                    },
+                    FIELD_B: 'VALUE_B2'
+                }
+            ];
+            expect(stringifier.stringifyRecords(records)).to.eql(
+                'NESTED_VALUE_A_A1,NESTED_VALUE_A_B_A1,VALUE_B1\nNESTED_VALUE_A_A2,NESTED_VALUE_A_B_A2,VALUE_B2\n'
+            );
+        });
     });
 
     describe('#getHeaderString', () => {
