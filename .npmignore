@@ -9,6 +9,7 @@
 /.travis.yml
 /.vscode
 /coverage
+/tag-release.sh
 /test/.eslintrc.yaml
 /test/integration
 __*
