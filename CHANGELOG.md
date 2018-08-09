@@ -1,17 +1,23 @@
+# Changelog
 
-### 1.0.0: 28 February 2018
+All notable changes to this project will be documented in this file.
 
-* Support for adding CSV records to already existing files. Thanks to @jonmelcher. [PR #4](https://github.com/ryu1kn/csv-writer/pull/4)
+The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
+and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-### 0.0.3: 9 November 2016
+## [1.0.0] - 2018-02-28
+### Added
+- Support for adding CSV records to already existing files. Thanks to @jonmelcher. [PR #4](https://github.com/ryu1kn/csv-writer/pull/4)
 
-* Fixed the bug that fields were not always surrounded by double quotes
-* Fixed the bug that white space characters on the edge of fields were trimmed
+## [0.0.3] - 2016-11-09
+### Fixed
+- Fixed the bug that fields were not always surrounded by double quotes
+- Fixed the bug that white space characters on the edge of fields were trimmed
 
-### 0.0.2: 15 October 2016
+## [0.0.2] - 2016-10-15
+### Fixed
+- Fixed the bug that field values were not quoted when they have newline characters
 
-* Fixed the bug that field values were not quoted when they have newline characters
-
-### 0.0.1: 9 September 2016
-
-* Initial release of csv-writer
+## [0.0.1] - 2016-09-09
+### Added
+- Initial release of csv-writer
