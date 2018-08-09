@@ -1,6 +1,6 @@
 {
   "name": "csv-writer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Convert objects/arrays into a CSV string or write them into a CSV file",
   "main": "index.js",
   "scripts": {
