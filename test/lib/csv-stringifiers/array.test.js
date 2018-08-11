@@ -1,17 +1,13 @@
 
 const expect = require('chai').expect;
-const ArrayCsvStringifier = require('../../../lib/csv-stringifiers/array');
+const createArrayCsvStringifier = require('../../../index').createArrayCsvStringifier;
 
 describe('ArrayCsvStringifier', () => {
 
     describe('#stringify', () => {
 
         it('converts given records into CSV string', () => {
-            const stringifier = new ArrayCsvStringifier({
-                fieldStringifier: {
-                    stringify: str => str
-                }
-            });
+            const stringifier = createArrayCsvStringifier({});
             const records = [
                 ['FIELD_A1', 'FIELD_B1'],
                 ['FIELD_A2', 'FIELD_B2']
@@ -25,11 +21,8 @@ describe('ArrayCsvStringifier', () => {
     describe('#getHeaderString', () => {
 
         it('returns a header as CSV line', () => {
-            const stringifier = new ArrayCsvStringifier({
-                header: ['TITLE_A', 'TITLE_B'],
-                fieldStringifier: {
-                    stringify: str => str
-                }
+            const stringifier = createArrayCsvStringifier({
+                header: ['TITLE_A', 'TITLE_B']
             });
             expect(stringifier.getHeaderString()).to.eql(
                 'TITLE_A,TITLE_B\n'
@@ -37,11 +30,7 @@ describe('ArrayCsvStringifier', () => {
         });
 
         it('returns null if header is not available', () => {
-            const stringifier = new ArrayCsvStringifier({
-                fieldStringifier: {
-                    stringify: str => str
-                }
-            });
+            const stringifier = createArrayCsvStringifier({});
             expect(stringifier.getHeaderString()).to.be.null;
         });
     });

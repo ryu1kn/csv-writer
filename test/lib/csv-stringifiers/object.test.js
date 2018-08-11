@@ -1,16 +1,13 @@
 
 const expect = require('chai').expect;
-const ObjectCsvStringifier = require('../../../lib/csv-stringifiers/object');
+const createObjectCsvStringifier = require('../../../index').createObjectCsvStringifier;
 
 describe('ObjectCsvStringifier', () => {
 
     describe('#stringify', () => {
 
         it('converts given records into CSV string', () => {
-            const stringifier = new ObjectCsvStringifier({
-                fieldStringifier: {
-                    stringify: str => str
-                },
+            const stringifier = createObjectCsvStringifier({
                 header: [
                     {id: 'FIELD_A', title: 'TITLE_A'},
                     {id: 'FIELD_B', title: 'TITLE_B'}
@@ -26,10 +23,7 @@ describe('ObjectCsvStringifier', () => {
         });
 
         it('accepts an array of field ids as header', () => {
-            const stringifier = new ObjectCsvStringifier({
-                fieldStringifier: {
-                    stringify: str => str
-                },
+            const stringifier = createObjectCsvStringifier({
                 header: ['FIELD_A', 'FIELD_B']
             });
             const records = [
@@ -42,10 +36,7 @@ describe('ObjectCsvStringifier', () => {
         });
 
         it('determines the order of fields from the field order in the given header', () => {
-            const stringifier = new ObjectCsvStringifier({
-                fieldStringifier: {
-                    stringify: str => str
-                },
+            const stringifier = createObjectCsvStringifier({
                 header: [
                     {id: 'FIELD_B', title: 'TITLE_B'},
                     {id: 'FIELD_A', title: 'TITLE_A'}
@@ -64,14 +55,11 @@ describe('ObjectCsvStringifier', () => {
     describe('#getHeaderString', () => {
 
         it('returns a header as CSV line', () => {
-            const stringifier = new ObjectCsvStringifier({
+            const stringifier = createObjectCsvStringifier({
                 header: [
                     {id: 'FIELD_A', title: 'TITLE_A'},
                     {id: 'FIELD_B', title: 'TITLE_B'}
-                ],
-                fieldStringifier: {
-                    stringify: str => str
-                }
+                ]
             });
             expect(stringifier.getHeaderString()).to.eql(
                 'TITLE_A,TITLE_B\n'
@@ -79,20 +67,13 @@ describe('ObjectCsvStringifier', () => {
         });
 
         it('returns null if header is not available', () => {
-            const stringifier = new ObjectCsvStringifier({
-                fieldStringifier: {
-                    stringify: str => str
-                }
-            });
+            const stringifier = createObjectCsvStringifier({});
             expect(stringifier.getHeaderString()).to.be.null;
         });
 
         it('returns null if header is given as an array of field IDs', () => {
-            const stringifier = new ObjectCsvStringifier({
-                header: ['FIELD_A', 'FIELD_B'],
-                fieldStringifier: {
-                    stringify: str => str
-                }
+            const stringifier = createObjectCsvStringifier({
+                header: ['FIELD_A', 'FIELD_B']
             });
             expect(stringifier.getHeaderString()).to.be.null;
         });
