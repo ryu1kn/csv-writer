@@ -1,4 +1,4 @@
-const expect = require('chai').expect;
+const assert = require('assert');
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 const readFile = require('./helper/read-file').readFile;
 
@@ -20,7 +20,7 @@ describe('csv-writer', () => {
         return csvWriter.writeRecords(records)
             .then(() => readFile(OUTPUT_FILE))
             .then(contents => {
-                expect(contents).to.eql(`NAME,LANGUAGE
+                assert.equal(contents, `NAME,LANGUAGE
 Bob,"French, English"
 Mary,English
 `);

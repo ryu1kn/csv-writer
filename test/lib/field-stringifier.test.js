@@ -1,44 +1,44 @@
 
-const expect = require('chai').expect;
+const assert = require('assert');
 const FieldStringifier = require('../../lib/field-stringifier');
 
 describe('FieldStringifier', () => {
     const stringifier = new FieldStringifier();
 
     it('returns the same string', () => {
-        expect(stringifier.stringify('VALUE')).to.eql('VALUE');
+        assert.equal(stringifier.stringify('VALUE'), 'VALUE');
     });
 
     it('preserves the whitespace characters', () => {
-        expect(stringifier.stringify(' VALUE\tA  ')).to.eql(' VALUE\tA  ');
+        assert.equal(stringifier.stringify(' VALUE\tA  '), ' VALUE\tA  ');
     });
 
     it('wraps a field value with double quotes if the field contains comma', () => {
-        expect(stringifier.stringify('VALUE,A')).to.eql('"VALUE,A"');
+        assert.equal(stringifier.stringify('VALUE,A'), '"VALUE,A"');
     });
 
     it('wraps a field value with double quotes if the field contains newline', () => {
-        expect(stringifier.stringify('VALUE\nA')).to.eql('"VALUE\nA"');
+        assert.equal(stringifier.stringify('VALUE\nA'), '"VALUE\nA"');
     });
 
     it('wraps a field value with double quotes and escape the double quotes if they are used in the field', () => {
-        expect(stringifier.stringify('VALUE"A')).to.eql('"VALUE""A"');
+        assert.equal(stringifier.stringify('VALUE"A'), '"VALUE""A"');
     });
 
     it('escapes double quotes even if double quotes are only on the both edges of the field', () => {
-        expect(stringifier.stringify('"VALUE"')).to.eql('"""VALUE"""');
+        assert.equal(stringifier.stringify('"VALUE"'), '"""VALUE"""');
     });
 
     it('converts a number into a string', () => {
-        expect(stringifier.stringify(1)).to.eql('1');
+        assert.equal(stringifier.stringify(1), '1');
     });
 
     it('converts undefined into an empty string', () => {
-        expect(stringifier.stringify()).to.eql('');
+        assert.equal(stringifier.stringify(), '');
     });
 
     it('converts null into an empty string', () => {
-        expect(stringifier.stringify(null)).to.eql('');
+        assert.equal(stringifier.stringify(null), '');
     });
 
     it('converts an object into toString-ed value', () => {
@@ -46,7 +46,7 @@ describe('FieldStringifier', () => {
             name: 'OBJECT_NAME',
             toString: function () { return `Name: ${this.name}`; }
         };
-        expect(stringifier.stringify(obj)).to.eql('Name: OBJECT_NAME');
+        assert.equal(stringifier.stringify(obj), 'Name: OBJECT_NAME');
     });
 
     it('wraps a toString-ed field value with double quote if the value contains comma', () => {
@@ -54,7 +54,7 @@ describe('FieldStringifier', () => {
             name: 'OBJECT,NAME',
             toString: function () { return `Name: ${this.name}`; }
         };
-        expect(stringifier.stringify(obj)).to.eql('"Name: OBJECT,NAME"');
+        assert.equal(stringifier.stringify(obj), '"Name: OBJECT,NAME"');
     });
 
     it('escapes double quotes in a toString-ed field value if the value has double quotes', () => {
@@ -62,6 +62,6 @@ describe('FieldStringifier', () => {
             name: 'OBJECT_NAME"',
             toString: function () { return `Name: ${this.name}`; }
         };
-        expect(stringifier.stringify(obj)).to.eql('"Name: OBJECT_NAME"""');
+        assert.equal(stringifier.stringify(obj), '"Name: OBJECT_NAME"""');
     });
 });
