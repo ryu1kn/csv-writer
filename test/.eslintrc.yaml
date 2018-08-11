@@ -1,8 +1,5 @@
 env:
   mocha: true
-globals:
-  throwError: true
 rules:
   max-len: off
-  no-unused-expressions: off
   padded-blocks: off
