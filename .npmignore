@@ -12,5 +12,5 @@
 /tag-release.sh
 /test/.eslintrc.yaml
 /test/integration
-/test-files
+/test-tmp
 __*
