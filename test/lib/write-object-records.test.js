@@ -12,6 +12,8 @@ describe('Write object records into CSV', () => {
     ];
 
     describe('When only path and header ids are given', () => {
+        'use strict';
+
         const filePath = makeFilePath('minimum');
         let writer;
 
