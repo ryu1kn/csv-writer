@@ -3,4 +3,5 @@
 /.vscode
 /coverage
 /node_modules
+/test-files
 __*
