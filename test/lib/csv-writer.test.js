@@ -1,11 +1,12 @@
-const sinon = require('sinon');
 const CsvWriter = require('../../lib/csv-writer');
 const assertContain = require('../helper').assertContain;
 
 describe('CsvWriter', () => {
 
     it('throws an error if file write failed', () => {
-        const fs = {writeFile: sinon.stub().callsArgWith(3, new Error('WRITE_FILE_ERROR'))};
+        const fs = {writeFile: function () {
+            arguments[3](new Error('WRITE_FILE_ERROR'));
+        }};
         const arrayCsvStringifier = {
             getHeaderString: () => 'HEADER_STRING',
             stringifyRecords: () => 'CSV_STRING'
