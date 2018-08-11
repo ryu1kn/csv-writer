@@ -1,22 +1,25 @@
 const assertFile = require('../helper').assertFile;
 const testFilePath = require('../helper').testFilePath;
 const fs = require('fs');
-const createArrayCsvWriter = require('../../index').createArrayCsvWriter;
+const createObjectCsvWriter = require('../../index').createObjectCsvWriter;
 
-describe('Write array records into CSV', () => {
+describe('Write object records into CSV', () => {
 
-    const makeFilePath = id => testFilePath(`array-${id}`);
+    const makeFilePath = id => testFilePath(`object-${id}`);
     const records = [
-        ['Bob', 'French'],
-        ['Mary', 'English']
+        {name: 'Bob', lang: 'French'},
+        {name: 'Mary', lang: 'English'}
     ];
 
-    describe('When only path is specified', () => {
+    describe('When only path and header ids are given', () => {
         const filePath = makeFilePath('minimum');
         let writer;
 
         beforeEach(() => {
-            writer = createArrayCsvWriter({path: filePath});
+            writer = createObjectCsvWriter({
+                path: filePath,
+                header: ['name', 'lang']
+            });
         });
 
         it('writes records to a new file', () => {
@@ -35,11 +38,25 @@ describe('Write array records into CSV', () => {
         });
     });
 
-    describe('When field header is given', () => {
-        const filePath = makeFilePath('header');
-        const writer = createArrayCsvWriter({
+    describe('When header ids are given with reverse order', () => {
+        const filePath = makeFilePath('column-order');
+        const writer = createObjectCsvWriter({
             path: filePath,
-            header: ['NAME', 'LANGUAGE']
+            header: ['lang', 'name']
+        });
+
+        it('also writes columns with reverse order', () => {
+            return writer.writeRecords(records).then(() => {
+                assertFile(filePath, 'French,Bob\nEnglish,Mary\n');
+            });
+        });
+    });
+
+    describe('When field header is given with titles', () => {
+        const filePath = makeFilePath('header');
+        const writer = createObjectCsvWriter({
+            path: filePath,
+            header: [{id: 'name', title: 'NAME'}, {id: 'lang', title: 'LANGUAGE'}]
         });
 
         it('writes a header', () => {
@@ -52,8 +69,9 @@ describe('Write array records into CSV', () => {
     describe('When `append` flag is specified', () => {
         const filePath = makeFilePath('append');
         fs.writeFileSync(filePath, 'Mike,German\n', 'utf8');
-        const writer = createArrayCsvWriter({
+        const writer = createObjectCsvWriter({
             path: filePath,
+            header: ['name', 'lang'],
             append: true
         });
 
@@ -66,8 +84,9 @@ describe('Write array records into CSV', () => {
 
     describe('When encoding is specified', () => {
         const filePath = makeFilePath('encoding');
-        const writer = createArrayCsvWriter({
+        const writer = createObjectCsvWriter({
             path: filePath,
+            header: ['name', 'lang'],
             encoding: 'utf16le'
         });
 
