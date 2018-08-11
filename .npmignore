@@ -4,6 +4,7 @@
 /.eslintrc.yaml
 /.gitignore
 /.idea
+/.nvmrc
 /.nycrc
 /.nyc_output
 /.travis.yml
