@@ -4,10 +4,11 @@
   "description": "Convert objects/arrays into a CSV string or write them into a CSV file",
   "main": "index.js",
   "scripts": {
-    "pretest": "rm -rf test-tmp && mkdir test-tmp",
-    "test": "mocha test/lib --recursive",
+    "test": "npm run test:unit && npm run test:it",
+    "pretest:unit": "rm -rf test-tmp && mkdir test-tmp",
+    "test:unit": "mocha test/unit --recursive",
     "test:it": "test/integration/test.sh",
-    "coverage": "nyc npm test",
+    "coverage": "nyc npm run test:unit",
     "lint": "eslint ."
   },
   "repository": {
