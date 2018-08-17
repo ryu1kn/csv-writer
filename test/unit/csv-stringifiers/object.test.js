@@ -7,11 +7,13 @@ describe('ObjectCsvStringifier', () => {
     describe('#stringify', () => {
 
         it('converts given records into CSV string', () => {
+            const delimiter = ',';
             const stringifier = createObjectCsvStringifier({
                 header: [
                     {id: 'FIELD_A', title: 'TITLE_A'},
                     {id: 'FIELD_B', title: 'TITLE_B'}
-                ]
+                ],
+                fieldDelimiter: delimiter
             });
             const records = [
                 {FIELD_A: 'VALUE_A1', FIELD_B: 'VALUE_B1'},

@@ -3,7 +3,8 @@ const assert = require('assert');
 const FieldStringifier = require('../../lib/field-stringifier');
 
 describe('FieldStringifier', () => {
-    const stringifier = new FieldStringifier();
+    const delimiter = ';';
+    const stringifier = new FieldStringifier({fieldDelimiter: delimiter});
 
     it('returns the same string', () => {
         assert.equal(stringifier.stringify('VALUE'), 'VALUE');
@@ -14,7 +15,7 @@ describe('FieldStringifier', () => {
     });
 
     it('wraps a field value with double quotes if the field contains comma', () => {
-        assert.equal(stringifier.stringify('VALUE,A'), '"VALUE,A"');
+        assert.equal(stringifier.stringify(`VALUE${delimiter}A`), `"VALUE${delimiter}A"`);
     });
 
     it('wraps a field value with double quotes if the field contains newline', () => {
@@ -51,10 +52,10 @@ describe('FieldStringifier', () => {
 
     it('wraps a toString-ed field value with double quote if the value contains comma', () => {
         const obj = {
-            name: 'OBJECT,NAME',
+            name: `OBJECT${delimiter}NAME`,
             toString: function () { return `Name: ${this.name}`; }
         };
-        assert.equal(stringifier.stringify(obj), '"Name: OBJECT,NAME"');
+        assert.equal(stringifier.stringify(obj), `"Name: OBJECT${delimiter}NAME"`);
     });
 
     it('escapes double quotes in a toString-ed field value if the value has double quotes', () => {
