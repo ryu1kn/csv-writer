@@ -5,7 +5,7 @@ const FieldStringifier = require('../../lib/field-stringifier');
 
 describe('FieldStringifier', () => {
 
-    describe('When field delimiter is comma', generateTestCases());
+    describe('When field delimiter is comma', generateTestCases(','));
 
     describe('When field delimiter is semicolon', generateTestCases(';'));
 
