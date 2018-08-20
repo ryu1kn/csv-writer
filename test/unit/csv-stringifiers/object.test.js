@@ -1,78 +1,76 @@
 
 const assert = require('assert');
+const resolveDelimiterChar = require('../helper/delimiter').resolveDelimiterChar;
 const createObjectCsvStringifier = require('../../../index').createObjectCsvStringifier;
 
 describe('ObjectCsvStringifier', () => {
+    const records = [
+        {FIELD_A: 'VALUE_A1', FIELD_B: 'VALUE_B1'},
+        {FIELD_A: 'VALUE_A2', FIELD_B: 'VALUE_B2'}
+    ];
 
-    describe('#stringify', () => {
+    describe('When field delimiter is comma', generateTestCases());
 
-        it('converts given records into CSV string', () => {
-            const delimiter = ',';
-            const stringifier = createObjectCsvStringifier({
-                header: [
-                    {id: 'FIELD_A', title: 'TITLE_A'},
-                    {id: 'FIELD_B', title: 'TITLE_B'}
-                ],
-                fieldDelimiter: delimiter
+    describe('When field delimiter is semicolon', generateTestCases(';'));
+
+    function generateTestCases(fieldDelimiter) {
+        const delim = resolveDelimiterChar(fieldDelimiter);
+        return () => {
+            describe('header is specified with title', () => {
+                const stringifier = createObjectCsvStringifier({
+                    header: [
+                        {id: 'FIELD_A', title: 'TITLE_A'},
+                        {id: 'FIELD_B', title: 'TITLE_B'}
+                    ],
+                    fieldDelimiter
+                });
+
+                it(`returns a header line with field separated by "${delim}"`, () => {
+                    assert.equal(stringifier.getHeaderString(), `TITLE_A${delim}TITLE_B\n`);
+                });
+
+                it(`converts given data records into CSV lines with field separated by "${delim}"`, () => {
+                    assert.equal(
+                        stringifier.stringifyRecords(records),
+                        `VALUE_A1${delim}VALUE_B1\nVALUE_A2${delim}VALUE_B2\n`
+                    );
+                });
             });
-            const records = [
-                {FIELD_A: 'VALUE_A1', FIELD_B: 'VALUE_B1'},
-                {FIELD_A: 'VALUE_A2', FIELD_B: 'VALUE_B2'}
-            ];
-            assert.equal(
-                stringifier.stringifyRecords(records),
-                'VALUE_A1,VALUE_B1\nVALUE_A2,VALUE_B2\n'
-            );
-        });
 
-        it('accepts an array of field ids as header', () => {
-            const stringifier = createObjectCsvStringifier({
-                header: ['FIELD_A', 'FIELD_B']
+            describe('header is specified without title', () => {
+                const stringifier = createObjectCsvStringifier({
+                    header: ['FIELD_A', 'FIELD_B'],
+                    fieldDelimiter
+                });
+
+                it('returns null for header line', () => {
+                    assert.equal(stringifier.getHeaderString(), null);
+                });
+
+                it(`converts given data records into CSV lines with field separated by "${delim}"`, () => {
+                    assert.equal(
+                        stringifier.stringifyRecords(records),
+                        `VALUE_A1${delim}VALUE_B1\nVALUE_A2${delim}VALUE_B2\n`
+                    );
+                });
             });
-            const records = [
-                {FIELD_A: 'VALUE_A1', FIELD_B: 'VALUE_B1'},
-                {FIELD_A: 'VALUE_A2', FIELD_B: 'VALUE_B2'}
-            ];
-            assert.equal(stringifier.stringifyRecords(records), 'VALUE_A1,VALUE_B1\nVALUE_A2,VALUE_B2\n');
-        });
 
-        it('determines the order of fields from the field order in the given header', () => {
-            const stringifier = createObjectCsvStringifier({
-                header: [
-                    {id: 'FIELD_B', title: 'TITLE_B'},
-                    {id: 'FIELD_A', title: 'TITLE_A'}
-                ]
+            describe('header columns are given with reverse order', () => {
+                const stringifier = createObjectCsvStringifier({
+                    header: [
+                        {id: 'FIELD_B', title: 'TITLE_B'},
+                        {id: 'FIELD_A', title: 'TITLE_A'}
+                    ],
+                    fieldDelimiter
+                });
+
+                it(`layouts fields with the order of headers given with field separated by "${delim}"`, () => {
+                    assert.equal(
+                        stringifier.stringifyRecords(records),
+                        `VALUE_B1${delim}VALUE_A1\nVALUE_B2${delim}VALUE_A2\n`
+                    );
+                });
             });
-            const records = [
-                {FIELD_A: 'VALUE_A1', FIELD_B: 'VALUE_B1'},
-                {FIELD_A: 'VALUE_A2', FIELD_B: 'VALUE_B2'}
-            ];
-            assert.equal(stringifier.stringifyRecords(records), 'VALUE_B1,VALUE_A1\nVALUE_B2,VALUE_A2\n');
-        });
-    });
-
-    describe('#getHeaderString', () => {
-
-        it('returns a header as CSV line', () => {
-            const stringifier = createObjectCsvStringifier({
-                header: [
-                    {id: 'FIELD_A', title: 'TITLE_A'},
-                    {id: 'FIELD_B', title: 'TITLE_B'}
-                ]
-            });
-            assert.equal(stringifier.getHeaderString(), 'TITLE_A,TITLE_B\n');
-        });
-
-        it('returns null if header is not available', () => {
-            const stringifier = createObjectCsvStringifier({});
-            assert.equal(stringifier.getHeaderString(), null);
-        });
-
-        it('returns null if header is given as an array of field IDs', () => {
-            const stringifier = createObjectCsvStringifier({
-                header: ['FIELD_A', 'FIELD_B']
-            });
-            assert.equal(stringifier.getHeaderString(), null);
-        });
-    });
+        };
+    }
 });

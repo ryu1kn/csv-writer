@@ -1,68 +1,78 @@
 
 const assert = require('assert');
+const resolveDelimiterChar = require('./helper/delimiter').resolveDelimiterChar;
 const FieldStringifier = require('../../lib/field-stringifier');
 
 describe('FieldStringifier', () => {
-    const delimiter = ';';
-    const stringifier = new FieldStringifier({fieldDelimiter: delimiter});
 
-    it('returns the same string', () => {
-        assert.equal(stringifier.stringify('VALUE'), 'VALUE');
-    });
+    describe('When field delimiter is comma', generateTestCases());
 
-    it('preserves the whitespace characters', () => {
-        assert.equal(stringifier.stringify(' VALUE\tA  '), ' VALUE\tA  ');
-    });
+    describe('When field delimiter is semicolon', generateTestCases(';'));
 
-    it('wraps a field value with double quotes if the field contains comma', () => {
-        assert.equal(stringifier.stringify(`VALUE${delimiter}A`), `"VALUE${delimiter}A"`);
-    });
+    function generateTestCases(fieldDelimiter) {
+        const delim = resolveDelimiterChar(fieldDelimiter);
+        return () => {
+            const stringifier = new FieldStringifier({fieldDelimiter});
 
-    it('wraps a field value with double quotes if the field contains newline', () => {
-        assert.equal(stringifier.stringify('VALUE\nA'), '"VALUE\nA"');
-    });
+            it('returns the same string', () => {
+                assert.equal(stringifier.stringify('VALUE'), 'VALUE');
+            });
 
-    it('wraps a field value with double quotes and escape the double quotes if they are used in the field', () => {
-        assert.equal(stringifier.stringify('VALUE"A'), '"VALUE""A"');
-    });
+            it('preserves the whitespace characters', () => {
+                assert.equal(stringifier.stringify(' VALUE\tA  '), ' VALUE\tA  ');
+            });
 
-    it('escapes double quotes even if double quotes are only on the both edges of the field', () => {
-        assert.equal(stringifier.stringify('"VALUE"'), '"""VALUE"""');
-    });
+            it(`wraps a field value with double quotes if the field contains "${delim}"`, () => {
+                assert.equal(stringifier.stringify(`VALUE${delim}A`), `"VALUE${delim}A"`);
+            });
 
-    it('converts a number into a string', () => {
-        assert.equal(stringifier.stringify(1), '1');
-    });
+            it('wraps a field value with double quotes if the field contains newline', () => {
+                assert.equal(stringifier.stringify('VALUE\nA'), '"VALUE\nA"');
+            });
 
-    it('converts undefined into an empty string', () => {
-        assert.equal(stringifier.stringify(), '');
-    });
+            it('wraps a field value with double quotes and escape the double quotes if they are used in the field', () => {
+                assert.equal(stringifier.stringify('VALUE"A'), '"VALUE""A"');
+            });
 
-    it('converts null into an empty string', () => {
-        assert.equal(stringifier.stringify(null), '');
-    });
+            it('escapes double quotes even if double quotes are only on the both edges of the field', () => {
+                assert.equal(stringifier.stringify('"VALUE"'), '"""VALUE"""');
+            });
 
-    it('converts an object into toString-ed value', () => {
-        const obj = {
-            name: 'OBJECT_NAME',
-            toString: function () { return `Name: ${this.name}`; }
+            it('converts a number into a string', () => {
+                assert.equal(stringifier.stringify(1), '1');
+            });
+
+            it('converts undefined into an empty string', () => {
+                assert.equal(stringifier.stringify(), '');
+            });
+
+            it('converts null into an empty string', () => {
+                assert.equal(stringifier.stringify(null), '');
+            });
+
+            it('converts an object into toString-ed value', () => {
+                const obj = {
+                    name: 'OBJECT_NAME',
+                    toString: function () { return `Name: ${this.name}`; }
+                };
+                assert.equal(stringifier.stringify(obj), 'Name: OBJECT_NAME');
+            });
+
+            it(`wraps a toString-ed field value with double quote if the value contains "${delim}"`, () => {
+                const obj = {
+                    name: `OBJECT${delim}NAME`,
+                    toString: function () { return `Name: ${this.name}`; }
+                };
+                assert.equal(stringifier.stringify(obj), `"Name: OBJECT${delim}NAME"`);
+            });
+
+            it('escapes double quotes in a toString-ed field value if the value has double quotes', () => {
+                const obj = {
+                    name: 'OBJECT_NAME"',
+                    toString: function () { return `Name: ${this.name}`; }
+                };
+                assert.equal(stringifier.stringify(obj), '"Name: OBJECT_NAME"""');
+            });
         };
-        assert.equal(stringifier.stringify(obj), 'Name: OBJECT_NAME');
-    });
-
-    it('wraps a toString-ed field value with double quote if the value contains comma', () => {
-        const obj = {
-            name: `OBJECT${delimiter}NAME`,
-            toString: function () { return `Name: ${this.name}`; }
-        };
-        assert.equal(stringifier.stringify(obj), `"Name: OBJECT${delimiter}NAME"`);
-    });
-
-    it('escapes double quotes in a toString-ed field value if the value has double quotes', () => {
-        const obj = {
-            name: 'OBJECT_NAME"',
-            toString: function () { return `Name: ${this.name}`; }
-        };
-        assert.equal(stringifier.stringify(obj), '"Name: OBJECT_NAME"""');
-    });
+    }
 });
