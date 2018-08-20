@@ -5,6 +5,7 @@
 # CSV Writer
 
 Convert objects/arrays into a CSV string or write them into a file.
+It respects [RFC 4180](https://tools.ietf.org/html/rfc4180) for the output CSV format.
 
 ## Prerequisite
 
@@ -133,6 +134,10 @@ console.log(csvStringifier.stringifyRecords(records));
       Array of objects (`id` and `title` properties) or strings (field IDs).
       A header line will be written to the file only if given as an array of objects.
 
+  * fieldDelimiter `<string>` (optional)
+
+      Default: `,`. Only either comma `,` or semicolon `;` is allowed.
+
   * encoding `<string>` (optional)
 
       Default: `utf8`.
@@ -161,6 +166,10 @@ console.log(csvStringifier.stringifyRecords(records));
   * header `<Array<string>>` (optional)
 
       Array of field titles
+
+  * fieldDelimiter `<string>` (optional)
+
+      Default: `,`. Only either comma `,` or semicolon `;` is allowed.
 
   * encoding `<string>` (optional)
 
@@ -201,6 +210,10 @@ console.log(csvStringifier.stringifyRecords(records));
 
       Array of objects (`id` and `title` properties) or strings (field IDs)
 
+  * fieldDelimiter `<string>` (optional)
+
+      Default: `,`. Only either comma `,` or semicolon `;` is allowed.
+
 ##### Returns:
 
 * `<ObjectCsvStringifier>`
@@ -229,6 +242,10 @@ console.log(csvStringifier.stringifyRecords(records));
   * header `<Array<string>>` (optional)
 
       Array of field titles
+
+  * fieldDelimiter `<string>` (optional)
+
+      Default: `,`. Only either comma `,` or semicolon `;` is allowed.
 
 ##### Returns:
 
