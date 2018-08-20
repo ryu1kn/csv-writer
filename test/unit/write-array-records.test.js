@@ -79,4 +79,19 @@ describe('Write array records into CSV', () => {
             });
         });
     });
+
+    describe('When semicolon is specified as a field delimiter', () => {
+        const filePath = makeFilePath('field-delimiter');
+        const writer = createArrayCsvWriter({
+            path: filePath,
+            header: ['NAME', 'LANGUAGE'],
+            fieldDelimiter: ';'
+        });
+
+        it('writes to a file with the specified encoding', () => {
+            return writer.writeRecords(records).then(() => {
+                assertFile(filePath, 'NAME;LANGUAGE\nBob;French\nMary;English\n');
+            });
+        });
+    });
 });
