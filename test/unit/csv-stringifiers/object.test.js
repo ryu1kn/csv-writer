@@ -1,4 +1,3 @@
-
 const assert = require('assert');
 const resolveDelimiterChar = require('../helper/delimiter').resolveDelimiterChar;
 const createObjectCsvStringifier = require('../../../index').createObjectCsvStringifier;
@@ -12,6 +11,17 @@ describe('ObjectCsvStringifier', () => {
     describe('When field delimiter is comma', generateTestCases());
 
     describe('When field delimiter is semicolon', generateTestCases(';'));
+
+    describe('When field delimiter is neither comma nor semicolon', () => {
+        it('throws an exception', () => {
+            assert.throws(() => {
+                createObjectCsvStringifier({
+                    header: ['FIELD_A', 'FIELD_B'],
+                    fieldDelimiter: '/'
+                });
+            });
+        });
+    });
 
     function generateTestCases(fieldDelimiter) {
         const delim = resolveDelimiterChar(fieldDelimiter);
