@@ -191,10 +191,10 @@ console.log(csvStringifier.stringifyRecords(records));
 
 ##### Parameters:
 
-* records `<Array<Object|Array>>`
+* records `<Iterator<Object|Array>>`
 
     Depending on which function was used to create a `csvWriter` (i.e. `createObjectCsvWriter` or `createArrayCsvWriter`),
-    records will be either an array of objects or arrays
+    records will be either a collection of objects or arrays. As long as the collection is iterable, it doesn't need to be an array.
 
 ##### Returns:
 
