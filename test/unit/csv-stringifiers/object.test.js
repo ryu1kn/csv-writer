@@ -23,6 +23,22 @@ describe('ObjectCsvStringifier', () => {
         });
     });
 
+    describe('When records input is an iterable other than an array', () => {
+        it('behaves the same as when the input was an array', () => {
+            const stringifier = createObjectCsvStringifier({
+                header: ['TITLE_A', 'TITLE_B']
+            });
+            function * recordGenerator() {
+                yield records[0];
+                yield records[1];
+            }
+            const recordArray = Array.from(recordGenerator());
+            const generatorOutput = stringifier.stringifyRecords(recordGenerator());
+            const arrayOutput = stringifier.stringifyRecords(recordArray);
+            assert.equal(generatorOutput, arrayOutput);
+        });
+    });
+
     function generateTestCases(fieldDelimiter) {
         const delim = resolveDelimiterChar(fieldDelimiter);
         return () => {
