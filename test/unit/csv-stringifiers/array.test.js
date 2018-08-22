@@ -21,18 +21,19 @@ describe('ArrayCsvStringifier', () => {
     });
 
     describe('When records input is an iterable other than an array', () => {
-        it('behaves the same as when the input was an array', () => {
-            const stringifier = createArrayCsvStringifier({
-                header: ['TITLE_A', 'TITLE_B']
-            });
-            function * recordGenerator() {
-                yield records[0];
-                yield records[1];
-            }
-            const recordArray = Array.from(recordGenerator());
-            const generatorOutput = stringifier.stringifyRecords(recordGenerator());
-            const arrayOutput = stringifier.stringifyRecords(recordArray);
-            assert.equal(generatorOutput, arrayOutput);
+        const stringifier = createArrayCsvStringifier({
+            header: ['TITLE_A', 'TITLE_B']
+        });
+        function * recordGenerator() {
+            yield records[0];
+            yield records[1];
+        }
+
+        it('converts the records into CSV', () => {
+            assert.equal(
+                stringifier.stringifyRecords(recordGenerator()),
+                'FIELD_A1,FIELD_B1\nFIELD_A2,FIELD_B2\n'
+            );
         });
     });
 
