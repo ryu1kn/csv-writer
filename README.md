@@ -266,3 +266,10 @@ console.log(csvStringifier.stringifyRecords(records));
 ##### Returns:
 
 * `<string>`
+
+## Development
+
+### Prerequisite
+
+* Node version 8 or above
+* Docker

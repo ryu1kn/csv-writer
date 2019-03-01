@@ -1,9 +1,7 @@
+import {AbstractCsvStringifier} from './abstract';
 
-'use strict';
-
-const AbstractCsvStringifier = require('./abstract');
-
-class ObjectCsvStringifier extends AbstractCsvStringifier {
+export class ObjectCsvStringifier extends AbstractCsvStringifier {
+    private readonly _header: any[];
 
     constructor(params) {
         super({
@@ -34,5 +32,3 @@ class ObjectCsvStringifier extends AbstractCsvStringifier {
 function isObject(value) {
     return Object.prototype.toString.call(value) === '[object Object]';
 }
-
-module.exports = ObjectCsvStringifier;

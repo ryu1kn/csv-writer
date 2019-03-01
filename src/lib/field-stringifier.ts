@@ -1,13 +1,12 @@
 
-'use strict';
-
-class FieldStringifier {
+export class FieldStringifier {
+    private readonly _fieldDelimiter: string;
 
     constructor(params) {
         this._fieldDelimiter = params.fieldDelimiter;
     }
 
-    stringify(value) {
+    stringify(value?) {
         if (typeof value === 'undefined' || value === null) return '';
         const str = String(value);
         return this._needsQuote(str) ? `"${str.replace(/"/g, '""')}"` : str;
@@ -18,5 +17,3 @@ class FieldStringifier {
     }
 
 }
-
-module.exports = FieldStringifier;

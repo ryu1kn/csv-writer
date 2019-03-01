@@ -1,8 +1,8 @@
 version: "2"
 plugins:
-  eslint:
+  tslint:
     enabled: true
-    channel: "eslint-4"
+    config: tslint.json
   fixme:
     enabled: true
 checks:

@@ -1,27 +1,24 @@
-const assertFile = require('../helper').assertFile;
-const testFilePath = require('../helper').testFilePath;
+import {assertFile, testFilePath} from './helper';
+
 const fs = require('fs');
-const createObjectCsvWriter = require('../../index').createObjectCsvWriter;
+const createArrayCsvWriter = require('../index').createArrayCsvWriter;
 
-describe('Write object records into CSV', () => {
+describe('Write array records into CSV', () => {
 
-    const makeFilePath = id => testFilePath(`object-${id}`);
+    const makeFilePath = id => testFilePath(`array-${id}`);
     const records = [
-        {name: 'Bob', lang: 'French'},
-        {name: 'Mary', lang: 'English'}
+        ['Bob', 'French'],
+        ['Mary', 'English']
     ];
 
-    describe('When only path and header ids are given', () => {
+    describe('When only path is specified', () => {
         'use strict';
 
         const filePath = makeFilePath('minimum');
         let writer;
 
         beforeEach(() => {
-            writer = createObjectCsvWriter({
-                path: filePath,
-                header: ['name', 'lang']
-            });
+            writer = createArrayCsvWriter({path: filePath});
         });
 
         it('writes records to a new file', () => {
@@ -40,25 +37,11 @@ describe('Write object records into CSV', () => {
         });
     });
 
-    describe('When header ids are given with reverse order', () => {
-        const filePath = makeFilePath('column-order');
-        const writer = createObjectCsvWriter({
-            path: filePath,
-            header: ['lang', 'name']
-        });
-
-        it('also writes columns with reverse order', () => {
-            return writer.writeRecords(records).then(() => {
-                assertFile(filePath, 'French,Bob\nEnglish,Mary\n');
-            });
-        });
-    });
-
-    describe('When field header is given with titles', () => {
+    describe('When field header is given', () => {
         const filePath = makeFilePath('header');
-        const writer = createObjectCsvWriter({
+        const writer = createArrayCsvWriter({
             path: filePath,
-            header: [{id: 'name', title: 'NAME'}, {id: 'lang', title: 'LANGUAGE'}]
+            header: ['NAME', 'LANGUAGE']
         });
 
         it('writes a header', () => {
@@ -71,9 +54,8 @@ describe('Write object records into CSV', () => {
     describe('When `append` flag is specified', () => {
         const filePath = makeFilePath('append');
         fs.writeFileSync(filePath, 'Mike,German\n', 'utf8');
-        const writer = createObjectCsvWriter({
+        const writer = createArrayCsvWriter({
             path: filePath,
-            header: ['name', 'lang'],
             append: true
         });
 
@@ -86,9 +68,8 @@ describe('Write object records into CSV', () => {
 
     describe('When encoding is specified', () => {
         const filePath = makeFilePath('encoding');
-        const writer = createObjectCsvWriter({
+        const writer = createArrayCsvWriter({
             path: filePath,
-            header: ['name', 'lang'],
             encoding: 'utf16le'
         });
 
@@ -101,9 +82,9 @@ describe('Write object records into CSV', () => {
 
     describe('When semicolon is specified as a field delimiter', () => {
         const filePath = makeFilePath('field-delimiter');
-        const writer = createObjectCsvWriter({
+        const writer = createArrayCsvWriter({
             path: filePath,
-            header: [{id: 'name', title: 'NAME'}, {id: 'lang', title: 'LANGUAGE'}],
+            header: ['NAME', 'LANGUAGE'],
             fieldDelimiter: ';'
         });
 

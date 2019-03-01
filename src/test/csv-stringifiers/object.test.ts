@@ -1,6 +1,6 @@
-const assert = require('assert');
-const resolveDelimiterChar = require('../helper/delimiter').resolveDelimiterChar;
-const createObjectCsvStringifier = require('../../../index').createObjectCsvStringifier;
+import * as assert from 'assert';
+import {resolveDelimiterChar} from '../helper/delimiter';
+import {createObjectCsvStringifier} from '../../index';
 
 describe('ObjectCsvStringifier', () => {
     const records = [
@@ -40,7 +40,7 @@ describe('ObjectCsvStringifier', () => {
         });
     });
 
-    function generateTestCases(fieldDelimiter) {
+    function generateTestCases(fieldDelimiter?) {
         const delim = resolveDelimiterChar(fieldDelimiter);
         return () => {
             describe('header is specified with title', () => {

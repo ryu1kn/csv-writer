@@ -1,8 +1,12 @@
 {
+  "extension": [
+    ".ts"
+  ],
   "exclude": [
-    "**/__*",
+    "dist",
     "coverage",
-    "test"
+    "src/test",
+    "test-integration"
   ],
   "all": true,
   "reporter": [

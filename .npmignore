@@ -1,7 +1,5 @@
 /.codeclimate.yml
 /.editorconfig
-/.eslintignore
-/.eslintrc.yaml
 /.gitignore
 /.idea
 /.nvmrc
@@ -10,8 +8,9 @@
 /.travis.yml
 /.vscode
 /coverage
+/tsconfig.json
+/tslint.json
 /tag-release.sh
-/test/.eslintrc.yaml
-/test/integration
+/test-integration
 /test-tmp
 __*

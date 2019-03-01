@@ -1,14 +1,11 @@
-
-'use strict';
-
-const ArrayCsvStringifier = require('./csv-stringifiers/array');
-const FieldStringifier = require('./field-stringifier');
-const ObjectCsvStringifier = require('./csv-stringifiers/object');
+import {ArrayCsvStringifier} from './csv-stringifiers/array';
+import {FieldStringifier} from './field-stringifier';
+import {ObjectCsvStringifier} from './csv-stringifiers/object';
 
 const DEFAULT_FIELD_DELIMITER = ',';
 const VALID_FIELD_DELIMITERS = [DEFAULT_FIELD_DELIMITER, ';'];
 
-class CsvStringifierFactory {
+export class CsvStringifierFactory {
 
     createArrayCsvStringifier(params) {
         const fieldDelimiter = params.fieldDelimiter || DEFAULT_FIELD_DELIMITER;
@@ -37,5 +34,3 @@ function _validateFieldDelimiter(delimiter) {
         throw new Error(`Invalid field delimiter \`${delimiter}\` is specified`);
     }
 }
-
-module.exports = CsvStringifierFactory;

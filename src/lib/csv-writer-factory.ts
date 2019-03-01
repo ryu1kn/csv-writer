@@ -1,10 +1,10 @@
+import {CsvWriter} from './csv-writer';
+import {CsvStringifierFactory} from './csv-stringifier-factory';
 
-'use strict';
-
-const CsvWriter = require('./csv-writer');
 const fs = require('fs');
 
-class CsvWriterFactory {
+export class CsvWriterFactory {
+    private _csvStringifierFactory: CsvStringifierFactory;
 
     constructor(params) {
         this._csvStringifierFactory = params.csvStringifierFactory;
@@ -39,5 +39,3 @@ class CsvWriterFactory {
     }
 
 }
-
-module.exports = CsvWriterFactory;

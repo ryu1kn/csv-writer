@@ -1,8 +1,10 @@
-'use strict';
+import {FieldStringifier} from '../field-stringifier';
 
 const RECORD_DELIMITER = '\n';
 
-class AbstractCsvStringifier {
+export abstract class AbstractCsvStringifier {
+    private _fieldStringifier: FieldStringifier;
+    private _fieldDelimiter: string;
 
     constructor(params) {
         this._fieldStringifier = params.fieldStringifier;
@@ -19,13 +21,9 @@ class AbstractCsvStringifier {
         return csvLines.join(RECORD_DELIMITER) + RECORD_DELIMITER;
     }
 
-    /* istanbul ignore next */_getRecordAsArray(_record) {
-        throw new Error('Must be overridden in subclasses');
-    }
+    abstract _getRecordAsArray(_record): any;
 
-    /* istanbul ignore next */_getHeaderRecord() {
-        throw new Error('Must be overridden in subclasses');
-    }
+    abstract _getHeaderRecord(): any;
 
     _getCsvLine(record) {
         return record
@@ -34,5 +32,3 @@ class AbstractCsvStringifier {
     }
 
 }
-
-module.exports = AbstractCsvStringifier;

@@ -1,9 +1,7 @@
+import {AbstractCsvStringifier} from './abstract';
 
-'use strict';
-
-const AbstractCsvStringifier = require('./abstract');
-
-class ArrayCsvStringifier extends AbstractCsvStringifier {
+export class ArrayCsvStringifier extends AbstractCsvStringifier {
+    private _header: any[];
 
     constructor(params) {
         super({
@@ -22,5 +20,3 @@ class ArrayCsvStringifier extends AbstractCsvStringifier {
     }
 
 }
-
-module.exports = ArrayCsvStringifier;

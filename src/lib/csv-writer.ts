@@ -1,10 +1,15 @@
-
-'use strict';
+import {ArrayCsvStringifier} from './csv-stringifiers/array';
+import {ObjectCsvStringifier} from './csv-stringifiers/object';
 
 const DEFAULT_ENCODING = 'utf8';
 const DEFAULT_INITIAL_APPEND_FLAG = false;
 
-class CsvWriter {
+export class CsvWriter {
+    private _fs: any;
+    private _path: string;
+    private _csvStringifier: ArrayCsvStringifier | ObjectCsvStringifier;
+    private _encoding: string;
+    private _append: boolean;
 
     constructor(params) {
         this._fs = params.fs;
@@ -40,5 +45,3 @@ class CsvWriter {
     }
 
 }
-
-module.exports = CsvWriter;

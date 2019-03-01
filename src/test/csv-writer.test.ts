@@ -1,5 +1,5 @@
-const CsvWriter = require('../../lib/csv-writer');
-const assertContain = require('../helper').assertContain;
+import {CsvWriter} from '../lib/csv-writer';
+import {assertContain} from './helper';
 
 describe('CsvWriter', () => {
 

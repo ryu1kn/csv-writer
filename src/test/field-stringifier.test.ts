@@ -1,7 +1,6 @@
-
-const assert = require('assert');
-const resolveDelimiterChar = require('./helper/delimiter').resolveDelimiterChar;
-const FieldStringifier = require('../../lib/field-stringifier');
+import * as assert from 'assert';
+import {resolveDelimiterChar} from './helper/delimiter';
+import {FieldStringifier} from '../lib/field-stringifier';
 
 describe('FieldStringifier', () => {
 
