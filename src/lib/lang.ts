@@ -1,3 +1,3 @@
-export interface ObjectMap {
-    [k: string]: string;
+export interface ObjectMap<T> {
+    [k: string]: T;
 }

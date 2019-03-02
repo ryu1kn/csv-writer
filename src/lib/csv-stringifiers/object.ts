@@ -1,9 +1,9 @@
 import {CsvStringifier} from './abstract';
 import {FieldStringifier} from '../field-stringifier';
-import {ObjectHeaderItem, ObjectStringifierHeader} from '../record';
+import {Field, ObjectHeaderItem, ObjectStringifierHeader} from '../record';
 import {ObjectMap} from '../lang';
 
-export class ObjectCsvStringifier extends CsvStringifier<ObjectMap> {
+export class ObjectCsvStringifier extends CsvStringifier<ObjectMap<Field>> {
     private readonly header: ObjectStringifierHeader;
 
     constructor(header: ObjectStringifierHeader, fieldStringifier: FieldStringifier, fieldDelimiter: string) {
@@ -11,14 +11,14 @@ export class ObjectCsvStringifier extends CsvStringifier<ObjectMap> {
         this.header = header;
     }
 
-    protected getHeaderRecord(): ObjectMap | null {
+    protected getHeaderRecord(): ObjectMap<Field> | null {
         if (!this.isObjectHeader) return null;
 
         return (this.header as ObjectHeaderItem[]).reduce((memo, field) =>
             Object.assign({}, memo, {[field.id]: field.title}), {});
     }
 
-    protected getRecordAsArray(record: ObjectMap): string[] {
+    protected getRecordAsArray(record: ObjectMap<Field>): string[] {
         return this.fieldIds.map(field => record[field]);
     }
 
