@@ -37,7 +37,7 @@ describe('ArrayCsvStringifier', () => {
         });
     });
 
-    function generateTestCases(fieldDelimiter?) {
+    function generateTestCases(fieldDelimiter?: string) {
         const delim = resolveDelimiterChar(fieldDelimiter);
         return () => {
             describe('header is specified as a list of column titles', () => {

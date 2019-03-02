@@ -1,11 +1,12 @@
 import {assertFile, testFilePath} from './helper';
+import {CsvWriter} from '../lib/csv-writer';
 
 const fs = require('fs');
 const createObjectCsvWriter = require('../index').createObjectCsvWriter;
 
 describe('Write object records into CSV', () => {
 
-    const makeFilePath = id => testFilePath(`object-${id}`);
+    const makeFilePath = (id: string) => testFilePath(`object-${id}`);
     const records = [
         {name: 'Bob', lang: 'French'},
         {name: 'Mary', lang: 'English'}
@@ -15,7 +16,7 @@ describe('Write object records into CSV', () => {
         'use strict';
 
         const filePath = makeFilePath('minimum');
-        let writer;
+        let writer: CsvWriter<{[k: string]: string}>;
 
         beforeEach(() => {
             writer = createObjectCsvWriter({

@@ -1,25 +1,30 @@
-import {ArrayCsvStringifier} from './csv-stringifiers/array';
-import {ObjectCsvStringifier} from './csv-stringifiers/object';
+import {AbstractCsvStringifier} from './csv-stringifiers/abstract';
+
+interface FileWriteOption {
+    encoding?: string | null;
+    mode?: number | string;
+    flag?: string;
+}
 
 const DEFAULT_ENCODING = 'utf8';
 const DEFAULT_INITIAL_APPEND_FLAG = false;
 
-export class CsvWriter {
+export class CsvWriter<T> {
     private _fs: any;
     private _path: string;
-    private _csvStringifier: ArrayCsvStringifier | ObjectCsvStringifier;
+    private _csvStringifier: AbstractCsvStringifier<T>;
     private _encoding: string;
     private _append: boolean;
 
-    constructor(params) {
-        this._fs = params.fs;
-        this._path = params.path;
-        this._csvStringifier = params.csvStringifier;
-        this._encoding = params.encoding || DEFAULT_ENCODING;
-        this._append = params.append || DEFAULT_INITIAL_APPEND_FLAG;
+    constructor(csvStringifier: AbstractCsvStringifier<T>, path: string, fs: any, encoding?: string, append?: boolean) {
+        this._fs = fs;
+        this._path = path;
+        this._csvStringifier = csvStringifier;
+        this._encoding = encoding || DEFAULT_ENCODING;
+        this._append = append || DEFAULT_INITIAL_APPEND_FLAG;
     }
 
-    writeRecords(records) {
+    writeRecords(records: T[]): Promise<void> {
         const headerString = !this._append && this._csvStringifier.getHeaderString();
         const recordsString = this._csvStringifier.stringifyRecords(records);
         const writeString = (headerString || '') + recordsString;
@@ -28,9 +33,9 @@ export class CsvWriter {
             .then(() => { this._append = true; });
     }
 
-    _write(string, options) {
+    _write(string: string, options: FileWriteOption) {
         return new Promise((resolve, reject) => {
-            this._fs.writeFile(this._path, string, options, err => {
+            this._fs.writeFile(this._path, string, options, (err: Error) => {
                 if (err) reject(err);
                 else resolve();
             });

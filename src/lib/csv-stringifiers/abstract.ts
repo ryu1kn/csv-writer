@@ -1,14 +1,15 @@
 import {FieldStringifier} from '../field-stringifier';
+import {Field} from '../record';
 
 const RECORD_DELIMITER = '\n';
 
-export abstract class AbstractCsvStringifier {
+export abstract class AbstractCsvStringifier<T> {
     private _fieldStringifier: FieldStringifier;
     private _fieldDelimiter: string;
 
-    constructor(params) {
-        this._fieldStringifier = params.fieldStringifier;
-        this._fieldDelimiter = params.fieldDelimiter;
+    constructor(fieldStringifier: FieldStringifier, fieldDelimiter: string) {
+        this._fieldStringifier = fieldStringifier;
+        this._fieldDelimiter = fieldDelimiter;
     }
 
     getHeaderString() {
@@ -16,16 +17,16 @@ export abstract class AbstractCsvStringifier {
         return headerRecord ? this.stringifyRecords([headerRecord]) : null;
     }
 
-    stringifyRecords(records) {
+    stringifyRecords(records: IterableIterator<T> | T[]): string {
         const csvLines = Array.from(records, record => this._getCsvLine(this._getRecordAsArray(record)));
         return csvLines.join(RECORD_DELIMITER) + RECORD_DELIMITER;
     }
 
-    abstract _getRecordAsArray(_record): any;
+    abstract _getRecordAsArray(_record: T): Field[];
 
-    abstract _getHeaderRecord(): any;
+    abstract _getHeaderRecord(): T | null | undefined;
 
-    _getCsvLine(record) {
+    _getCsvLine(record: Field[]): string {
         return record
             .map(fieldValue => this._fieldStringifier.stringify(fieldValue))
             .join(this._fieldDelimiter);

@@ -1,11 +1,12 @@
 import {assertFile, testFilePath} from './helper';
+import {CsvWriter} from '../lib/csv-writer';
 
 const fs = require('fs');
 const createArrayCsvWriter = require('../index').createArrayCsvWriter;
 
 describe('Write array records into CSV', () => {
 
-    const makeFilePath = id => testFilePath(`array-${id}`);
+    const makeFilePath = (id: string) => testFilePath(`array-${id}`);
     const records = [
         ['Bob', 'French'],
         ['Mary', 'English']
@@ -15,7 +16,7 @@ describe('Write array records into CSV', () => {
         'use strict';
 
         const filePath = makeFilePath('minimum');
-        let writer;
+        let writer: CsvWriter<string[]>;
 
         beforeEach(() => {
             writer = createArrayCsvWriter({path: filePath});

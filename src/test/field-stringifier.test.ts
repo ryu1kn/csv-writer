@@ -8,10 +8,10 @@ describe('FieldStringifier', () => {
 
     describe('When field delimiter is semicolon', generateTestCases(';'));
 
-    function generateTestCases(fieldDelimiter) {
+    function generateTestCases(fieldDelimiter: string) {
         const delim = resolveDelimiterChar(fieldDelimiter);
         return () => {
-            const stringifier = new FieldStringifier({fieldDelimiter});
+            const stringifier = new FieldStringifier(fieldDelimiter);
 
             it('returns the same string', () => {
                 assert.equal(stringifier.stringify('VALUE'), 'VALUE');

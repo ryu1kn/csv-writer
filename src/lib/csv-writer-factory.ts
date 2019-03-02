@@ -3,39 +3,43 @@ import {CsvStringifierFactory} from './csv-stringifier-factory';
 
 const fs = require('fs');
 
+export interface ArrayCsvWriterParams {
+    path: string;
+    header: [];
+    fieldDelimiter?: string;
+    encoding?: string;
+    append?: boolean;
+}
+
+export interface ObjectCsvWriterParams {
+    path: string;
+    header: [];
+    fieldDelimiter?: string;
+    encoding?: string;
+    append?: boolean;
+}
+
 export class CsvWriterFactory {
     private _csvStringifierFactory: CsvStringifierFactory;
 
-    constructor(params) {
-        this._csvStringifierFactory = params.csvStringifierFactory;
+    constructor(csvStringifierFactory: CsvStringifierFactory) {
+        this._csvStringifierFactory = csvStringifierFactory;
     }
 
-    createArrayCsvWriter(params) {
+    createArrayCsvWriter(params: ArrayCsvWriterParams) {
         const csvStringifier = this._csvStringifierFactory.createArrayCsvStringifier({
             header: params.header,
             fieldDelimiter: params.fieldDelimiter
         });
-        return new CsvWriter({
-            csvStringifier,
-            encoding: params.encoding,
-            fs,
-            path: params.path,
-            append: params.append
-        });
+        return new CsvWriter(csvStringifier, params.path, fs, params.encoding, params.append);
     }
 
-    createObjectCsvWriter(params) {
+    createObjectCsvWriter(params: ObjectCsvWriterParams) {
         const csvStringifier = this._csvStringifierFactory.createObjectCsvStringifier({
             header: params.header,
             fieldDelimiter: params.fieldDelimiter
         });
-        return new CsvWriter({
-            csvStringifier,
-            encoding: params.encoding,
-            fs,
-            path: params.path,
-            append: params.append
-        });
+        return new CsvWriter(csvStringifier, params.path, fs, params.encoding, params.append);
     }
 
 }

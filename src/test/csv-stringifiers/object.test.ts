@@ -40,7 +40,7 @@ describe('ObjectCsvStringifier', () => {
         });
     });
 
-    function generateTestCases(fieldDelimiter?) {
+    function generateTestCases(fieldDelimiter?: string) {
         const delim = resolveDelimiterChar(fieldDelimiter);
         return () => {
             describe('header is specified with title', () => {

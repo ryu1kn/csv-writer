@@ -1,18 +1,19 @@
+import {Field} from './record';
 
 export class FieldStringifier {
     private readonly _fieldDelimiter: string;
 
-    constructor(params) {
-        this._fieldDelimiter = params.fieldDelimiter;
+    constructor(fieldDelimiter: string) {
+        this._fieldDelimiter = fieldDelimiter;
     }
 
-    stringify(value?) {
+    stringify(value?: Field): string {
         if (typeof value === 'undefined' || value === null) return '';
         const str = String(value);
         return this._needsQuote(str) ? `"${str.replace(/"/g, '""')}"` : str;
     }
 
-    _needsQuote(str) {
+    _needsQuote(str: string): boolean {
         return str.includes(this._fieldDelimiter) || str.includes('\n') || str.includes('"');
     }
 
