@@ -24,13 +24,13 @@ export class CsvWriter<T> {
         this.append = append || DEFAULT_INITIAL_APPEND_FLAG;
     }
 
-    writeRecords(records: T[]): Promise<void> {
+    async writeRecords(records: T[]): Promise<void> {
         const headerString = !this.append && this.csvStringifier.getHeaderString();
         const recordsString = this.csvStringifier.stringifyRecords(records);
         const writeString = (headerString || '') + recordsString;
         const option = this.getWriteOption();
-        return this.write(writeString, option)
-            .then(() => { this.append = true; });
+        await this.write(writeString, option);
+        this.append = true;
     }
 
     private write(string: string, options: FileWriteOption) {

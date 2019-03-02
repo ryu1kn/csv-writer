@@ -28,13 +28,10 @@ describe('Write array records into CSV', () => {
             });
         });
 
-        it('appends records when requested to write to the same file', () => {
-            return Promise.resolve()
-                .then(() => writer.writeRecords([records[0]]))
-                .then(() => writer.writeRecords([records[1]]))
-                .then(() => {
-                    assertFile(filePath, 'Bob,French\nMary,English\n');
-                });
+        it('appends records when requested to write to the same file', async () => {
+            await writer.writeRecords([records[0]]);
+            await writer.writeRecords([records[1]]);
+            assertFile(filePath, 'Bob,French\nMary,English\n');
         });
     });
 
