@@ -10,10 +10,10 @@ const DEFAULT_ENCODING = 'utf8';
 const DEFAULT_INITIAL_APPEND_FLAG = false;
 
 export class CsvWriter<T> {
-    private _fs: any;
-    private _path: string;
-    private _csvStringifier: AbstractCsvStringifier<T>;
-    private _encoding: string;
+    private readonly _fs: any;
+    private readonly _path: string;
+    private readonly _csvStringifier: AbstractCsvStringifier<T>;
+    private readonly _encoding: string;
     private _append: boolean;
 
     constructor(csvStringifier: AbstractCsvStringifier<T>, path: string, fs: any, encoding?: string, append?: boolean) {

@@ -3,7 +3,7 @@ import {FieldStringifier} from '../field-stringifier';
 import {Field} from '../record';
 
 export class ArrayCsvStringifier extends AbstractCsvStringifier<Field[]> {
-    private _header?: string[];
+    private readonly _header?: string[];
 
     constructor(fieldStringifier: FieldStringifier, fieldDelimiter: string, header?: string[]) {
         super(fieldStringifier, fieldDelimiter);

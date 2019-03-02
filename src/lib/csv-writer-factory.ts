@@ -20,7 +20,7 @@ export interface ObjectCsvWriterParams {
 }
 
 export class CsvWriterFactory {
-    private _csvStringifierFactory: CsvStringifierFactory;
+    private readonly _csvStringifierFactory: CsvStringifierFactory;
 
     constructor(csvStringifierFactory: CsvStringifierFactory) {
         this._csvStringifierFactory = csvStringifierFactory;

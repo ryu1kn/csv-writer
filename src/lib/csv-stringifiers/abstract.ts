@@ -4,8 +4,8 @@ import {Field} from '../record';
 const RECORD_DELIMITER = '\n';
 
 export abstract class AbstractCsvStringifier<T> {
-    private _fieldStringifier: FieldStringifier;
-    private _fieldDelimiter: string;
+    private readonly _fieldStringifier: FieldStringifier;
+    private readonly _fieldDelimiter: string;
 
     constructor(fieldStringifier: FieldStringifier, fieldDelimiter: string) {
         this._fieldStringifier = fieldStringifier;
