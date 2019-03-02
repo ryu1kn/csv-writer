@@ -3,7 +3,7 @@ import {Field} from '../record';
 
 const RECORD_DELIMITER = '\n';
 
-export abstract class AbstractCsvStringifier<T> {
+export abstract class CsvStringifier<T> {
     private readonly fieldStringifier: FieldStringifier;
     private readonly fieldDelimiter: string;
 

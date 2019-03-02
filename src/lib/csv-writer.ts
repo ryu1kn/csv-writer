@@ -1,4 +1,4 @@
-import {AbstractCsvStringifier} from './csv-stringifiers/abstract';
+import {CsvStringifier} from './csv-stringifiers/abstract';
 
 interface FileWriteOption {
     encoding?: string | null;
@@ -12,11 +12,11 @@ const DEFAULT_INITIAL_APPEND_FLAG = false;
 export class CsvWriter<T> {
     private readonly fs: any;
     private readonly path: string;
-    private readonly csvStringifier: AbstractCsvStringifier<T>;
+    private readonly csvStringifier: CsvStringifier<T>;
     private readonly encoding: string;
     private append: boolean;
 
-    constructor(csvStringifier: AbstractCsvStringifier<T>, path: string, fs: any, encoding?: string, append?: boolean) {
+    constructor(csvStringifier: CsvStringifier<T>, path: string, fs: any, encoding?: string, append?: boolean) {
         this.fs = fs;
         this.path = path;
         this.csvStringifier = csvStringifier;

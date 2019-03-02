@@ -1,8 +1,8 @@
-import {AbstractCsvStringifier} from './abstract';
+import {CsvStringifier} from './abstract';
 import {FieldStringifier} from '../field-stringifier';
 import {Field} from '../record';
 
-export class ArrayCsvStringifier extends AbstractCsvStringifier<Field[]> {
+export class ArrayCsvStringifier extends CsvStringifier<Field[]> {
     private readonly header?: string[];
 
     constructor(fieldStringifier: FieldStringifier, fieldDelimiter: string, header?: string[]) {

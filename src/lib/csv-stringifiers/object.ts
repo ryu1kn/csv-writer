@@ -1,9 +1,9 @@
-import {AbstractCsvStringifier} from './abstract';
+import {CsvStringifier} from './abstract';
 import {FieldStringifier} from '../field-stringifier';
 import {ObjectHeaderItem, ObjectStringifierHeader} from '../record';
 import {ObjectMap} from '../lang';
 
-export class ObjectCsvStringifier extends AbstractCsvStringifier<ObjectMap> {
+export class ObjectCsvStringifier extends CsvStringifier<ObjectMap> {
     private readonly header: ObjectStringifierHeader;
 
     constructor(header: ObjectStringifierHeader, fieldStringifier: FieldStringifier, fieldDelimiter: string) {
