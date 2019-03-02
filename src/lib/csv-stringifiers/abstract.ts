@@ -12,7 +12,7 @@ export abstract class CsvStringifier<T> {
         this.fieldDelimiter = fieldDelimiter;
     }
 
-    getHeaderString() {
+    getHeaderString(): string | null {
         const headerRecord = this.getHeaderRecord();
         return headerRecord ? this.stringifyRecords([headerRecord]) : null;
     }

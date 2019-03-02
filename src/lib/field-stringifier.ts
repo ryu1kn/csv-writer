@@ -1,10 +1,10 @@
 import {Field} from './record';
 
 export class FieldStringifier {
-    private readonly _fieldDelimiter: string;
+    private readonly fieldDelimiter: string;
 
     constructor(fieldDelimiter: string) {
-        this._fieldDelimiter = fieldDelimiter;
+        this.fieldDelimiter = fieldDelimiter;
     }
 
     stringify(value?: Field): string {
@@ -14,6 +14,6 @@ export class FieldStringifier {
     }
 
     private needsQuote(str: string): boolean {
-        return str.includes(this._fieldDelimiter) || str.includes('\n') || str.includes('"');
+        return str.includes(this.fieldDelimiter) || str.includes('\n') || str.includes('"');
     }
 }
