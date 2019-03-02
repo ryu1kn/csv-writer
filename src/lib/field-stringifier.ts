@@ -10,10 +10,10 @@ export class FieldStringifier {
     stringify(value?: Field): string {
         if (typeof value === 'undefined' || value === null) return '';
         const str = String(value);
-        return this._needsQuote(str) ? `"${str.replace(/"/g, '""')}"` : str;
+        return this.needsQuote(str) ? `"${str.replace(/"/g, '""')}"` : str;
     }
 
-    private _needsQuote(str: string): boolean {
+    private needsQuote(str: string): boolean {
         return str.includes(this._fieldDelimiter) || str.includes('\n') || str.includes('"');
     }
 }

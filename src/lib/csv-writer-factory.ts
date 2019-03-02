@@ -20,14 +20,14 @@ export interface ObjectCsvWriterParams {
 }
 
 export class CsvWriterFactory {
-    private readonly _csvStringifierFactory: CsvStringifierFactory;
+    private readonly csvStringifierFactory: CsvStringifierFactory;
 
     constructor(csvStringifierFactory: CsvStringifierFactory) {
-        this._csvStringifierFactory = csvStringifierFactory;
+        this.csvStringifierFactory = csvStringifierFactory;
     }
 
     createArrayCsvWriter(params: ArrayCsvWriterParams) {
-        const csvStringifier = this._csvStringifierFactory.createArrayCsvStringifier({
+        const csvStringifier = this.csvStringifierFactory.createArrayCsvStringifier({
             header: params.header,
             fieldDelimiter: params.fieldDelimiter
         });
@@ -35,7 +35,7 @@ export class CsvWriterFactory {
     }
 
     createObjectCsvWriter(params: ObjectCsvWriterParams) {
-        const csvStringifier = this._csvStringifierFactory.createObjectCsvStringifier({
+        const csvStringifier = this.csvStringifierFactory.createObjectCsvStringifier({
             header: params.header,
             fieldDelimiter: params.fieldDelimiter
         });

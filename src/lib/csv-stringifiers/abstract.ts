@@ -4,32 +4,31 @@ import {Field} from '../record';
 const RECORD_DELIMITER = '\n';
 
 export abstract class AbstractCsvStringifier<T> {
-    private readonly _fieldStringifier: FieldStringifier;
-    private readonly _fieldDelimiter: string;
+    private readonly fieldStringifier: FieldStringifier;
+    private readonly fieldDelimiter: string;
 
     constructor(fieldStringifier: FieldStringifier, fieldDelimiter: string) {
-        this._fieldStringifier = fieldStringifier;
-        this._fieldDelimiter = fieldDelimiter;
+        this.fieldStringifier = fieldStringifier;
+        this.fieldDelimiter = fieldDelimiter;
     }
 
     getHeaderString() {
-        const headerRecord = this._getHeaderRecord();
+        const headerRecord = this.getHeaderRecord();
         return headerRecord ? this.stringifyRecords([headerRecord]) : null;
     }
 
     stringifyRecords(records: IterableIterator<T> | T[]): string {
-        const csvLines = Array.from(records, record => this._getCsvLine(this._getRecordAsArray(record)));
+        const csvLines = Array.from(records, record => this.getCsvLine(this.getRecordAsArray(record)));
         return csvLines.join(RECORD_DELIMITER) + RECORD_DELIMITER;
     }
 
-    protected abstract _getRecordAsArray(_record: T): Field[];
+    protected abstract getRecordAsArray(_record: T): Field[];
 
-    protected abstract _getHeaderRecord(): T | null | undefined;
+    protected abstract getHeaderRecord(): T | null | undefined;
 
-    private _getCsvLine(record: Field[]): string {
+    private getCsvLine(record: Field[]): string {
         return record
-            .map(fieldValue => this._fieldStringifier.stringify(fieldValue))
-            .join(this._fieldDelimiter);
+            .map(fieldValue => this.fieldStringifier.stringify(fieldValue))
+            .join(this.fieldDelimiter);
     }
-
 }
