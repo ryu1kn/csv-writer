@@ -10,11 +10,11 @@ export class ArrayCsvStringifier extends AbstractCsvStringifier<Field[]> {
         this._header = header;
     }
 
-    _getHeaderRecord() {
+    protected _getHeaderRecord() {
         return this._header;
     }
 
-    _getRecordAsArray(record: Field[]): Field[] {
+    protected _getRecordAsArray(record: Field[]): Field[] {
         return record;
     }
 }

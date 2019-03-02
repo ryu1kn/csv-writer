@@ -22,11 +22,11 @@ export abstract class AbstractCsvStringifier<T> {
         return csvLines.join(RECORD_DELIMITER) + RECORD_DELIMITER;
     }
 
-    abstract _getRecordAsArray(_record: T): Field[];
+    protected abstract _getRecordAsArray(_record: T): Field[];
 
-    abstract _getHeaderRecord(): T | null | undefined;
+    protected abstract _getHeaderRecord(): T | null | undefined;
 
-    _getCsvLine(record: Field[]): string {
+    private _getCsvLine(record: Field[]): string {
         return record
             .map(fieldValue => this._fieldStringifier.stringify(fieldValue))
             .join(this._fieldDelimiter);

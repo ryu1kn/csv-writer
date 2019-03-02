@@ -13,8 +13,7 @@ export class FieldStringifier {
         return this._needsQuote(str) ? `"${str.replace(/"/g, '""')}"` : str;
     }
 
-    _needsQuote(str: string): boolean {
+    private _needsQuote(str: string): boolean {
         return str.includes(this._fieldDelimiter) || str.includes('\n') || str.includes('"');
     }
-
 }

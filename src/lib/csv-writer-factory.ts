@@ -41,5 +41,4 @@ export class CsvWriterFactory {
         });
         return new CsvWriter(csvStringifier, params.path, fs, params.encoding, params.append);
     }
-
 }

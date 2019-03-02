@@ -11,14 +11,14 @@ export class ObjectCsvStringifier extends AbstractCsvStringifier<ObjectMap> {
         this._header = header;
     }
 
-    _getHeaderRecord(): ObjectMap | null {
+    protected _getHeaderRecord(): ObjectMap | null {
         if (!this.isObjectHeader) return null;
 
         return (this._header as ObjectHeaderItem[]).reduce((memo, field) =>
             Object.assign({}, memo, {[field.id]: field.title}), {});
     }
 
-    _getRecordAsArray(record: ObjectMap): string[] {
+    protected _getRecordAsArray(record: ObjectMap): string[] {
         return this.fieldIds.map(field => record[field]);
     }
 

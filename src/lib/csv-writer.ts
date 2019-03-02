@@ -33,7 +33,7 @@ export class CsvWriter<T> {
             .then(() => { this._append = true; });
     }
 
-    _write(string: string, options: FileWriteOption) {
+    private _write(string: string, options: FileWriteOption) {
         return new Promise((resolve, reject) => {
             this._fs.writeFile(this._path, string, options, (err: Error) => {
                 if (err) reject(err);
@@ -42,11 +42,10 @@ export class CsvWriter<T> {
         });
     }
 
-    _getWriteOption() {
+    private _getWriteOption() {
         return {
             encoding: this._encoding,
             flag: this._append ? 'a' : 'w'
         };
     }
-
 }
