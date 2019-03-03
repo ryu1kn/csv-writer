@@ -2,8 +2,8 @@ const assert = require('assert');
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 const readFile = require('./helper/read-file').readFile;
 
-describe('csv-writer', () => {
-    it('object writer', () => {
+describe('Write object array', () => {
+    it('writes an object array into a CSV file', () => {
         const OUTPUT_FILE = './output-object-records.csv';
         const csvWriter = createCsvWriter({
             path: OUTPUT_FILE,

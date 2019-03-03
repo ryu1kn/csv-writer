@@ -2,7 +2,7 @@
   "name": "csv-writer-driver",
   "private": true,
   "scripts": {
-    "test": "mocha test"
+    "test": "mocha test --recursive"
   },
   "devDependencies": {
     "mocha": "^5.2.0"
