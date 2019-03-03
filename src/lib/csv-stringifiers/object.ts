@@ -6,7 +6,7 @@ import {ObjectMap} from '../lang';
 export class ObjectCsvStringifier extends CsvStringifier<ObjectMap<Field>> {
     private readonly header: ObjectStringifierHeader;
 
-    constructor(header: ObjectStringifierHeader, fieldStringifier: FieldStringifier, fieldDelimiter: string) {
+    constructor(fieldStringifier: FieldStringifier, fieldDelimiter: string, header: ObjectStringifierHeader) {
         super(fieldStringifier, fieldDelimiter);
         this.header = header;
     }

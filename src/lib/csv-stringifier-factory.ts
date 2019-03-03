@@ -29,7 +29,7 @@ export class CsvStringifierFactory {
         const fieldDelimiter = params.fieldDelimiter || DEFAULT_FIELD_DELIMITER;
         _validateFieldDelimiter(fieldDelimiter);
         const fieldStringifier = new FieldStringifier(fieldDelimiter);
-        return new ObjectCsvStringifier(params.header, fieldStringifier, fieldDelimiter);
+        return new ObjectCsvStringifier(fieldStringifier, fieldDelimiter, params.header);
     }
 
 }
