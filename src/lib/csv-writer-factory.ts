@@ -1,11 +1,12 @@
 import {CsvWriter} from './csv-writer';
 import {CsvStringifierFactory} from './csv-stringifier-factory';
+import {ObjectStringifierHeader} from './record';
 
 const fs = require('fs');
 
 export interface ArrayCsvWriterParams {
     path: string;
-    header: [];
+    header?: string[];
     fieldDelimiter?: string;
     encoding?: string;
     append?: boolean;
@@ -13,7 +14,7 @@ export interface ArrayCsvWriterParams {
 
 export interface ObjectCsvWriterParams {
     path: string;
-    header: [];
+    header: ObjectStringifierHeader;
     fieldDelimiter?: string;
     encoding?: string;
     append?: boolean;
