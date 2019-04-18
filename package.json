@@ -3,6 +3,7 @@
   "version": "1.2.0",
   "description": "Convert objects/arrays into a CSV string or write them into a CSV file",
   "main": "dist/index.js",
+  "types": "src/index.ts",
   "scripts": {
     "compile": "tsc -p ./",
     "test": "npm run test:unit && npm run test:it",
