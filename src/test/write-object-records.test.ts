@@ -54,15 +54,25 @@ describe('Write object records into CSV', () => {
 
     describe('When field header is given with titles', () => {
         const filePath = makeFilePath('header');
-        const writer = createObjectCsvWriter({
-            path: filePath,
-            header: [{id: 'name', title: 'NAME'}, {id: 'lang', title: 'LANGUAGE'}]
+        let writer: CsvWriter<{[k: string]: string}>;
+
+        beforeEach(() => {
+            writer = createObjectCsvWriter({
+                path: filePath,
+                header: [{id: 'name', title: 'NAME'}, {id: 'lang', title: 'LANGUAGE'}]
+            });
         });
 
         it('writes a header', () => {
             return writer.writeRecords(records).then(() => {
                 assertFile(filePath, 'NAME,LANGUAGE\nBob,French\nMary,English\n');
             });
+        });
+
+        it('appends records without headers', async () => {
+            await writer.writeRecords([records[0]]);
+            await writer.writeRecords([records[1]]);
+            assertFile(filePath, 'NAME,LANGUAGE\nBob,French\nMary,English\n');
         });
     });
 

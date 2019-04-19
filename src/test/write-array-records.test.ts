@@ -37,15 +37,25 @@ describe('Write array records into CSV', () => {
 
     describe('When field header is given', () => {
         const filePath = makeFilePath('header');
-        const writer = createArrayCsvWriter({
-            path: filePath,
-            header: ['NAME', 'LANGUAGE']
+        let writer: CsvWriter<string[]>;
+
+        beforeEach(() => {
+            writer = createArrayCsvWriter({
+                path: filePath,
+                header: ['NAME', 'LANGUAGE']
+            });
         });
 
         it('writes a header', () => {
             return writer.writeRecords(records).then(() => {
                 assertFile(filePath, 'NAME,LANGUAGE\nBob,French\nMary,English\n');
             });
+        });
+
+        it('appends records without headers', async () => {
+            await writer.writeRecords([records[0]]);
+            await writer.writeRecords([records[1]]);
+            assertFile(filePath, 'NAME,LANGUAGE\nBob,French\nMary,English\n');
         });
     });
 

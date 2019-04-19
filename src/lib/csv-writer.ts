@@ -6,7 +6,7 @@ const DEFAULT_INITIAL_APPEND_FLAG = false;
 export class CsvWriter<T> {
     private readonly csvStringifier: CsvStringifier<T>;
     private readonly fileWriter: FileWriter;
-    private readonly append: boolean;
+    private append: boolean;
 
     constructor(csvStringifier: CsvStringifier<T>, path: string, encoding?: string, append?: boolean) {
         this.append = append || DEFAULT_INITIAL_APPEND_FLAG;
@@ -18,6 +18,7 @@ export class CsvWriter<T> {
         const recordsString = this.csvStringifier.stringifyRecords(records);
         const writeString = this.headerString + recordsString;
         await this.fileWriter.write(writeString);
+        this.append = true;
     }
 
     private get headerString(): string {
