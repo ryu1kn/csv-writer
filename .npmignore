@@ -13,4 +13,5 @@
 /tag-release.sh
 /test-integration
 /test-tmp
+csv-writer-*.tgz
 __*
