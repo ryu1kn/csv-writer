@@ -1,8 +1,7 @@
 import {CsvWriter} from './csv-writer';
 import {CsvStringifierFactory} from './csv-stringifier-factory';
 import {ObjectStringifierHeader} from './record';
-
-const fs = require('fs');
+import * as fs from 'fs';
 
 export interface ArrayCsvWriterParams {
     path: string;
