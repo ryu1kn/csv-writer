@@ -1,7 +1,6 @@
 import {CsvWriter} from './csv-writer';
 import {CsvStringifierFactory} from './csv-stringifier-factory';
 import {ObjectStringifierHeader} from './record';
-import * as fs from 'fs';
 
 export interface ArrayCsvWriterParams {
     path: string;
@@ -31,7 +30,7 @@ export class CsvWriterFactory {
             header: params.header,
             fieldDelimiter: params.fieldDelimiter
         });
-        return new CsvWriter(csvStringifier, params.path, fs, params.encoding, params.append);
+        return new CsvWriter(csvStringifier, params.path, params.encoding, params.append);
     }
 
     createObjectCsvWriter(params: ObjectCsvWriterParams) {
@@ -39,6 +38,6 @@ export class CsvWriterFactory {
             header: params.header,
             fieldDelimiter: params.fieldDelimiter
         });
-        return new CsvWriter(csvStringifier, params.path, fs, params.encoding, params.append);
+        return new CsvWriter(csvStringifier, params.path, params.encoding, params.append);
     }
 }
