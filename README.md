@@ -267,6 +267,19 @@ console.log(csvStringifier.stringifyRecords(records));
 
 * `<string>`
 
+
+## Request Features or Report Bugs
+
+Feature requests and bug reports are very welcome: https://github.com/ryu1kn/csv-writer/issues
+
+A couple of requests from me when you raise an issue on GitHub.
+
+* **Requesting a feature:** Please try to provide the context of why you want the feature. Such as,
+  in what situation the feature could help you and how, or how the lack of the feature is causing an inconvenience to you.
+  I can't start thinking of introducing it until I understand how it helps you 🙂
+* **Reporting a bug:** If you could provide a runnable code snippet that reproduces the bug, it would be very helpful!
+
+
 ## Development
 
 ### Prerequisite
