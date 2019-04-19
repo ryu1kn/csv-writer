@@ -15,9 +15,13 @@ export class CsvWriter<T> {
     }
 
     async writeRecords(records: T[]): Promise<void> {
-        const headerString = !this.append && this.csvStringifier.getHeaderString();
         const recordsString = this.csvStringifier.stringifyRecords(records);
-        const writeString = (headerString || '') + recordsString;
+        const writeString = this.headerString + recordsString;
         await this.fileWriter.write(writeString);
+    }
+
+    private get headerString(): string {
+        const headerString = !this.append && this.csvStringifier.getHeaderString();
+        return headerString || '';
     }
 }
