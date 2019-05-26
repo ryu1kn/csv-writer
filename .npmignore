@@ -1,5 +1,6 @@
 /.codeclimate.yml
 /.editorconfig
+/.github
 /.gitignore
 /.idea
 /.nvmrc
