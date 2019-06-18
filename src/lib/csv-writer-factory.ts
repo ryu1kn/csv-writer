@@ -6,6 +6,7 @@ export interface ArrayCsvWriterParams {
     path: string;
     header?: string[];
     fieldDelimiter?: string;
+    recordDelimiter?: string;
     encoding?: string;
     append?: boolean;
 }
@@ -14,6 +15,7 @@ export interface ObjectCsvWriterParams {
     path: string;
     header: ObjectStringifierHeader;
     fieldDelimiter?: string;
+    recordDelimiter?: string;
     encoding?: string;
     append?: boolean;
 }
@@ -28,7 +30,8 @@ export class CsvWriterFactory {
     createArrayCsvWriter(params: ArrayCsvWriterParams) {
         const csvStringifier = this.csvStringifierFactory.createArrayCsvStringifier({
             header: params.header,
-            fieldDelimiter: params.fieldDelimiter
+            fieldDelimiter: params.fieldDelimiter,
+            recordDelimiter: params.recordDelimiter
         });
         return new CsvWriter(csvStringifier, params.path, params.encoding, params.append);
     }
@@ -36,7 +39,8 @@ export class CsvWriterFactory {
     createObjectCsvWriter(params: ObjectCsvWriterParams) {
         const csvStringifier = this.csvStringifierFactory.createObjectCsvStringifier({
             header: params.header,
-            fieldDelimiter: params.fieldDelimiter
+            fieldDelimiter: params.fieldDelimiter,
+            recordDelimiter: params.recordDelimiter
         });
         return new CsvWriter(csvStringifier, params.path, params.encoding, params.append);
     }

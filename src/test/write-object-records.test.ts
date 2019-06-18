@@ -115,9 +115,24 @@ describe('Write object records into CSV', () => {
             fieldDelimiter: ';'
         });
 
-        it('writes to a file with the specified encoding', () => {
+        it('uses semicolon instead of comma to separate fields', () => {
             return writer.writeRecords(records).then(() => {
                 assertFile(filePath, 'NAME;LANGUAGE\nBob;French\nMary;English\n');
+            });
+        });
+    });
+
+    describe('When newline is specified', () => {
+        const filePath = makeFilePath('newline');
+        const writer = createObjectCsvWriter({
+            path: filePath,
+            header: ['name', 'lang'],
+            recordDelimiter: '\r\n'
+        });
+
+        it('writes to a file with the specified newline character', () => {
+            return writer.writeRecords(records).then(() => {
+                assertFile(filePath, 'Bob,French\r\nMary,English\r\n');
             });
         });
     });

@@ -23,6 +23,17 @@ describe('ObjectCsvStringifier', () => {
         });
     });
 
+    describe('When record delimiter is neither LF nor CR+LF', () => {
+        it('throws an exception', () => {
+            assert.throws(() => {
+                createObjectCsvStringifier({
+                    header: ['FIELD_A', 'FIELD_B'],
+                    recordDelimiter: '\r'
+                });
+            });
+        });
+    });
+
     describe('When records input is an iterable other than an array', () => {
         const stringifier = createObjectCsvStringifier({
             header: ['FIELD_A', 'FIELD_B']

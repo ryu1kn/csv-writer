@@ -20,6 +20,14 @@ describe('ArrayCsvStringifier', () => {
         });
     });
 
+    describe('When record delimiter is neither LF nor CR+LF', () => {
+        it('throws an exception', () => {
+            assert.throws(() => {
+                createArrayCsvStringifier({recordDelimiter: '\r'});
+            });
+        });
+    });
+
     describe('When records input is an iterable other than an array', () => {
         const stringifier = createArrayCsvStringifier({
             header: ['TITLE_A', 'TITLE_B']

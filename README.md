@@ -138,13 +138,13 @@ console.log(csvStringifier.stringifyRecords(records));
 
       Default: `,`. Only either comma `,` or semicolon `;` is allowed.
 
+  * recordDelimiter `<string>` (optional)
+
+      Default: `\n`. Only either comma `\n` or semicolon `\r\n` is allowed.
+
   * encoding `<string>` (optional)
 
       Default: `utf8`.
-
-  * newline `<string>` (optional)
-
-      Default: `lf`. Possible values: `lf`, `crlf`.
 
   * append `<boolean>` (optional)
 
@@ -175,13 +175,13 @@ console.log(csvStringifier.stringifyRecords(records));
 
       Default: `,`. Only either comma `,` or semicolon `;` is allowed.
 
+  * recordDelimiter `<string>` (optional)
+
+      Default: `\n`. Only either comma `\n` or semicolon `\r\n` is allowed.
+
   * encoding `<string>` (optional)
 
       Default: `utf8`.
-
-  * newline `<string>` (optional)
-
-      Default: `lf`. Possible values: `lf`, `crlf`.
 
   * append `<boolean>` (optional)
 
@@ -222,6 +222,10 @@ console.log(csvStringifier.stringifyRecords(records));
 
       Default: `,`. Only either comma `,` or semicolon `;` is allowed.
 
+  * recordDelimiter `<string>` (optional)
+
+      Default: `\n`. Only either comma `\n` or semicolon `\r\n` is allowed.
+
 ##### Returns:
 
 * `<ObjectCsvStringifier>`
@@ -254,6 +258,10 @@ console.log(csvStringifier.stringifyRecords(records));
   * fieldDelimiter `<string>` (optional)
 
       Default: `,`. Only either comma `,` or semicolon `;` is allowed.
+
+  * recordDelimiter `<string>` (optional)
+
+      Default: `\n`. Only either comma `\n` or semicolon `\r\n` is allowed.
 
 ##### Returns:
 
