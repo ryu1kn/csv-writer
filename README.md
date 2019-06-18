@@ -142,6 +142,10 @@ console.log(csvStringifier.stringifyRecords(records));
 
       Default: `utf8`.
 
+  * newline `<string>` (optional)
+
+      Default: `lf`. Possible values: `lf`, `crlf`.
+
   * append `<boolean>` (optional)
 
       Default: `false`. When `true`, it will append CSV records to the specified file.
@@ -174,6 +178,10 @@ console.log(csvStringifier.stringifyRecords(records));
   * encoding `<string>` (optional)
 
       Default: `utf8`.
+
+  * newline `<string>` (optional)
+
+      Default: `lf`. Possible values: `lf`, `crlf`.
 
   * append `<boolean>` (optional)
 
