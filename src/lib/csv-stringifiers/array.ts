@@ -5,7 +5,7 @@ import {Field} from '../record';
 export class ArrayCsvStringifier extends CsvStringifier<Field[]> {
     private readonly header?: string[];
 
-    constructor(fieldStringifier: FieldStringifier, fieldDelimiter: string, recordDelimiter: string, header?: string[]) {
+    constructor(fieldStringifier: FieldStringifier, fieldDelimiter: string, recordDelimiter?: string, header?: string[]) {
         super(fieldStringifier, fieldDelimiter, recordDelimiter);
         this.header = header;
     }
