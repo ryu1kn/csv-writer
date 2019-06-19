@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.4.0] - 2019-06-19
+### Added
+- Allow CRLF as a record delimiter. [#27](https://github.com/ryu1kn/csv-writer/pull/27)
+
 ## [1.3.0] - 2019-04-19
 ### Changed
 - Changed project language from JavaScript to TypeScript.
