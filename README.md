@@ -140,7 +140,7 @@ console.log(csvStringifier.stringifyRecords(records));
 
   * recordDelimiter `<string>` (optional)
 
-      Default: `\n`. Only either comma `\n` or semicolon `\r\n` is allowed.
+      Default: `\n`. Only either LF (`\n`) or CRLF (`\r\n`) is allowed.
 
   * encoding `<string>` (optional)
 
@@ -177,7 +177,7 @@ console.log(csvStringifier.stringifyRecords(records));
 
   * recordDelimiter `<string>` (optional)
 
-      Default: `\n`. Only either comma `\n` or semicolon `\r\n` is allowed.
+      Default: `\n`. Only either LF (`\n`) or CRLF (`\r\n`) is allowed.
 
   * encoding `<string>` (optional)
 
@@ -224,7 +224,7 @@ console.log(csvStringifier.stringifyRecords(records));
 
   * recordDelimiter `<string>` (optional)
 
-      Default: `\n`. Only either comma `\n` or semicolon `\r\n` is allowed.
+      Default: `\n`. Only either LF (`\n`) or CRLF (`\r\n`) is allowed.
 
 ##### Returns:
 
@@ -261,7 +261,7 @@ console.log(csvStringifier.stringifyRecords(records));
 
   * recordDelimiter `<string>` (optional)
 
-      Default: `\n`. Only either comma `\n` or semicolon `\r\n` is allowed.
+      Default: `\n`. Only either LF (`\n`) or CRLF (`\r\n`) is allowed.
 
 ##### Returns:
 
