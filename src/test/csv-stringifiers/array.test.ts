@@ -1,6 +1,6 @@
-import * as assert from 'assert';
 import {resolveDelimiterChar} from '../helper/delimiter';
 import {createArrayCsvStringifier} from '../../index';
+import {strictEqual, throws} from 'assert';
 
 describe('ArrayCsvStringifier', () => {
     const records = [
@@ -14,7 +14,7 @@ describe('ArrayCsvStringifier', () => {
 
     describe('When field delimiter is neither comma nor semicolon', () => {
         it('throws an exception', () => {
-            assert.throws(() => {
+            throws(() => {
                 createArrayCsvStringifier({fieldDelimiter: '/'});
             });
         });
@@ -22,7 +22,7 @@ describe('ArrayCsvStringifier', () => {
 
     describe('When record delimiter is neither LF nor CR+LF', () => {
         it('throws an exception', () => {
-            assert.throws(() => {
+            throws(() => {
                 createArrayCsvStringifier({recordDelimiter: '\r'});
             });
         });
@@ -38,7 +38,7 @@ describe('ArrayCsvStringifier', () => {
         }
 
         it('converts the records into CSV', () => {
-            assert.equal(
+            strictEqual(
                 stringifier.stringifyRecords(recordGenerator()),
                 'FIELD_A1,FIELD_B1\nFIELD_A2,FIELD_B2\n'
             );
@@ -55,11 +55,11 @@ describe('ArrayCsvStringifier', () => {
                 });
 
                 it(`returns a header line with field separated by "${delim}"`, () => {
-                    assert.equal(stringifier.getHeaderString(), `TITLE_A${delim}TITLE_B\n`);
+                    strictEqual(stringifier.getHeaderString(), `TITLE_A${delim}TITLE_B\n`);
                 });
 
                 it(`converts given data records into CSV lines with field separated by "${delim}"`, () => {
-                    assert.equal(
+                    strictEqual(
                         stringifier.stringifyRecords(records),
                         `FIELD_A1${delim}FIELD_B1\nFIELD_A2${delim}FIELD_B2\n`
                     );
@@ -70,11 +70,11 @@ describe('ArrayCsvStringifier', () => {
                 const stringifier = createArrayCsvStringifier({fieldDelimiter});
 
                 it('returns null for header line', () => {
-                    assert.equal(stringifier.getHeaderString(), null);
+                    strictEqual(stringifier.getHeaderString(), null);
                 });
 
                 it(`converts given data records into CSV lines with field separated by "${delim}"`, () => {
-                    assert.equal(
+                    strictEqual(
                         stringifier.stringifyRecords(records),
                         `FIELD_A1${delim}FIELD_B1\nFIELD_A2${delim}FIELD_B2\n`
                     );

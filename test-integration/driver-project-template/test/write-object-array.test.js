@@ -20,7 +20,7 @@ describe('Write object array', () => {
         return csvWriter.writeRecords(records)
             .then(() => readFile(OUTPUT_FILE))
             .then(contents => {
-                assert.equal(contents, `NAME,LANGUAGE
+                assert.strictEqual(contents, `NAME,LANGUAGE
 Bob,"French, English"
 Mary,English
 `);

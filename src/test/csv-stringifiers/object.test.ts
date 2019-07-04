@@ -1,6 +1,6 @@
-import * as assert from 'assert';
 import {resolveDelimiterChar} from '../helper/delimiter';
 import {createObjectCsvStringifier} from '../../index';
+import {strictEqual, throws} from 'assert';
 
 describe('ObjectCsvStringifier', () => {
     const records = [
@@ -14,7 +14,7 @@ describe('ObjectCsvStringifier', () => {
 
     describe('When field delimiter is neither comma nor semicolon', () => {
         it('throws an exception', () => {
-            assert.throws(() => {
+            throws(() => {
                 createObjectCsvStringifier({
                     header: ['FIELD_A', 'FIELD_B'],
                     fieldDelimiter: '/'
@@ -25,7 +25,7 @@ describe('ObjectCsvStringifier', () => {
 
     describe('When record delimiter is neither LF nor CR+LF', () => {
         it('throws an exception', () => {
-            assert.throws(() => {
+            throws(() => {
                 createObjectCsvStringifier({
                     header: ['FIELD_A', 'FIELD_B'],
                     recordDelimiter: '\r'
@@ -44,7 +44,7 @@ describe('ObjectCsvStringifier', () => {
         }
 
         it('converts the records into CSV', () => {
-            assert.equal(
+            strictEqual(
                 stringifier.stringifyRecords(recordGenerator()),
                 'VALUE_A1,VALUE_B1\nVALUE_A2,VALUE_B2\n'
             );
@@ -64,11 +64,11 @@ describe('ObjectCsvStringifier', () => {
                 });
 
                 it(`returns a header line with field separated by "${delim}"`, () => {
-                    assert.equal(stringifier.getHeaderString(), `TITLE_A${delim}TITLE_B\n`);
+                    strictEqual(stringifier.getHeaderString(), `TITLE_A${delim}TITLE_B\n`);
                 });
 
                 it(`converts given data records into CSV lines with field separated by "${delim}"`, () => {
-                    assert.equal(
+                    strictEqual(
                         stringifier.stringifyRecords(records),
                         `VALUE_A1${delim}VALUE_B1\nVALUE_A2${delim}VALUE_B2\n`
                     );
@@ -82,11 +82,11 @@ describe('ObjectCsvStringifier', () => {
                 });
 
                 it('returns null for header line', () => {
-                    assert.equal(stringifier.getHeaderString(), null);
+                    strictEqual(stringifier.getHeaderString(), null);
                 });
 
                 it(`converts given data records into CSV lines with field separated by "${delim}"`, () => {
-                    assert.equal(
+                    strictEqual(
                         stringifier.stringifyRecords(records),
                         `VALUE_A1${delim}VALUE_B1\nVALUE_A2${delim}VALUE_B2\n`
                     );
@@ -103,7 +103,7 @@ describe('ObjectCsvStringifier', () => {
                 });
 
                 it(`layouts fields with the order of headers given with field separated by "${delim}"`, () => {
-                    assert.equal(
+                    strictEqual(
                         stringifier.stringifyRecords(records),
                         `VALUE_B1${delim}VALUE_A1\nVALUE_B2${delim}VALUE_A2\n`
                     );
