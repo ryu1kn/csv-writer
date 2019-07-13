@@ -136,4 +136,18 @@ describe('Write object records into CSV', () => {
             });
         });
     });
+
+    describe('When `alwaysQuote` flag is set', () => {
+        const filePath = makeFilePath('always-quote');
+        const writer = createObjectCsvWriter({
+            path: filePath,
+            header: [{id: 'name', title: 'NAME'}, {id: 'lang', title: 'LANGUAGE'}],
+            alwaysQuote: true
+        });
+
+        it('quotes all fields', async () => {
+            await writer.writeRecords(records);
+            assertFile(filePath, '"NAME","LANGUAGE"\n"Bob","French"\n"Mary","English"\n');
+        });
+    });
 });
