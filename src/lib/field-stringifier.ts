@@ -1,16 +1,20 @@
 import {Field} from './record';
 
-export interface FieldStringifier {
-    stringify(value?: Field): string;
-}
-
-class DefaultFieldStringifier implements FieldStringifier {
-    private readonly fieldDelimiter: string;
+export abstract class FieldStringifier {
+    private readonly _fieldDelimiter: string;
 
     constructor(fieldDelimiter: string) {
-        this.fieldDelimiter = fieldDelimiter;
+        this._fieldDelimiter = fieldDelimiter;
     }
 
+    get fieldDelimiter(): string {
+        return this._fieldDelimiter;
+    }
+
+    abstract stringify(value?: Field): string;
+}
+
+class DefaultFieldStringifier extends FieldStringifier {
     stringify(value?: Field): string {
         if (typeof value === 'undefined' || value === null) return '';
         const str = String(value);
@@ -22,7 +26,7 @@ class DefaultFieldStringifier implements FieldStringifier {
     }
 }
 
-class ForceQuoteFieldStringifier implements FieldStringifier {
+class ForceQuoteFieldStringifier extends FieldStringifier {
     stringify(value?: Field): string {
         if (typeof value === 'undefined' || value === null) return '';
         const str = String(value);
@@ -31,5 +35,5 @@ class ForceQuoteFieldStringifier implements FieldStringifier {
 }
 
 export function createFieldStringifier(fieldDelimiter: string, alwaysQuote?: boolean) {
-    return alwaysQuote ? new ForceQuoteFieldStringifier() : new DefaultFieldStringifier(fieldDelimiter);
+    return alwaysQuote ? new ForceQuoteFieldStringifier(fieldDelimiter) : new DefaultFieldStringifier(fieldDelimiter);
 }

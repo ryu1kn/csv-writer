@@ -9,9 +9,9 @@ export abstract class CsvStringifier<T> {
     private readonly fieldDelimiter: string;
     private readonly recordDelimiter: string;
 
-    constructor(fieldStringifier: FieldStringifier, fieldDelimiter: string, recordDelimiter?: string) {
+    constructor(fieldStringifier: FieldStringifier, recordDelimiter?: string) {
         this.fieldStringifier = fieldStringifier;
-        this.fieldDelimiter = fieldDelimiter;
+        this.fieldDelimiter = fieldStringifier.fieldDelimiter;
         this.recordDelimiter = recordDelimiter || DEFAULT_RECORD_DELIMITER;
         _validateRecordDelimiter(this.recordDelimiter);
     }

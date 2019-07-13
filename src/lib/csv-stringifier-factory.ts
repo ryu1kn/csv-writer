@@ -26,14 +26,14 @@ export class CsvStringifierFactory {
         const fieldDelimiter = params.fieldDelimiter || DEFAULT_FIELD_DELIMITER;
         _validateFieldDelimiter(fieldDelimiter);
         const fieldStringifier = createFieldStringifier(fieldDelimiter, params.alwaysQuote);
-        return new ArrayCsvStringifier(fieldStringifier, fieldDelimiter, params.recordDelimiter, params.header);
+        return new ArrayCsvStringifier(fieldStringifier, params.recordDelimiter, params.header);
     }
 
     createObjectCsvStringifier(params: ObjectCsvStringifierParams) {
         const fieldDelimiter = params.fieldDelimiter || DEFAULT_FIELD_DELIMITER;
         _validateFieldDelimiter(fieldDelimiter);
         const fieldStringifier = createFieldStringifier(fieldDelimiter, params.alwaysQuote);
-        return new ObjectCsvStringifier(fieldStringifier, fieldDelimiter, params.header, params.recordDelimiter);
+        return new ObjectCsvStringifier(fieldStringifier, params.header, params.recordDelimiter);
     }
 
 }
