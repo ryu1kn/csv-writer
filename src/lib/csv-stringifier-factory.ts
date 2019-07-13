@@ -1,5 +1,5 @@
 import {ArrayCsvStringifier} from './csv-stringifiers/array';
-import {FieldStringifier} from './field-stringifier';
+import {DefaultFieldStringifier, ForceQuoteFieldStringifier} from './field-stringifier';
 import {ObjectCsvStringifier} from './csv-stringifiers/object';
 import {ObjectStringifierHeader} from './record';
 
@@ -10,12 +10,14 @@ export interface ArrayCsvStringifierParams {
     header?: string[];
     fieldDelimiter?: string;
     recordDelimiter?: string;
+    alwaysQuote?: boolean;
 }
 
 export interface ObjectCsvStringifierParams {
     header: ObjectStringifierHeader;
     fieldDelimiter?: string;
     recordDelimiter?: string;
+    alwaysQuote?: boolean;
 }
 
 export class CsvStringifierFactory {
@@ -23,14 +25,14 @@ export class CsvStringifierFactory {
     createArrayCsvStringifier(params: ArrayCsvStringifierParams) {
         const fieldDelimiter = params.fieldDelimiter || DEFAULT_FIELD_DELIMITER;
         _validateFieldDelimiter(fieldDelimiter);
-        const fieldStringifier = new FieldStringifier(fieldDelimiter);
+        const fieldStringifier = params.alwaysQuote ? new ForceQuoteFieldStringifier() : new DefaultFieldStringifier(fieldDelimiter);
         return new ArrayCsvStringifier(fieldStringifier, fieldDelimiter, params.recordDelimiter, params.header);
     }
 
     createObjectCsvStringifier(params: ObjectCsvStringifierParams) {
         const fieldDelimiter = params.fieldDelimiter || DEFAULT_FIELD_DELIMITER;
         _validateFieldDelimiter(fieldDelimiter);
-        const fieldStringifier = new FieldStringifier(fieldDelimiter);
+        const fieldStringifier = params.alwaysQuote ? new ForceQuoteFieldStringifier() : new DefaultFieldStringifier(fieldDelimiter);
         return new ObjectCsvStringifier(fieldStringifier, fieldDelimiter, params.header, params.recordDelimiter);
     }
 

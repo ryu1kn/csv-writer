@@ -1,6 +1,10 @@
 import {Field} from './record';
 
-export class FieldStringifier {
+export interface FieldStringifier {
+    stringify(value?: Field): string;
+}
+
+export class DefaultFieldStringifier implements FieldStringifier {
     private readonly fieldDelimiter: string;
 
     constructor(fieldDelimiter: string) {
@@ -15,5 +19,13 @@ export class FieldStringifier {
 
     private needsQuote(str: string): boolean {
         return str.includes(this.fieldDelimiter) || str.includes('\n') || str.includes('"');
+    }
+}
+
+export class ForceQuoteFieldStringifier implements FieldStringifier {
+    stringify(value?: Field): string {
+        if (typeof value === 'undefined' || value === null) return '';
+        const str = String(value);
+        return `"${str.replace(/"/g, '""')}"`;
     }
 }

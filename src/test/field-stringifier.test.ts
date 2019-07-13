@@ -1,8 +1,8 @@
 import {resolveDelimiterChar} from './helper/delimiter';
-import {FieldStringifier} from '../lib/field-stringifier';
+import {DefaultFieldStringifier} from '../lib/field-stringifier';
 import {strictEqual} from 'assert';
 
-describe('FieldStringifier', () => {
+describe('DefaultFieldStringifier', () => {
 
     describe('When field delimiter is comma', generateTestCases(','));
 
@@ -11,7 +11,7 @@ describe('FieldStringifier', () => {
     function generateTestCases(fieldDelimiter: string) {
         const delim = resolveDelimiterChar(fieldDelimiter);
         return () => {
-            const stringifier = new FieldStringifier(fieldDelimiter);
+            const stringifier = new DefaultFieldStringifier(fieldDelimiter);
 
             it('returns the same string', () => {
                 strictEqual(stringifier.stringify('VALUE'), 'VALUE');

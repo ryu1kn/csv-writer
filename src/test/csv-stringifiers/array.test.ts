@@ -45,6 +45,21 @@ describe('ArrayCsvStringifier', () => {
         });
     });
 
+    describe('When `alwaysQuote` flag is set', () => {
+        const stringifier = createArrayCsvStringifier({
+            header: ['TITLE_A', 'TITLE_B'],
+            alwaysQuote: true
+        });
+
+        it('quotes all header fields', () => {
+            strictEqual(stringifier.getHeaderString(), '"TITLE_A","TITLE_B"\n');
+        });
+
+        it('quotes all data fields', () => {
+            strictEqual(stringifier.stringifyRecords(records), '"FIELD_A1","FIELD_B1"\n"FIELD_A2","FIELD_B2"\n');
+        });
+    });
+
     function generateTestCases(fieldDelimiter?: string) {
         const delim = resolveDelimiterChar(fieldDelimiter);
         return () => {

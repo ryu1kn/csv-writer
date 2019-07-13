@@ -142,6 +142,10 @@ console.log(csvStringifier.stringifyRecords(records));
 
       Default: `\n`. Only either LF (`\n`) or CRLF (`\r\n`) is allowed.
 
+  * alwaysQuote `<boolean>` (optional)
+
+      Default: `false`. Set it to `true` to double-quote all fields regardless of their values.
+
   * encoding `<string>` (optional)
 
       Default: `utf8`.
@@ -178,6 +182,10 @@ console.log(csvStringifier.stringifyRecords(records));
   * recordDelimiter `<string>` (optional)
 
       Default: `\n`. Only either LF (`\n`) or CRLF (`\r\n`) is allowed.
+
+  * alwaysQuote `<boolean>` (optional)
+
+      Default: `false`. Set it to `true` to double-quote all fields regardless of their values.
 
   * encoding `<string>` (optional)
 
@@ -225,6 +233,10 @@ console.log(csvStringifier.stringifyRecords(records));
   * recordDelimiter `<string>` (optional)
 
       Default: `\n`. Only either LF (`\n`) or CRLF (`\r\n`) is allowed.
+  
+  * alwaysQuote `<boolean>` (optional)
+
+      Default: `false`. Set it to `true` to double-quote all fields regardless of their values.
 
 ##### Returns:
 
@@ -262,6 +274,10 @@ console.log(csvStringifier.stringifyRecords(records));
   * recordDelimiter `<string>` (optional)
 
       Default: `\n`. Only either LF (`\n`) or CRLF (`\r\n`) is allowed.
+
+  * alwaysQuote `<boolean>` (optional)
+
+      Default: `false`. Set it to `true` to double-quote all fields regardless of their values.
 
 ##### Returns:
 
