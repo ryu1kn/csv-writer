@@ -4,7 +4,7 @@ export interface FieldStringifier {
     stringify(value?: Field): string;
 }
 
-export class DefaultFieldStringifier implements FieldStringifier {
+class DefaultFieldStringifier implements FieldStringifier {
     private readonly fieldDelimiter: string;
 
     constructor(fieldDelimiter: string) {
@@ -22,10 +22,14 @@ export class DefaultFieldStringifier implements FieldStringifier {
     }
 }
 
-export class ForceQuoteFieldStringifier implements FieldStringifier {
+class ForceQuoteFieldStringifier implements FieldStringifier {
     stringify(value?: Field): string {
         if (typeof value === 'undefined' || value === null) return '';
         const str = String(value);
         return `"${str.replace(/"/g, '""')}"`;
     }
+}
+
+export function createFieldStringifier(fieldDelimiter: string, alwaysQuote?: boolean) {
+    return alwaysQuote ? new ForceQuoteFieldStringifier() : new DefaultFieldStringifier(fieldDelimiter);
 }

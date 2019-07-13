@@ -1,5 +1,5 @@
 import {ArrayCsvStringifier} from './csv-stringifiers/array';
-import {DefaultFieldStringifier, ForceQuoteFieldStringifier} from './field-stringifier';
+import {createFieldStringifier} from './field-stringifier';
 import {ObjectCsvStringifier} from './csv-stringifiers/object';
 import {ObjectStringifierHeader} from './record';
 
@@ -25,14 +25,14 @@ export class CsvStringifierFactory {
     createArrayCsvStringifier(params: ArrayCsvStringifierParams) {
         const fieldDelimiter = params.fieldDelimiter || DEFAULT_FIELD_DELIMITER;
         _validateFieldDelimiter(fieldDelimiter);
-        const fieldStringifier = params.alwaysQuote ? new ForceQuoteFieldStringifier() : new DefaultFieldStringifier(fieldDelimiter);
+        const fieldStringifier = createFieldStringifier(fieldDelimiter, params.alwaysQuote);
         return new ArrayCsvStringifier(fieldStringifier, fieldDelimiter, params.recordDelimiter, params.header);
     }
 
     createObjectCsvStringifier(params: ObjectCsvStringifierParams) {
         const fieldDelimiter = params.fieldDelimiter || DEFAULT_FIELD_DELIMITER;
         _validateFieldDelimiter(fieldDelimiter);
-        const fieldStringifier = params.alwaysQuote ? new ForceQuoteFieldStringifier() : new DefaultFieldStringifier(fieldDelimiter);
+        const fieldStringifier = createFieldStringifier(fieldDelimiter, params.alwaysQuote);
         return new ObjectCsvStringifier(fieldStringifier, fieldDelimiter, params.header, params.recordDelimiter);
     }
 

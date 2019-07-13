@@ -1,5 +1,5 @@
 import {resolveDelimiterChar} from './helper/delimiter';
-import {DefaultFieldStringifier} from '../lib/field-stringifier';
+import {createFieldStringifier} from '../lib/field-stringifier';
 import {strictEqual} from 'assert';
 
 describe('DefaultFieldStringifier', () => {
@@ -11,7 +11,7 @@ describe('DefaultFieldStringifier', () => {
     function generateTestCases(fieldDelimiter: string) {
         const delim = resolveDelimiterChar(fieldDelimiter);
         return () => {
-            const stringifier = new DefaultFieldStringifier(fieldDelimiter);
+            const stringifier = createFieldStringifier(fieldDelimiter);
 
             it('returns the same string', () => {
                 strictEqual(stringifier.stringify('VALUE'), 'VALUE');
