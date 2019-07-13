@@ -8,6 +8,26 @@ describe('DefaultFieldStringifier', () => {
 
     describe('When field delimiter is semicolon', generateTestCases(';'));
 
+    describe('When all fields needs to be quoted', () => {
+        const stringifier = createFieldStringifier(',', true);
+
+        it('quotes a field', () => {
+            strictEqual(stringifier.stringify('VALUE'), '"VALUE"');
+        });
+
+        it('does not quote a field of value undefined', () => {
+            strictEqual(stringifier.stringify(), '');
+        });
+
+        it('does not quote a field of value null', () => {
+            strictEqual(stringifier.stringify(null), '');
+        });
+
+        it('does not quote a field of value empty string', () => {
+            strictEqual(stringifier.stringify(''), '');
+        });
+    });
+
     function generateTestCases(fieldDelimiter: string) {
         const delim = resolveDelimiterChar(fieldDelimiter);
         return () => {

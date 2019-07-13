@@ -15,13 +15,21 @@ export abstract class FieldStringifier {
     }
 
     abstract stringify(value?: Field): string;
+
+    protected isEmpty(value?: Field): boolean {
+        return typeof value === 'undefined' || value === null || value === '';
+    }
+
+    protected quoteField(field: string): string {
+        return `"${field.replace(/"/g, '""')}"`;
+    }
 }
 
 class DefaultFieldStringifier extends FieldStringifier {
     stringify(value?: Field): string {
-        if (typeof value === 'undefined' || value === null) return '';
+        if (this.isEmpty(value)) return '';
         const str = String(value);
-        return this.needsQuote(str) ? `"${str.replace(/"/g, '""')}"` : str;
+        return this.needsQuote(str) ? this.quoteField(str) : str;
     }
 
     private needsQuote(str: string): boolean {
@@ -31,9 +39,7 @@ class DefaultFieldStringifier extends FieldStringifier {
 
 class ForceQuoteFieldStringifier extends FieldStringifier {
     stringify(value?: Field): string {
-        if (typeof value === 'undefined' || value === null) return '';
-        const str = String(value);
-        return `"${str.replace(/"/g, '""')}"`;
+        return this.isEmpty(value) ? '' : this.quoteField(String(value));
     }
 }
 
