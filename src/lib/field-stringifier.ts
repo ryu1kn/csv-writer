@@ -1,5 +1,8 @@
 import {Field} from './record';
 
+const DEFAULT_FIELD_DELIMITER = ',';
+const VALID_FIELD_DELIMITERS = [DEFAULT_FIELD_DELIMITER, ';'];
+
 export abstract class FieldStringifier {
     private readonly _fieldDelimiter: string;
 
@@ -34,6 +37,13 @@ class ForceQuoteFieldStringifier extends FieldStringifier {
     }
 }
 
-export function createFieldStringifier(fieldDelimiter: string, alwaysQuote?: boolean) {
+export function createFieldStringifier(fieldDelimiter: string = DEFAULT_FIELD_DELIMITER, alwaysQuote = false) {
+    _validateFieldDelimiter(fieldDelimiter);
     return alwaysQuote ? new ForceQuoteFieldStringifier(fieldDelimiter) : new DefaultFieldStringifier(fieldDelimiter);
+}
+
+function _validateFieldDelimiter(delimiter: string): void {
+    if (VALID_FIELD_DELIMITERS.indexOf(delimiter) === -1) {
+        throw new Error(`Invalid field delimiter \`${delimiter}\` is specified`);
+    }
 }
