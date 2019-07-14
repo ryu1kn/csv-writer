@@ -9,14 +9,13 @@ describe('Promise', () => {
             else callback(new Error(`We don't know ${name}`));
         }, 0);
     };
+    const promisifiedFn = promisify(greetAsync);
 
     it('promisify node style callback', async () => {
-        const promisifiedFn = promisify(greetAsync);
         strictEqual(await promisifiedFn('foo'), 'Hello, foo!');
     });
 
     it('raise an error for error', async () => {
-        const promisifiedFn = promisify(greetAsync);
         await assertRejected(promisifiedFn('bar'), "We don't know bar");
     });
 });
