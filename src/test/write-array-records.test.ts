@@ -12,8 +12,6 @@ describe('Write array records into CSV', () => {
     ];
 
     describe('When only path is specified', () => {
-        'use strict';
-
         const filePath = makeFilePath('minimum');
         let writer: CsvWriter<string[]>;
 

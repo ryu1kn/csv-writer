@@ -2,6 +2,7 @@ import {assertFile, testFilePath} from './helper';
 import {CsvWriter} from '../lib/csv-writer';
 import {writeFileSync} from 'fs';
 import {createObjectCsvWriter} from '../index';
+import {ObjectMap} from '../lib/lang/object';
 
 describe('Write object records into CSV', () => {
 
@@ -12,10 +13,8 @@ describe('Write object records into CSV', () => {
     ];
 
     describe('When only path and header ids are given', () => {
-        'use strict';
-
         const filePath = makeFilePath('minimum');
-        let writer: CsvWriter<{[k: string]: string}>;
+        let writer: CsvWriter<ObjectMap<string>>;
 
         beforeEach(() => {
             writer = createObjectCsvWriter({
@@ -51,7 +50,7 @@ describe('Write object records into CSV', () => {
 
     describe('When field header is given with titles', () => {
         const filePath = makeFilePath('header');
-        let writer: CsvWriter<{[k: string]: string}>;
+        let writer: CsvWriter<ObjectMap<string>>;
 
         beforeEach(() => {
             writer = createObjectCsvWriter({
