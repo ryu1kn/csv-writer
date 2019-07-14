@@ -1,5 +1,6 @@
 import {promisify} from '../../lib/lang/promise';
 import {strictEqual} from 'assert';
+import {assertRejected} from '../helper';
 
 describe('Promise', () => {
     const greetAsync = (name: string, callback: (err: Error | null, result?: string) => void) => {
@@ -14,11 +15,8 @@ describe('Promise', () => {
         strictEqual(await promisifiedFn('foo'), 'Hello, foo!');
     });
 
-    it('raise an error for error', () => {
+    it('raise an error for error', async () => {
         const promisifiedFn = promisify(greetAsync);
-        return promisifiedFn('bar').then(
-            () => new Error('Should not have been called'),
-            (e: Error) => { strictEqual(e.message, "We don't know bar"); }
-        );
+        await assertRejected(promisifiedFn('bar'), "We don't know bar");
     });
 });

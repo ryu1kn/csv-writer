@@ -1,21 +1,16 @@
-import {ok, strictEqual} from 'assert';
-
-const fs = require('fs');
+import {strictEqual} from 'assert';
+import {readFileSync} from 'fs';
 
 export const testFilePath = (id: string) => `./test-tmp/${id}.csv`;
 
 export const assertFile = (path: string, expectedContents: string, encoding?: string) => {
-    const actualContents = fs.readFileSync(path, encoding || 'utf8');
+    const actualContents = readFileSync(path, encoding || 'utf8');
     strictEqual(actualContents, expectedContents);
 };
 
-export const assertContain = (expectedSubstring: string, actualString: string) => {
-    ok(
-        expectedSubstring.includes(actualString),
-        `${actualString} does not contain ${expectedSubstring}`
+export const assertRejected = (p: Promise<any>, message: string) => {
+    return p.then(
+        () => new Error('Should not have been called'),
+        (e: Error) => { strictEqual(e.message, message); }
     );
 };
-
-export function mockType<T>(params?: any): T {
-    return Object.assign({} as T, params);
-}
