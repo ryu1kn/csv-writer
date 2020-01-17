@@ -23,7 +23,7 @@ export class ObjectCsvStringifier extends CsvStringifier<ObjectMap<Field>> {
 
     private getNestedValue(obj: ObjectMap<Field>, key: string) {
         if (!this.keyDelimiter) return obj[key];
-        return key.split(this.keyDelimiter).reduce((subObj, keyPart) => subObj[keyPart], obj);
+        return key.split(this.keyDelimiter).reduce((subObj, keyPart) => (subObj || {})[keyPart], obj);
     }
 
     private get fieldIds(): string[] {

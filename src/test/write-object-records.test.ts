@@ -9,12 +9,12 @@ describe('Write object records into CSV', () => {
     const makeFilePath = (id: string) => testFilePath(`object-${id}`);
     const records = [
         {name: 'Bob', lang: 'French', address: {country: 'France'}},
-        {name: 'Mary', lang: 'English', address: {country: 'Australia'}}
+        {name: 'Mary', lang: 'English'}
     ];
 
     describe('When only path and header ids are given', () => {
         const filePath = makeFilePath('minimum');
-        let writer: CsvWriter<ObjectMap<string|ObjectMap<string>>>;
+        let writer: CsvWriter<ObjectMap<any>>;
 
         beforeEach(() => {
             writer = createObjectCsvWriter({
@@ -50,7 +50,7 @@ describe('Write object records into CSV', () => {
 
     describe('When field header is given with titles', () => {
         const filePath = makeFilePath('header');
-        let writer: CsvWriter<ObjectMap<string|ObjectMap<string>>>;
+        let writer: CsvWriter<ObjectMap<any>>;
 
         beforeEach(() => {
             writer = createObjectCsvWriter({
@@ -152,7 +152,7 @@ describe('Write object records into CSV', () => {
 
         it('breaks keys into key paths', async () => {
             await writer.writeRecords(records);
-            assertFile(filePath, 'NAME,COUNTRY\nBob,France\nMary,Australia\n');
+            assertFile(filePath, 'NAME,COUNTRY\nBob,France\nMary,\n');
         });
     });
 });
