@@ -4,22 +4,26 @@ import {Field, ObjectHeaderItem, ObjectStringifierHeader} from '../record';
 import {isObject, ObjectMap} from '../lang/object';
 
 export class ObjectCsvStringifier extends CsvStringifier<ObjectMap<Field>> {
-    private readonly header: ObjectStringifierHeader;
 
-    constructor(fieldStringifier: FieldStringifier, header: ObjectStringifierHeader, recordDelimiter?: string) {
+    constructor(fieldStringifier: FieldStringifier,
+                private readonly header: ObjectStringifierHeader,
+                recordDelimiter?: string,
+                private readonly keyDelimiter?: string) {
         super(fieldStringifier, recordDelimiter);
-        this.header = header;
     }
 
-    protected getHeaderRecord(): ObjectMap<Field> | null {
+    protected getHeaderRecord(): string[] | null {
         if (!this.isObjectHeader) return null;
-
-        return (this.header as ObjectHeaderItem[]).reduce((memo, field) =>
-            Object.assign({}, memo, {[field.id]: field.title}), {});
+        return (this.header as ObjectHeaderItem[]).map(field => field.title);
     }
 
     protected getRecordAsArray(record: ObjectMap<Field>): Field[] {
-        return this.fieldIds.map(field => record[field]);
+        return this.fieldIds.map(fieldId => this.getNestedValue(record, fieldId));
+    }
+
+    private getNestedValue(obj: ObjectMap<Field>, key: string) {
+        if (!this.keyDelimiter) return obj[key];
+        return key.split(this.keyDelimiter).reduce((subObj, keyPart) => subObj[keyPart], obj);
     }
 
     private get fieldIds(): string[] {

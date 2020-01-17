@@ -8,13 +8,13 @@ describe('Write object records into CSV', () => {
 
     const makeFilePath = (id: string) => testFilePath(`object-${id}`);
     const records = [
-        {name: 'Bob', lang: 'French'},
-        {name: 'Mary', lang: 'English'}
+        {name: 'Bob', lang: 'French', address: {country: 'France'}},
+        {name: 'Mary', lang: 'English', address: {country: 'Australia'}}
     ];
 
     describe('When only path and header ids are given', () => {
         const filePath = makeFilePath('minimum');
-        let writer: CsvWriter<ObjectMap<string>>;
+        let writer: CsvWriter<ObjectMap<string|ObjectMap<string>>>;
 
         beforeEach(() => {
             writer = createObjectCsvWriter({
@@ -50,7 +50,7 @@ describe('Write object records into CSV', () => {
 
     describe('When field header is given with titles', () => {
         const filePath = makeFilePath('header');
-        let writer: CsvWriter<ObjectMap<string>>;
+        let writer: CsvWriter<ObjectMap<string|ObjectMap<string>>>;
 
         beforeEach(() => {
             writer = createObjectCsvWriter({
@@ -139,6 +139,20 @@ describe('Write object records into CSV', () => {
         it('quotes all fields', async () => {
             await writer.writeRecords(records);
             assertFile(filePath, '"NAME","LANGUAGE"\n"Bob","French"\n"Mary","English"\n');
+        });
+    });
+
+    describe('When `keyDelimiter` flag is set', () => {
+        const filePath = makeFilePath('nested');
+        const writer = createObjectCsvWriter({
+            path: filePath,
+            header: [{id: 'name', title: 'NAME'}, {id: 'address.country', title: 'COUNTRY'}],
+            keyDelimiter: '.'
+        });
+
+        it('breaks keys into key paths', async () => {
+            await writer.writeRecords(records);
+            assertFile(filePath, 'NAME,COUNTRY\nBob,France\nMary,Australia\n');
         });
     });
 });
