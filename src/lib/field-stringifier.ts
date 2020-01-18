@@ -4,15 +4,7 @@ const DEFAULT_FIELD_DELIMITER = ',';
 const VALID_FIELD_DELIMITERS = [DEFAULT_FIELD_DELIMITER, ';'];
 
 export abstract class FieldStringifier {
-    private readonly _fieldDelimiter: string;
-
-    constructor(fieldDelimiter: string) {
-        this._fieldDelimiter = fieldDelimiter;
-    }
-
-    get fieldDelimiter(): string {
-        return this._fieldDelimiter;
-    }
+    constructor(public readonly fieldDelimiter: string) {}
 
     abstract stringify(value?: Field): string;
 

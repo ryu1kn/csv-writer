@@ -5,15 +5,10 @@ const DEFAULT_RECORD_DELIMITER = '\n';
 const VALID_RECORD_DELIMITERS = [DEFAULT_RECORD_DELIMITER, '\r\n'];
 
 export abstract class CsvStringifier<T> {
-    private readonly fieldStringifier: FieldStringifier;
-    private readonly fieldDelimiter: string;
-    private readonly recordDelimiter: string;
 
-    constructor(fieldStringifier: FieldStringifier, recordDelimiter?: string) {
-        this.fieldStringifier = fieldStringifier;
-        this.fieldDelimiter = fieldStringifier.fieldDelimiter;
-        this.recordDelimiter = recordDelimiter || DEFAULT_RECORD_DELIMITER;
-        _validateRecordDelimiter(this.recordDelimiter);
+    constructor(private readonly fieldStringifier: FieldStringifier,
+                private readonly recordDelimiter = DEFAULT_RECORD_DELIMITER) {
+        _validateRecordDelimiter(recordDelimiter);
     }
 
     getHeaderString(): string | null {
@@ -33,7 +28,7 @@ export abstract class CsvStringifier<T> {
     private getCsvLine(record: Field[]): string {
         return record
             .map(fieldValue => this.fieldStringifier.stringify(fieldValue))
-            .join(this.fieldDelimiter);
+            .join(this.fieldStringifier.fieldDelimiter);
     }
 
     private joinRecords(records: string[]) {

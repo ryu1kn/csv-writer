@@ -4,14 +4,13 @@ import {FileWriter} from './file-writer';
 const DEFAULT_INITIAL_APPEND_FLAG = false;
 
 export class CsvWriter<T> {
-    private readonly csvStringifier: CsvStringifier<T>;
     private readonly fileWriter: FileWriter;
-    private append: boolean;
 
-    constructor(csvStringifier: CsvStringifier<T>, path: string, encoding?: string, append?: boolean) {
-        this.append = append || DEFAULT_INITIAL_APPEND_FLAG;
+    constructor(private readonly csvStringifier: CsvStringifier<T>,
+                path: string,
+                encoding?: string,
+                private append = DEFAULT_INITIAL_APPEND_FLAG) {
         this.fileWriter = new FileWriter(path, this.append, encoding);
-        this.csvStringifier = csvStringifier;
     }
 
     async writeRecords(records: T[]): Promise<void> {

@@ -24,11 +24,7 @@ export interface ObjectCsvWriterParams {
 }
 
 export class CsvWriterFactory {
-    private readonly csvStringifierFactory: CsvStringifierFactory;
-
-    constructor(csvStringifierFactory: CsvStringifierFactory) {
-        this.csvStringifierFactory = csvStringifierFactory;
-    }
+    constructor(private readonly csvStringifierFactory: CsvStringifierFactory) {}
 
     createArrayCsvWriter(params: ArrayCsvWriterParams) {
         const csvStringifier = this.csvStringifierFactory.createArrayCsvStringifier({
