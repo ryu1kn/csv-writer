@@ -142,6 +142,10 @@ console.log(csvStringifier.stringifyRecords(records));
 
       Default: `\n`. Only either LF (`\n`) or CRLF (`\r\n`) is allowed.
 
+  * keyDelimiter `<string>` (optional)
+
+      Default: `undefined`. Give this value to specify a path to a value in a nested object.
+
   * alwaysQuote `<boolean>` (optional)
 
       Default: `false`. Set it to `true` to double-quote all fields regardless of their values.
@@ -233,7 +237,11 @@ console.log(csvStringifier.stringifyRecords(records));
   * recordDelimiter `<string>` (optional)
 
       Default: `\n`. Only either LF (`\n`) or CRLF (`\r\n`) is allowed.
-  
+
+  * keyDelimiter `<string>` (optional)
+
+      Default: `undefined`. Give this value to specify a path to a value in a nested object.
+
   * alwaysQuote `<boolean>` (optional)
 
       Default: `false`. Set it to `true` to double-quote all fields regardless of their values.

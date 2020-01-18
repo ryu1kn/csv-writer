@@ -5,7 +5,7 @@ import {strictEqual, throws} from 'assert';
 describe('ObjectCsvStringifier', () => {
     const records = [
         {FIELD_A: 'VALUE_A1', FIELD_B: 'VALUE_B1'},
-        {FIELD_A: 'VALUE_A2', FIELD_B: 'VALUE_B2'}
+        {FIELD_A: 'VALUE_A2', FIELD_B: 'VALUE_B2', OTHERS: {FIELD_C: 'VALUE_C2'}}
     ];
 
     describe('When field delimiter is comma', generateTestCases());
@@ -66,6 +66,24 @@ describe('ObjectCsvStringifier', () => {
 
         it('quotes all data fields', () => {
             strictEqual(stringifier.stringifyRecords(records), '"VALUE_A1","VALUE_B1"\n"VALUE_A2","VALUE_B2"\n');
+        });
+    });
+
+    describe('When `keyDelimiter` is set', () => {
+        const stringifier = createObjectCsvStringifier({
+            header: [
+                {id: 'FIELD_A', title: 'TITLE_A'},
+                {id: 'OTHERS/FIELD_C', title: 'TITLE_C'}
+            ],
+            keyDelimiter: '/'
+        });
+
+        it('uses the title as is', () => {
+            strictEqual(stringifier.getHeaderString(), 'TITLE_A,TITLE_C\n');
+        });
+
+        it('picks up a value in nested objects', () => {
+            strictEqual(stringifier.stringifyRecords(records), 'VALUE_A1,\nVALUE_A2,VALUE_C2\n');
         });
     });
 
