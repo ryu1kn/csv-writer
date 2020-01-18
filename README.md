@@ -46,10 +46,10 @@ You can keep writing records into the same file by calling `writeRecords` multip
 (but need to wait for the fulfillment of the `promise` of the previous `writeRecords` call).
 
 ```js
-Promise.resolve()
-    .then(() => csvWriter.writeRecords(records1))
-    .then(() => csvWriter.writeRecords(records2))
-    ...
+// In an `async` function
+await csvWriter.writeRecords(records1)
+await csvWriter.writeRecords(records2)
+...
 ```
 
 However, if you need to keep writing large data to a certain file, you would want to create
