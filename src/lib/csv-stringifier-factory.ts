@@ -14,7 +14,7 @@ export interface ObjectCsvStringifierParams {
     header: ObjectStringifierHeader;
     fieldDelimiter?: string;
     recordDelimiter?: string;
-    keyDelimiter?: string;
+    headerIdDelimiter?: string;
     alwaysQuote?: boolean;
 }
 
@@ -27,7 +27,7 @@ export class CsvStringifierFactory {
 
     createObjectCsvStringifier(params: ObjectCsvStringifierParams) {
         const fieldStringifier = createFieldStringifier(params.fieldDelimiter, params.alwaysQuote);
-        return new ObjectCsvStringifier(fieldStringifier, params.header, params.recordDelimiter, params.keyDelimiter);
+        return new ObjectCsvStringifier(fieldStringifier, params.header, params.recordDelimiter, params.headerIdDelimiter);
     }
 
 }

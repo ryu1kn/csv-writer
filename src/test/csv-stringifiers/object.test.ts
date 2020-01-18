@@ -69,13 +69,13 @@ describe('ObjectCsvStringifier', () => {
         });
     });
 
-    describe('When `keyDelimiter` is set', () => {
+    describe('When `headerIdDelimiter` is set', () => {
         const stringifier = createObjectCsvStringifier({
             header: [
                 {id: 'FIELD_A', title: 'TITLE_A'},
                 {id: 'OTHERS/FIELD_C', title: 'TITLE_C'}
             ],
-            keyDelimiter: '/'
+            headerIdDelimiter: '/'
         });
 
         it('uses the title as is', () => {

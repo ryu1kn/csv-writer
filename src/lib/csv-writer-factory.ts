@@ -17,7 +17,7 @@ export interface ObjectCsvWriterParams {
     header: ObjectStringifierHeader;
     fieldDelimiter?: string;
     recordDelimiter?: string;
-    keyDelimiter?: string;
+    headerIdDelimiter?: string;
     alwaysQuote?: boolean;
     encoding?: string;
     append?: boolean;
@@ -45,7 +45,7 @@ export class CsvWriterFactory {
             header: params.header,
             fieldDelimiter: params.fieldDelimiter,
             recordDelimiter: params.recordDelimiter,
-            keyDelimiter: params.keyDelimiter,
+            headerIdDelimiter: params.headerIdDelimiter,
             alwaysQuote: params.alwaysQuote
         });
         return new CsvWriter(csvStringifier, params.path, params.encoding, params.append);

@@ -142,7 +142,7 @@ console.log(csvStringifier.stringifyRecords(records));
 
       Default: `\n`. Only either LF (`\n`) or CRLF (`\r\n`) is allowed.
 
-  * keyDelimiter `<string>` (optional)
+  * headerIdDelimiter `<string>` (optional)
 
       Default: `undefined`. Give this value to specify a path to a value in a nested object.
 
@@ -238,7 +238,7 @@ console.log(csvStringifier.stringifyRecords(records));
 
       Default: `\n`. Only either LF (`\n`) or CRLF (`\r\n`) is allowed.
 
-  * keyDelimiter `<string>` (optional)
+  * headerIdDelimiter `<string>` (optional)
 
       Default: `undefined`. Give this value to specify a path to a value in a nested object.
 

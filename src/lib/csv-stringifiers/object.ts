@@ -8,7 +8,7 @@ export class ObjectCsvStringifier extends CsvStringifier<ObjectMap<Field>> {
     constructor(fieldStringifier: FieldStringifier,
                 private readonly header: ObjectStringifierHeader,
                 recordDelimiter?: string,
-                private readonly keyDelimiter?: string) {
+                private readonly headerIdDelimiter?: string) {
         super(fieldStringifier, recordDelimiter);
     }
 
@@ -22,8 +22,8 @@ export class ObjectCsvStringifier extends CsvStringifier<ObjectMap<Field>> {
     }
 
     private getNestedValue(obj: ObjectMap<Field>, key: string) {
-        if (!this.keyDelimiter) return obj[key];
-        return key.split(this.keyDelimiter).reduce((subObj, keyPart) => (subObj || {})[keyPart], obj);
+        if (!this.headerIdDelimiter) return obj[key];
+        return key.split(this.headerIdDelimiter).reduce((subObj, keyPart) => (subObj || {})[keyPart], obj);
     }
 
     private get fieldIds(): string[] {

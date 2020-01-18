@@ -142,12 +142,12 @@ describe('Write object records into CSV', () => {
         });
     });
 
-    describe('When `keyDelimiter` flag is set', () => {
+    describe('When `headerIdDelimiter` flag is set', () => {
         const filePath = makeFilePath('nested');
         const writer = createObjectCsvWriter({
             path: filePath,
             header: [{id: 'name', title: 'NAME'}, {id: 'address.country', title: 'COUNTRY'}],
-            keyDelimiter: '.'
+            headerIdDelimiter: '.'
         });
 
         it('breaks keys into key paths', async () => {
