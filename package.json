@@ -29,6 +29,12 @@
     "url": "https://github.com/ryu1kn/csv-writer/issues"
   },
   "homepage": "https://github.com/ryu1kn/csv-writer#readme",
+  "files": [
+    "dist",
+    "!dist/test",
+    "src",
+    "!src/test"
+  ],
   "devDependencies": {
     "@types/mocha": "^7.0.2",
     "@types/node": "^12.12.25",
