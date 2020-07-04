@@ -8,7 +8,7 @@ describe('ObjectCsvStringifier', () => {
         {FIELD_A: 'VALUE_A2', FIELD_B: 'VALUE_B2', OTHERS: {FIELD_C: 'VALUE_C2'}}
     ];
 
-    describe('When field delimiter is comma', generateTestCases());
+    describe('When field delimiter is comma', generateTestCases(','));
 
     describe('When field delimiter is semicolon', generateTestCases(';'));
 
@@ -87,7 +87,7 @@ describe('ObjectCsvStringifier', () => {
         });
     });
 
-    function generateTestCases(fieldDelimiter?: string) {
+    function generateTestCases(fieldDelimiter: string) {
         const delim = resolveDelimiterChar(fieldDelimiter);
         return () => {
             describe('header is specified with title', () => {

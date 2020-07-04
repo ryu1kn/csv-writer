@@ -8,7 +8,7 @@ describe('ArrayCsvStringifier', () => {
         ['FIELD_A2', 'FIELD_B2']
     ];
 
-    describe('When field delimiter is comma', generateTestCases());
+    describe('When field delimiter is comma', generateTestCases(','));
 
     describe('When field delimiter is semicolon', generateTestCases(';'));
 
@@ -60,7 +60,7 @@ describe('ArrayCsvStringifier', () => {
         });
     });
 
-    function generateTestCases(fieldDelimiter?: string) {
+    function generateTestCases(fieldDelimiter: string) {
         const delim = resolveDelimiterChar(fieldDelimiter);
         return () => {
             describe('header is specified as a list of column titles', () => {
