@@ -1,27 +1,27 @@
-import {CsvStringifier} from './csv-stringifiers/abstract';
-import {FileWriter} from './file-writer';
+import {CsvStringifier} from './csv-stringifiers/abstract'
+import {FileWriter} from './file-writer'
 
-const DEFAULT_INITIAL_APPEND_FLAG = false;
+const DEFAULT_INITIAL_APPEND_FLAG = false
 
 export class CsvWriter<T> {
-    private readonly fileWriter: FileWriter;
+    private readonly fileWriter: FileWriter
 
     constructor(private readonly csvStringifier: CsvStringifier<T>,
                 path: string,
                 encoding?: string,
                 private append = DEFAULT_INITIAL_APPEND_FLAG) {
-        this.fileWriter = new FileWriter(path, this.append, encoding);
+        this.fileWriter = new FileWriter(path, this.append, encoding)
     }
 
     async writeRecords(records: T[]): Promise<void> {
-        const recordsString = this.csvStringifier.stringifyRecords(records);
-        const writeString = this.headerString + recordsString;
-        await this.fileWriter.write(writeString);
-        this.append = true;
+        const recordsString = this.csvStringifier.stringifyRecords(records)
+        const writeString = this.headerString + recordsString
+        await this.fileWriter.write(writeString)
+        this.append = true
     }
 
     private get headerString(): string {
-        const headerString = !this.append && this.csvStringifier.getHeaderString();
-        return headerString || '';
+        const headerString = !this.append && this.csvStringifier.getHeaderString()
+        return headerString || ''
     }
 }

@@ -1,26 +1,26 @@
-import {CsvWriter} from './csv-writer';
-import {CsvStringifierFactory} from './csv-stringifier-factory';
-import {ObjectStringifierHeader} from './record';
+import {CsvWriter} from './csv-writer'
+import {CsvStringifierFactory} from './csv-stringifier-factory'
+import {ObjectStringifierHeader} from './record'
 
 export interface ArrayCsvWriterParams {
-    path: string;
-    header?: string[];
-    fieldDelimiter?: string;
-    recordDelimiter?: string;
-    alwaysQuote?: boolean;
-    encoding?: string;
-    append?: boolean;
+    path: string
+    header?: string[]
+    fieldDelimiter?: string
+    recordDelimiter?: string
+    alwaysQuote?: boolean
+    encoding?: string
+    append?: boolean
 }
 
 export interface ObjectCsvWriterParams {
-    path: string;
-    header: ObjectStringifierHeader;
-    fieldDelimiter?: string;
-    recordDelimiter?: string;
-    headerIdDelimiter?: string;
-    alwaysQuote?: boolean;
-    encoding?: string;
-    append?: boolean;
+    path: string
+    header: ObjectStringifierHeader
+    fieldDelimiter?: string
+    recordDelimiter?: string
+    headerIdDelimiter?: string
+    alwaysQuote?: boolean
+    encoding?: string
+    append?: boolean
 }
 
 export class CsvWriterFactory {
@@ -32,8 +32,8 @@ export class CsvWriterFactory {
             fieldDelimiter: params.fieldDelimiter,
             recordDelimiter: params.recordDelimiter,
             alwaysQuote: params.alwaysQuote
-        });
-        return new CsvWriter(csvStringifier, params.path, params.encoding, params.append);
+        })
+        return new CsvWriter(csvStringifier, params.path, params.encoding, params.append)
     }
 
     createObjectCsvWriter(params: ObjectCsvWriterParams) {
@@ -43,7 +43,7 @@ export class CsvWriterFactory {
             recordDelimiter: params.recordDelimiter,
             headerIdDelimiter: params.headerIdDelimiter,
             alwaysQuote: params.alwaysQuote
-        });
-        return new CsvWriter(csvStringifier, params.path, params.encoding, params.append);
+        })
+        return new CsvWriter(csvStringifier, params.path, params.encoding, params.append)
     }
 }

@@ -6,8 +6,8 @@
     "curly": [true, "ignore-same-line"],
     "class-name": true,
     "semicolon": [
-      true,
-      "always"
+      false,
+      "never"
     ],
     "quotemark": [true, "single", "avoid-escape"],
     "triple-equals": true
