@@ -6,7 +6,7 @@
     "curly": [true, "ignore-same-line"],
     "class-name": true,
     "semicolon": [
-      false,
+      true,
       "never"
     ],
     "quotemark": [true, "single", "avoid-escape"],

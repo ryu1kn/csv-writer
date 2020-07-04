@@ -1,16 +1,16 @@
-import {strictEqual} from 'assert';
-import {readFileSync} from 'fs';
+import {strictEqual} from 'assert'
+import {readFileSync} from 'fs'
 
-export const testFilePath = (id: string) => `./test-tmp/${id}.csv`;
+export const testFilePath = (id: string) => `./test-tmp/${id}.csv`
 
 export const assertFile = (path: string, expectedContents: string, encoding?: BufferEncoding) => {
-    const actualContents = readFileSync(path, encoding ?? 'utf8');
-    strictEqual(actualContents, expectedContents);
-};
+    const actualContents = readFileSync(path, encoding ?? 'utf8')
+    strictEqual(actualContents, expectedContents)
+}
 
 export const assertRejected = (p: Promise<any>, message: string) => {
     return p.then(
         () => new Error('Should not have been called'),
-        (e: Error) => { strictEqual(e.message, message); }
-    );
-};
+        (e: Error) => { strictEqual(e.message, message) }
+    )
+}
