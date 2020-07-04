@@ -3,8 +3,8 @@ import {readFileSync} from 'fs';
 
 export const testFilePath = (id: string) => `./test-tmp/${id}.csv`;
 
-export const assertFile = (path: string, expectedContents: string, encoding?: string) => {
-    const actualContents = readFileSync(path, encoding || 'utf8');
+export const assertFile = (path: string, expectedContents: string, encoding?: BufferEncoding) => {
+    const actualContents = readFileSync(path, encoding ?? 'utf8');
     strictEqual(actualContents, expectedContents);
 };
 

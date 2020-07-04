@@ -2,7 +2,7 @@ language: node_js
 services:
   - docker
 node_js:
-  - "12.12"
+  - "14.5"
 addons:
   code_climate:
     repo_token:
