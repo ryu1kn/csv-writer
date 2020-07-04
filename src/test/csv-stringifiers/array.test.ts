@@ -4,8 +4,8 @@ import {strictEqual, throws} from 'assert'
 
 describe('ArrayCsvStringifier', () => {
     const records = [
-        ['FIELD_A1', 'FIELD_B1'],
-        ['FIELD_A2', 'FIELD_B2']
+        ['VALUE_A1', 'VALUE_B1'],
+        ['VALUE_A2', 'VALUE_B2']
     ]
 
     describe('When field delimiter is comma', generateTestCases(','))
@@ -40,7 +40,7 @@ describe('ArrayCsvStringifier', () => {
         it('converts the records into CSV', () => {
             strictEqual(
                 stringifier.stringifyRecords(recordGenerator()),
-                'FIELD_A1,FIELD_B1\nFIELD_A2,FIELD_B2\n'
+                'VALUE_A1,VALUE_B1\nVALUE_A2,VALUE_B2\n'
             )
         })
     })
@@ -56,7 +56,7 @@ describe('ArrayCsvStringifier', () => {
         })
 
         it('quotes all data fields', () => {
-            strictEqual(stringifier.stringifyRecords(records), '"FIELD_A1","FIELD_B1"\n"FIELD_A2","FIELD_B2"\n')
+            strictEqual(stringifier.stringifyRecords(records), '"VALUE_A1","VALUE_B1"\n"VALUE_A2","VALUE_B2"\n')
         })
     })
 
@@ -76,7 +76,7 @@ describe('ArrayCsvStringifier', () => {
                 it(`converts given data records into CSV lines with field separated by "${delim}"`, () => {
                     strictEqual(
                         stringifier.stringifyRecords(records),
-                        `FIELD_A1${delim}FIELD_B1\nFIELD_A2${delim}FIELD_B2\n`
+                        `VALUE_A1${delim}VALUE_B1\nVALUE_A2${delim}VALUE_B2\n`
                     )
                 })
             })
@@ -91,7 +91,7 @@ describe('ArrayCsvStringifier', () => {
                 it(`converts given data records into CSV lines with field separated by "${delim}"`, () => {
                     strictEqual(
                         stringifier.stringifyRecords(records),
-                        `FIELD_A1${delim}FIELD_B1\nFIELD_A2${delim}FIELD_B2\n`
+                        `VALUE_A1${delim}VALUE_B1\nVALUE_A2${delim}VALUE_B2\n`
                     )
                 })
             })
