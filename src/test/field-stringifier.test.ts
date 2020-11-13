@@ -45,8 +45,16 @@ describe('DefaultFieldStringifier', () => {
                 strictEqual(stringifier.stringify(`VALUE${delim}A`), `"VALUE${delim}A"`)
             })
 
-            it('wraps a field value with double quotes if the field contains newline', () => {
+            it('wraps a field value with double quotes if the field contains carriage return', () => {
+                strictEqual(stringifier.stringify('VALUE\rA'), '"VALUE\rA"')
+            })
+
+            it('wraps a field value with double quotes if the field contains line feed', () => {
                 strictEqual(stringifier.stringify('VALUE\nA'), '"VALUE\nA"')
+            })
+
+            it('wraps a field value with double quotes if the field contains carriage return and line feed', () => {
+                strictEqual(stringifier.stringify('VALUE\r\nA'), '"VALUE\r\nA"')
             })
 
             it('wraps a field value with double quotes and escape the double quotes if they are used in the field', () => {
