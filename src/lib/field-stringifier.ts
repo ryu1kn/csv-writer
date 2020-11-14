@@ -25,7 +25,7 @@ class DefaultFieldStringifier extends FieldStringifier {
     }
 
     private needsQuote(str: string): boolean {
-        return str.includes(this.fieldDelimiter) || str.includes('\n') || str.includes('"')
+        return str.includes(this.fieldDelimiter) || str.includes('\r') || str.includes('\n') || str.includes('"')
     }
 }
 
