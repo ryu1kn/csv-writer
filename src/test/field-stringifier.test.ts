@@ -1,6 +1,6 @@
-import {resolveDelimiterChar} from './helper/delimiter'
-import {createFieldStringifier} from '../lib/field-stringifier'
-import {strictEqual} from 'assert'
+import { resolveDelimiterChar } from './helper/delimiter'
+import { createFieldStringifier } from '../lib/field-stringifier'
+import { strictEqual } from 'assert'
 
 describe('DefaultFieldStringifier', () => {
 
@@ -83,6 +83,14 @@ describe('DefaultFieldStringifier', () => {
                     toString: function () { return `Name: ${this.name}` }
                 }
                 strictEqual(stringifier.stringify(obj), 'Name: OBJECT_NAME')
+            })
+
+            it('does not change a stringified object', () => {
+                const obj = {
+                    json: JSON.stringify({ "test": { "type1": "apples", "isObject": true } }),
+                    toString: function () { return this.json }
+                }
+                strictEqual(stringifier.stringify(obj), `{"test":{"type1":"apples","isObject":true}}`)
             })
 
             it(`wraps a toString-ed field value with double quote if the value contains "${delim}"`, () => {
