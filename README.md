@@ -1,8 +1,10 @@
-[![Build Status](https://travis-ci.org/ryu1kn/csv-writer.svg?branch=master)](https://travis-ci.org/ryu1kn/csv-writer)
-[![Coverage Status](https://coveralls.io/repos/github/ryu1kn/csv-writer/badge.svg?branch=master)](https://coveralls.io/github/ryu1kn/csv-writer?branch=master)
-[![Code Climate](https://codeclimate.com/github/ryu1kn/csv-writer/badges/gpa.svg)](https://codeclimate.com/github/ryu1kn/csv-writer)
+[![Build Status](https://travis-ci.org/ouroboroscoding/csv-writer-browser.svg?branch=master)](https://travis-ci.org/ouroboroscoding/csv-writer-browser)
+[![Coverage Status](https://coveralls.io/repos/github/ouroboroscoding/csv-writer-browser/badge.svg?branch=master)](https://coveralls.io/github/ouroboroscoding/csv-writer-browser?branch=master)
+[![Code Climate](https://codeclimate.com/github/ouroboroscoding/csv-writer-browser/badges/gpa.svg)](https://codeclimate.com/github/ouroboroscoding/csv-writer-browser)
 
-# CSV Writer
+# CSV Writer (Browser)
+
+This project was original forked from Ryuichi Inagaki's [csv-writer](https://github.com/ryu1kn/csv-writer) but it did not support running in a browser due to the lack of support for fs/path/etc. It should not be used unless you are specifically running into the issue of not being able to compile/transpile your code due to the lack of fs support. There is a [pull request](https://github.com/ryu1kn/csv-writer/pull/84) to add this functionality to the original project, and this package and all associated files will be deleted as soon as that pull request is added.
 
 Convert objects/arrays into a CSV string or write them into a file.
 It respects [RFC 4180](https://tools.ietf.org/html/rfc4180) for the output CSV format.
