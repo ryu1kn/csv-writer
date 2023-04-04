@@ -150,6 +150,10 @@ console.log(csvStringifier.stringifyRecords(records));
 
       Default: `false`. Set it to `true` to double-quote all fields regardless of their values.
 
+  * quoteEmptyFields `<boolean>` (optional)
+
+      Default: `false`. Set it to `true` to double-quote ("") fields with empty values (not set, undefined, null).
+
   * encoding `<string>` (optional)
 
       Default: `utf8`.
@@ -190,6 +194,10 @@ console.log(csvStringifier.stringifyRecords(records));
   * alwaysQuote `<boolean>` (optional)
 
       Default: `false`. Set it to `true` to double-quote all fields regardless of their values.
+
+  * quoteEmptyFields `<boolean>` (optional)
+
+      Default: `false`. Set it to `true` to double-quote ("") fields with empty values (not set, undefined, null).
 
   * encoding `<string>` (optional)
 
@@ -246,6 +254,11 @@ console.log(csvStringifier.stringifyRecords(records));
 
       Default: `false`. Set it to `true` to double-quote all fields regardless of their values.
 
+ * quoteEmptyFields `<boolean>` (optional)
+
+      Default: `false`. Set it to `true` to double-quote ("") fields with empty values (not set, undefined, null).
+
+
 ##### Returns:
 
 * `<ObjectCsvStringifier>`
@@ -286,6 +299,11 @@ console.log(csvStringifier.stringifyRecords(records));
   * alwaysQuote `<boolean>` (optional)
 
       Default: `false`. Set it to `true` to double-quote all fields regardless of their values.
+
+  * quoteEmptyFields `<boolean>` (optional)
+
+      Default: `false`. Set it to `true` to double-quote ("") fields with empty values (not set, undefined, null).
+
 
 ##### Returns:
 
