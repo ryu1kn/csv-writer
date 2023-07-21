@@ -19,6 +19,7 @@ export interface ObjectCsvWriterParams {
     recordDelimiter?: string
     headerIdDelimiter?: string
     alwaysQuote?: boolean
+    shouldAddQuoteWhenEmpty?: boolean
     encoding?: string
     append?: boolean
 }
@@ -42,7 +43,8 @@ export class CsvWriterFactory {
             fieldDelimiter: params.fieldDelimiter,
             recordDelimiter: params.recordDelimiter,
             headerIdDelimiter: params.headerIdDelimiter,
-            alwaysQuote: params.alwaysQuote
+            alwaysQuote: params.alwaysQuote,
+            shouldAddQuoteWhenEmpty: params.shouldAddQuoteWhenEmpty
         })
         return new CsvWriter(csvStringifier, params.path, params.encoding, params.append)
     }

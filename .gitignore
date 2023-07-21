@@ -6,3 +6,5 @@
 /node_modules
 /test-tmp
 __*
+test-integration/driver-project-template/node_modules/**
+package-lock.json

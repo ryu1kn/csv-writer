@@ -15,7 +15,8 @@ export interface ObjectCsvStringifierParams {
     fieldDelimiter?: string
     recordDelimiter?: string
     headerIdDelimiter?: string
-    alwaysQuote?: boolean
+    alwaysQuote?: boolean,
+    shouldAddQuoteWhenEmpty?: boolean
 }
 
 export class CsvStringifierFactory {
@@ -26,7 +27,7 @@ export class CsvStringifierFactory {
     }
 
     createObjectCsvStringifier(params: ObjectCsvStringifierParams) {
-        const fieldStringifier = createFieldStringifier(params.fieldDelimiter, params.alwaysQuote)
+        const fieldStringifier = createFieldStringifier(params.fieldDelimiter, params.alwaysQuote,params.shouldAddQuoteWhenEmpty)
         return new ObjectCsvStringifier(fieldStringifier, params.header, params.recordDelimiter, params.headerIdDelimiter)
     }
 
