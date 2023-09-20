@@ -26,6 +26,5 @@ jobs:
     - run: npm run coverage
     - run: cat coverage/lcov.info | node_modules/.bin/coveralls
     - run: codeclimate-test-reporter < coverage/lcov.info
-    services:
-#       # This item has no matching transformer
-#       docker:
+      env:
+        CODECLIMATE_REPO_TOKEN: ${{ secrets.CODECLIMATE_REPO_TOKEN }}
