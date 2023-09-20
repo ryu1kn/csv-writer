@@ -1,0 +1,31 @@
+name: ryu1kn/csv-writer
+on:
+  push:
+    branches:
+    - "**/*"
+  pull_request:
+concurrency:
+#   # This item has no matching transformer
+#   maximum_number_of_builds: 0
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@v4.0.0
+    - uses: actions/setup-node@v3.8.1
+      with:
+        cache: npm
+        node-version: '14.5'
+    - run: |-
+        curl -L https://github.com/codeclimate/codeclimate/archive/master.tar.gz | tar xvz
+        cd codeclimate-* && sudo make install
+    - run: npm install
+    - run: npm run lint
+    - run: npm run test:it
+    - run: npm run coverage
+    - run: cat coverage/lcov.info | node_modules/.bin/coveralls
+    - run: codeclimate-test-reporter < coverage/lcov.info
+    services:
+#       # This item has no matching transformer
+#       docker:
