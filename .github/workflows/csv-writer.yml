@@ -23,9 +23,10 @@ jobs:
     # FIXME: coveralls fails to report the result
     #- run: cat coverage/lcov.info | node_modules/.bin/coveralls
 
-    - run: |-
-        curl -L https://github.com/codeclimate/codeclimate/archive/master.tar.gz | tar xvz
-        cd codeclimate-* && sudo make install
-        codeclimate analyze
-      env:
-        CODECLIMATE_REPO_TOKEN: ${{ secrets.CODECLIMATE_REPO_TOKEN }}
+    # FIXME: CodeClimate fails to analyze/report
+    #- run: |-
+    #    curl -L https://github.com/codeclimate/codeclimate/archive/master.tar.gz | tar xvz
+    #    cd codeclimate-* && sudo make install
+    #    codeclimate analyze
+    #  env:
+    #    CODECLIMATE_REPO_TOKEN: ${{ secrets.CODECLIMATE_REPO_TOKEN }}
