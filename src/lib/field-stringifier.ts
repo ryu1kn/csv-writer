@@ -1,7 +1,7 @@
 import {Field} from './record'
 
 const DEFAULT_FIELD_DELIMITER = ','
-const VALID_FIELD_DELIMITERS = [DEFAULT_FIELD_DELIMITER, ';']
+const VALID_FIELD_DELIMITERS = [DEFAULT_FIELD_DELIMITER, ';', '|', '\t']
 
 export abstract class FieldStringifier {
     constructor(public readonly fieldDelimiter: string) {}
