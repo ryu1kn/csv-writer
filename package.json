@@ -1,5 +1,5 @@
 {
-  "name": "csv-writer",
+  "name": "csv-writer-browser",
   "version": "1.6.0",
   "description": "Convert objects/arrays into a CSV string or write them into a CSV file",
   "main": "dist/index.js",
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ryu1kn/csv-writer.git"
+    "url": "git+https://github.com/ouroboroscoding/csv-writer-browser.git"
   },
   "keywords": [
     "csv",
@@ -26,9 +26,9 @@
   "author": "Ryuichi Inagaki",
   "license": "SEE LICENSE IN LICENSE",
   "bugs": {
-    "url": "https://github.com/ryu1kn/csv-writer/issues"
+    "url": "https://github.com/ouroboroscoding/csv-writer-browser/issues"
   },
-  "homepage": "https://github.com/ryu1kn/csv-writer#readme",
+  "homepage": "https://github.com/ouroboroscoding/csv-writer-browser#readme",
   "files": [
     "dist",
     "!dist/test",
@@ -45,5 +45,10 @@
     "ts-node": "^9.0.0",
     "tslint": "^6.1.3",
     "typescript": "^4.0.5"
+  },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
   }
 }
