@@ -10,7 +10,8 @@
     "noUnusedLocals": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "noUnusedParameters": true
+    "noUnusedParameters": true,
+    "declaration": true
   },
   "exclude": [
     "node_modules",
