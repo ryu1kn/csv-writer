@@ -1,10 +1,10 @@
-import {Field} from './record'
+import { Field } from './record'
 
 const DEFAULT_FIELD_DELIMITER = ','
 const VALID_FIELD_DELIMITERS = [DEFAULT_FIELD_DELIMITER, ';']
 
 export abstract class FieldStringifier {
-    constructor(public readonly fieldDelimiter: string) {}
+    constructor(public readonly fieldDelimiter: string) { }
 
     abstract stringify(value?: Field): string
 
@@ -20,12 +20,28 @@ export abstract class FieldStringifier {
 class DefaultFieldStringifier extends FieldStringifier {
     stringify(value?: Field): string {
         if (this.isEmpty(value)) return ''
+
         const str = String(value)
+
+        if (this.isJSON(str)) return str
+
         return this.needsQuote(str) ? this.quoteField(str) : str
     }
 
     private needsQuote(str: string): boolean {
         return str.includes(this.fieldDelimiter) || str.includes('\r') || str.includes('\n') || str.includes('"')
+    }
+
+    private isJSON(str: string): boolean {
+        if (typeof str !== 'string') return false;
+        try {
+            const result = JSON.parse(str);
+            const type = Object.prototype.toString.call(result);
+            return type === '[object Object]'
+                || type === '[object Array]';
+        } catch (err) {
+            return false;
+        }
     }
 }
 
