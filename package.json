@@ -2,8 +2,16 @@
   "name": "csv-writer",
   "version": "1.6.0",
   "description": "Convert objects/arrays into a CSV string or write them into a CSV file",
-  "main": "dist/index.js",
-  "types": "src/index.ts",
+  "exports": {
+    "./web": "./dist/web-index.js",
+    ".": "./dist/index.js"
+  },
+  "typesVersions": {
+    "*": {
+      "web": [ "src/web-index.ts" ],
+      "*": [ "src/index.ts" ]
+    }
+  },
   "scripts": {
     "compile": "tsc -p ./",
     "test": "npm run test:unit && npm run test:it",
