@@ -8,6 +8,12 @@ describe('ArrayCsvStringifier', () => {
         ['VALUE_A2', 'VALUE_B2']
     ]
 
+    const recordsWithEmpty = [
+        ...records,
+        ['VALUE_A3', undefined],
+        [null, 'VALUE_B4']
+    ]
+
     describe('When field delimiter is comma', generateTestCases(','))
 
     describe('When field delimiter is semicolon', generateTestCases(';'))
@@ -57,6 +63,29 @@ describe('ArrayCsvStringifier', () => {
 
         it('quotes all data fields', () => {
             strictEqual(stringifier.stringifyRecords(records), '"VALUE_A1","VALUE_B1"\n"VALUE_A2","VALUE_B2"\n')
+        })
+    })
+
+    describe('When `quoteEmptyFields` flag is set', () => {
+        const stringifier = createArrayCsvStringifier({
+            header: ['TITLE_A', 'TITLE_B'],
+            quoteEmptyFields: true
+        })
+
+        it('quotes all empty fields', () => {
+            strictEqual(stringifier.stringifyRecords(recordsWithEmpty), 'VALUE_A1,VALUE_B1\nVALUE_A2,VALUE_B2\nVALUE_A3,""\n"",VALUE_B4\n')
+        })
+    })
+
+    describe('When `quoteEmptyFields` and `alwaysQuote` flag is set', () => {
+        const stringifier = createArrayCsvStringifier({
+            header: ['TITLE_A', 'TITLE_B'],
+            quoteEmptyFields: true,
+            alwaysQuote: true
+        })
+
+        it('quotes all empty fields', () => {
+            strictEqual(stringifier.stringifyRecords(recordsWithEmpty), '"VALUE_A1","VALUE_B1"\n"VALUE_A2","VALUE_B2"\n"VALUE_A3",""\n"","VALUE_B4"\n')
         })
     })
 

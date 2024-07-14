@@ -8,6 +8,12 @@ describe('ObjectCsvStringifier', () => {
         {FIELD_A: 'VALUE_A2', FIELD_B: 'VALUE_B2', OTHERS: {FIELD_C: 'VALUE_C2'}}
     ]
 
+    const recordsWithEmpty = [
+        ...records,
+        {FIELD_A: 'VALUE_A3', FIELD_B: undefined},
+        {FIELD_A: null, FIELD_B: 'VALUE_B4'}
+    ]
+
     describe('When field delimiter is comma', generateTestCases(','))
 
     describe('When field delimiter is semicolon', generateTestCases(';'))
@@ -84,6 +90,43 @@ describe('ObjectCsvStringifier', () => {
 
         it('picks up a value in nested objects', () => {
             strictEqual(stringifier.stringifyRecords(records), 'VALUE_A1,\nVALUE_A2,VALUE_C2\n')
+        })
+    })
+
+    describe('When `quoteEmptyFields` flag is set', () => {
+        const stringifier = createObjectCsvStringifier({
+            header: [
+                {id: 'FIELD_A', title: 'TITLE_A'},
+                {id: 'FIELD_B', title: 'TITLE_B'}
+            ],
+            quoteEmptyFields: true
+        })
+
+        it('header fields stays as is', () => {
+            strictEqual(stringifier.getHeaderString(), 'TITLE_A,TITLE_B\n')
+        })
+
+        it('quotes all data fields', () => {
+            strictEqual(stringifier.stringifyRecords(recordsWithEmpty), 'VALUE_A1,VALUE_B1\nVALUE_A2,VALUE_B2\nVALUE_A3,""\n"",VALUE_B4\n')
+        })
+    })
+
+    describe('When `quoteEmptyFields` and `alwaysQuote` flag is set', () => {
+        const stringifier = createObjectCsvStringifier({
+            header: [
+                {id: 'FIELD_A', title: 'TITLE_A'},
+                {id: 'FIELD_B', title: 'TITLE_B'}
+            ],
+            alwaysQuote: true,
+            quoteEmptyFields: true
+        })
+
+        it('quotes all header fields', () => {
+            strictEqual(stringifier.getHeaderString(), '"TITLE_A","TITLE_B"\n')
+        })
+
+        it('quotes all data field including empties', () => {
+            strictEqual(stringifier.stringifyRecords(recordsWithEmpty), '"VALUE_A1","VALUE_B1"\n"VALUE_A2","VALUE_B2"\n"VALUE_A3",""\n"","VALUE_B4"\n')
         })
     })
 

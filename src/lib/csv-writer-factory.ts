@@ -10,6 +10,7 @@ export interface ArrayCsvWriterParams {
     alwaysQuote?: boolean
     encoding?: string
     append?: boolean
+    quoteEmptyFields?: boolean
 }
 
 export interface ObjectCsvWriterParams {
@@ -21,6 +22,7 @@ export interface ObjectCsvWriterParams {
     alwaysQuote?: boolean
     encoding?: string
     append?: boolean
+    quoteEmptyFields?: boolean
 }
 
 export class CsvWriterFactory {
@@ -31,7 +33,8 @@ export class CsvWriterFactory {
             header: params.header,
             fieldDelimiter: params.fieldDelimiter,
             recordDelimiter: params.recordDelimiter,
-            alwaysQuote: params.alwaysQuote
+            alwaysQuote: params.alwaysQuote,
+            quoteEmptyFields: params.quoteEmptyFields
         })
         return new CsvWriter(csvStringifier, params.path, params.encoding, params.append)
     }
@@ -42,7 +45,8 @@ export class CsvWriterFactory {
             fieldDelimiter: params.fieldDelimiter,
             recordDelimiter: params.recordDelimiter,
             headerIdDelimiter: params.headerIdDelimiter,
-            alwaysQuote: params.alwaysQuote
+            alwaysQuote: params.alwaysQuote,
+            quoteEmptyFields: params.quoteEmptyFields
         })
         return new CsvWriter(csvStringifier, params.path, params.encoding, params.append)
     }

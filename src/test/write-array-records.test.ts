@@ -11,6 +11,11 @@ describe('Write array records into CSV', () => {
         ['Mary', 'English']
     ]
 
+    const recordsWithEmpty = [
+        ...records,
+        ["Jack", undefined],
+        [null, "German"]]
+
     describe('When only path is specified', () => {
         const filePath = makeFilePath('minimum')
         let writer: CsvWriter<string[]>
@@ -119,6 +124,37 @@ describe('Write array records into CSV', () => {
         it('quotes all fields', async () => {
             await writer.writeRecords(records)
             assertFile(filePath, '"NAME","LANGUAGE"\n"Bob","French"\n"Mary","English"\n')
+        })
+    })
+
+    describe('When `quoteEmptyFields` flag is set', () => {
+        const filePath = makeFilePath('quote-empty-fields')
+
+        const writer = createArrayCsvWriter({
+            path: filePath,
+            header: ['NAME', 'LANGUAGE'],
+            quoteEmptyFields: true
+        })
+
+        it('quotes all empty fields', async () => {
+            await writer.writeRecords(recordsWithEmpty)
+            assertFile(filePath, 'NAME,LANGUAGE\nBob,French\nMary,English\nJack,""\n"",German\n')
+        })
+    })
+
+    describe('When `quoteEmptyFields` and `alwaysQuote` flag is set', () => {
+        const filePath = makeFilePath('quote-empty-fields-and-always-quote')
+
+        const writer = createArrayCsvWriter({
+            path: filePath,
+            header: ['NAME', 'LANGUAGE'],
+            quoteEmptyFields: true,
+            alwaysQuote: true
+        })
+
+        it('quotes all fields including empties', async () => {
+            await writer.writeRecords(recordsWithEmpty)
+            assertFile(filePath, '"NAME","LANGUAGE"\n"Bob","French"\n"Mary","English"\n"Jack",""\n"","German"\n')
         })
     })
 })
