@@ -4,18 +4,18 @@ import {ObjectCsvStringifier} from './csv-stringifiers/object'
 import {ObjectStringifierHeader} from './record'
 
 export interface ArrayCsvStringifierParams {
-    header?: string[]
-    fieldDelimiter?: string
-    recordDelimiter?: string
-    alwaysQuote?: boolean
+    header?: string[] | undefined;
+    fieldDelimiter?: string | undefined;
+    recordDelimiter?: string | undefined;
+    alwaysQuote?: boolean | undefined;
 }
 
 export interface ObjectCsvStringifierParams {
-    header: ObjectStringifierHeader
-    fieldDelimiter?: string
-    recordDelimiter?: string
-    headerIdDelimiter?: string
-    alwaysQuote?: boolean
+    header: ObjectStringifierHeader;
+    fieldDelimiter?: string | undefined;
+    recordDelimiter?: string | undefined;
+    headerIdDelimiter?: string | undefined;
+    alwaysQuote?: boolean | undefined;
 }
 
 export class CsvStringifierFactory {
